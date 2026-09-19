@@ -19,7 +19,7 @@
             --text-muted: #888888;
             --primary-grad: linear-gradient(90deg, #ff4040, #ff7340);
             --accent: #ff4040;
-            --glow-color: #ff4040; /* Updated from yellow to TFG Orange/Red */
+            --glow-color: #ff4040;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
@@ -43,7 +43,6 @@
             box-shadow: 0 10px 20px rgba(255,64,64,0.2);
         }
         .btn:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255,64,64,0.4); }
-        
         .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-size: 14px; transition: 0.3s; }
         .btn-outline:hover { background: var(--surface-light); border-color: var(--text-muted); }
 
@@ -60,13 +59,13 @@
         .hero-content { flex: 1.2; z-index: 20; }
         .hero h1 { font-size: 72px; line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin-bottom: 24px; }
         
-        /* Animated Changing Word */
+        /* Animated Changing Word (Now ALL CAPS) */
         .word-cycler { display: inline-block; position: relative; height: 80px; overflow: hidden; vertical-align: bottom; }
-        .changing-word { display: inline-block; position: relative; }
+        .changing-word { display: inline-block; position: relative; text-transform: uppercase; }
 
         .hero p { color: var(--text-muted); font-size: 18px; max-width: 480px; margin-bottom: 40px; line-height: 1.6; }
         
-        /* HERO GRAPHIC (Perfect Orbit) */
+        /* HERO GRAPHIC */
         .hero-graphic { flex: 0.8; position: relative; height: 550px; display: flex; align-items: center; justify-content: center; }
         .planet {
             width: 220px; height: 220px; border-radius: 50%;
@@ -96,21 +95,17 @@
 
         /* MARQUEE TICKER */
         .marquee-container { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); overflow: hidden; display: flex; align-items: center; cursor: pointer; }
-        .marquee-title {
-            font-size: 10px; color: var(--accent); letter-spacing: 2px; padding: 20px 40px; font-weight: 700;
-            border-right: 1px solid var(--border); background: var(--surface); position: relative; z-index: 10; white-space: nowrap;
-        }
+        .marquee-title { font-size: 10px; color: var(--accent); letter-spacing: 2px; padding: 20px 40px; font-weight: 700; border-right: 1px solid var(--border); background: var(--surface); position: relative; z-index: 10; white-space: nowrap; }
         .marquee-track-wrapper { flex: 1; overflow: hidden; position: relative; display: flex; }
         .marquee-track { display: flex; align-items: center; white-space: nowrap; }
         .marquee-track span { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-muted); margin: 0 40px; }
         .marquee-track span i { font-size: 20px; color: var(--text-main); }
 
-        /* SERVICES (9 GRID) */
+        /* SERVICES */
         .services { padding: 120px 0; }
         .section-header { margin-bottom: 60px; }
         .section-header h2 { font-size: 42px; font-weight: 600; line-height: 1.1; letter-spacing: -1px; }
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        
         .service-card { background: var(--surface); border: 1px solid var(--border); padding: 40px 30px; border-radius: 16px; transition: all 0.4s; }
         .service-card:hover { border-color: var(--border-hover); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(255,64,64,0.1); background: #111; }
         .service-card i { font-size: 32px; color: var(--accent); margin-bottom: 24px; display: block; transition: transform 0.4s; }
@@ -118,86 +113,95 @@
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* PROCESS PINNED (3D BULB GLOW LOGIC) */
+        /* FEATURED PROJECTS (ALBUM SECTION) */
+        .featured-album-section {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; background: var(--bg);
+        }
+        .album-glow {
+            position: absolute; width: 50vw; height: 50vw; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 64, 64, 0.15) 0%, transparent 60%);
+        }
+        .album-book {
+            position: relative; width: 45vw; max-width: 500px; height: 60vh; max-height: 700px;
+            perspective: 2500px; z-index: 5; opacity: 0; transform: translateY(50px);
+        }
+        
+        /* Album Page Mechanics */
+        .book-page {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            transform-origin: left center; transform-style: preserve-3d;
+        }
+        .page-face {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            backface-visibility: hidden; border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
+        }
+        .page-front { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(20px); }
+        .page-back { background: rgba(10, 10, 10, 0.95); transform: rotateY(180deg); } /* Blank back of the page */
+
+        /* Specific Page Designs */
+        .cover-design { background: rgba(255,255,255,0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,64,64,0.3); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        .cover-design h2 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+        
+        .content-frame { flex: 1; padding: 24px; display: flex; flex-direction: column; }
+        .img-placeholder { flex: 1; background: #111; border-radius: 8px; border: 1px dashed rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 20px; overflow: hidden; position: relative; }
+        .post-info h4 { font-size: 18px; margin-bottom: 8px; }
+        .post-info p { font-size: 12px; color: var(--text-muted); }
+        
+        .logo-placeholder { flex: 1; background: radial-gradient(circle, rgba(255,255,255,0.05), transparent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 48px; }
+
+        /* Set Z-Indexes Statically so pages stack properly */
+        .p-1 { z-index: 12; } .p-2 { z-index: 11; } .p-3 { z-index: 10; }
+        .p-4 { z-index: 9; }  .p-5 { z-index: 8; }  .p-6 { z-index: 7; }
+        .p-7 { z-index: 6; }  .p-8 { z-index: 5; }  .p-9 { z-index: 4; }
+        .p-10 { z-index: 3; } .p-11 { z-index: 2; } .p-12 { z-index: 1; }
+
+        /* PROCESS PINNED SECTION */
         .process-pin-container { height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; background: var(--bg); border-top: 1px solid var(--border);}
         .process-pin-header { padding: 0 40px; max-width: 1300px; margin: 0 auto 40px; width: 100%; }
-        
         .process-track-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
         .process-horizontal-track { display: flex; gap: 40px; padding: 40px 50vw 40px 40px; width: max-content; }
         
         .process-box {
             width: 320px; min-height: 320px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
             padding: 40px; opacity: 0.3; transition: all 0.5s ease; display: flex; flex-direction: column; position: relative;
-            /* 3D Styling */
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.5);
-            transform: perspective(1000px) rotateY(10deg);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.5); transform: perspective(1000px) rotateY(10deg);
         }
-        
-        /* Updated Glow Effect - Orange Theme */
         .process-box.bulb-glow {
-            opacity: 1;
-            background: #1a0505; /* Subtle red tint */
-            border-color: var(--glow-color);
+            opacity: 1; background: #1a0505; border-color: var(--glow-color);
             box-shadow: 0 0 40px rgba(255, 64, 64, 0.3), inset 0 0 20px rgba(255, 64, 64, 0.15), 0 20px 40px rgba(0,0,0,0.8);
-            transform: perspective(1000px) rotateY(0deg) scale(1.05);
-            z-index: 10;
+            transform: perspective(1000px) rotateY(0deg) scale(1.05); z-index: 10;
         }
 
         .box-num { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; margin-bottom: 24px; transition: 0.5s; color: var(--text-muted); }
         .bulb-glow .box-num { background: var(--primary-grad); color: #fff; border-color: var(--glow-color); box-shadow: 0 0 15px rgba(255, 64, 64, 0.6); border-width: 0; }
-        
         .process-box h4 { font-size: 24px; margin-bottom: 12px; transition: 0.5s; }
         .bulb-glow h4 { background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .process-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-        /* PRICING (3D & DETAILED) */
+        /* PRICING */
         .pricing { padding: 120px 0; }
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .price-card { 
-            background: var(--surface); border: 1px solid var(--border); padding: 50px 40px; border-radius: 24px; 
-            transition: all 0.4s;
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3);
-        }
+        .price-card { background: var(--surface); border: 1px solid var(--border); padding: 50px 40px; border-radius: 24px; transition: all 0.4s; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3); }
         .price-card:hover { transform: translateY(-10px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.6); }
-        .price-card.featured { 
-            background: linear-gradient(180deg, rgba(255,64,64,0.1) 0%, var(--surface) 100%); 
-            border: 1px solid var(--accent); 
-            transform: scale(1.05);
-            box-shadow: inset 0 1px 1px rgba(255,64,64,0.2), 0 20px 50px rgba(255,64,64,0.1);
-        }
+        .price-card.featured { background: linear-gradient(180deg, rgba(255,64,64,0.1) 0%, var(--surface) 100%); border: 1px solid var(--accent); transform: scale(1.05); box-shadow: inset 0 1px 1px rgba(255,64,64,0.2), 0 20px 50px rgba(255,64,64,0.1); }
         .price-card.featured:hover { transform: scale(1.05) translateY(-10px); }
-        
         .price { font-size: 56px; font-weight: 700; color: var(--accent); margin: 24px 0; line-height: 1; }
         .features { list-style: none; margin-bottom: 40px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; color: var(--text-muted); }
         .features li { display: flex; align-items: center; gap: 10px; }
         .features li i { font-size: 18px; color: var(--accent); }
 
-        /* CTA (MODERN 3D) */
+        /* CTA */
         .cta-section { padding: 80px 0; }
-        .footer-cta { 
-            padding: 80px 60px; 
-            background: rgba(255, 64, 64, 0.05);
-            border: 1px solid rgba(255, 64, 64, 0.2); 
-            border-radius: 30px; 
-            text-align: center; 
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), 0 30px 60px rgba(0,0,0,0.5);
-            backdrop-filter: blur(20px);
-            transform: perspective(1000px) rotateX(2deg);
-            transition: transform 0.4s;
-        }
+        .footer-cta { padding: 80px 60px; background: rgba(255, 64, 64, 0.05); border: 1px solid rgba(255, 64, 64, 0.2); border-radius: 30px; text-align: center; position: relative; overflow: hidden; box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), 0 30px 60px rgba(0,0,0,0.5); backdrop-filter: blur(20px); transform: perspective(1000px) rotateX(2deg); transition: transform 0.4s; }
         .footer-cta:hover { transform: perspective(1000px) rotateX(0deg); }
-        .footer-cta::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle at center, rgba(255,64,64,0.15), transparent 60%);
-            pointer-events: none; z-index: -1;
-        }
+        .footer-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(255,64,64,0.15), transparent 60%); pointer-events: none; z-index: -1; }
         .footer-cta h2 { font-size: 56px; font-weight: 700; margin-bottom: 16px; letter-spacing: -2px; }
         .cta-email { display: block; margin-top: 24px; font-size: 16px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
         .cta-email:hover { color: var(--text-main); text-decoration: underline; }
 
-        /* FOOTER */
         footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
@@ -207,13 +211,7 @@
     <header>
         <div class="container">
             <div class="logo">TFG</div>
-            <nav>
-                <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                </ul>
-            </nav>
+            <nav><ul><li><a href="#services">Services</a></li><li><a href="#featured">Work</a></li><li><a href="#process">Process</a></li><li><a href="#pricing">Pricing</a></li></ul></nav>
             <a href="mailto:hello@tfgsolutions.pk" class="btn btn-outline">Let's Talk →</a>
         </div>
     </header>
@@ -237,162 +235,187 @@
         <div class="hero-graphic">
             <div class="static-ring ring-1"></div>
             <div class="static-ring ring-2"></div>
-            
-            <!-- Draggable Orbit 2 (Outer) -->
+            <!-- Orbit 2 -->
             <div class="orbit-container" id="orbit-2">
                 <div class="tag-wrapper" style="top: 0; left: 50%;"><div class="orbit-tag"><i class="ph-fill ph-device-mobile"></i> Apps</div></div>
                 <div class="tag-wrapper" style="top: 75%; left: 6.6%;"><div class="orbit-tag"><i class="ph-fill ph-shopping-cart"></i> Commerce</div></div>
                 <div class="tag-wrapper" style="top: 75%; left: 93.3%;"><div class="orbit-tag"><i class="ph-fill ph-trend-up"></i> Growth</div></div>
             </div>
-
-            <!-- Draggable Orbit 1 (Inner) -->
+            <!-- Orbit 1 -->
             <div class="orbit-container" id="orbit-1">
                 <div class="tag-wrapper" style="top: 50%; left: 0;"><div class="orbit-tag"><i class="ph-fill ph-globe"></i> Websites</div></div>
                 <div class="tag-wrapper" style="top: 50%; left: 100%;"><div class="orbit-tag"><i class="ph-fill ph-paint-brush"></i> Branding</div></div>
             </div>
-
             <div class="planet">TFG</div>
         </div>
     </section>
 
-    <!-- Marquee Ticker -->
+    <!-- Marquee -->
     <section>
         <div class="marquee-container" id="trusted-marquee">
             <div class="marquee-title">TRUSTED BY 100+ COMPANIES</div>
             <div class="marquee-track-wrapper">
-                <!-- Two identical tracks for seamless GSAP loop -->
                 <div class="marquee-track" id="track-1">
-                    <span><i class="ph-fill ph-triangle"></i> Alpha Web Studio</span>
-                    <span><i class="ph-fill ph-wind"></i> Flixter</span>
-                    <span><i class="ph-fill ph-coin"></i> Kon Financial</span>
-                    <span><i class="ph-fill ph-sun"></i> Tempello</span>
-                    <span><i class="ph-fill ph-infinity"></i> Zync Explorer</span>
+                    <span><i class="ph-fill ph-triangle"></i> Alpha Web Studio</span><span><i class="ph-fill ph-wind"></i> Flixter</span><span><i class="ph-fill ph-coin"></i> Kon Financial</span><span><i class="ph-fill ph-sun"></i> Tempello</span><span><i class="ph-fill ph-infinity"></i> Zync Explorer</span>
                 </div>
                 <div class="marquee-track" id="track-2">
-                    <span><i class="ph-fill ph-triangle"></i> Alpha Web Studio</span>
-                    <span><i class="ph-fill ph-wind"></i> Flixter</span>
-                    <span><i class="ph-fill ph-coin"></i> Kon Financial</span>
-                    <span><i class="ph-fill ph-sun"></i> Tempello</span>
-                    <span><i class="ph-fill ph-infinity"></i> Zync Explorer</span>
+                    <span><i class="ph-fill ph-triangle"></i> Alpha Web Studio</span><span><i class="ph-fill ph-wind"></i> Flixter</span><span><i class="ph-fill ph-coin"></i> Kon Financial</span><span><i class="ph-fill ph-sun"></i> Tempello</span><span><i class="ph-fill ph-infinity"></i> Zync Explorer</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services (9 Grid) -->
+    <!-- Services -->
     <section id="services" class="services container">
         <div class="section-header">
             <span class="badge">02 • CAPABILITIES</span>
             <h2>Nine disciplines.<br>One accountable team.</h2>
         </div>
         <div class="services-grid">
-            <div class="service-card"><i class="ph ph-code"></i><h3>Custom Software</h3><p>Bespoke platforms, internal tools and SaaS, built to scale with your operation.</p></div>
-            <div class="service-card"><i class="ph ph-globe"></i><h3>Web Development</h3><p>Modern, fast and responsive websites built with the latest technologies.</p></div>
-            <div class="service-card"><i class="ph ph-device-mobile"></i><h3>Mobile Apps</h3><p>Native & cross-platform apps designed for flawless mobile experiences.</p></div>
+            <div class="service-card"><i class="ph ph-code"></i><h3>Custom Software</h3><p>Bespoke platforms, internal tools and SaaS, built to scale.</p></div>
+            <div class="service-card"><i class="ph ph-globe"></i><h3>Web Development</h3><p>Modern, fast and responsive websites built with latest tech.</p></div>
+            <div class="service-card"><i class="ph ph-device-mobile"></i><h3>Mobile Apps</h3><p>Native & cross-platform apps designed for flawless mobile exp.</p></div>
             <div class="service-card"><i class="ph ph-paint-brush-broad"></i><h3>UI / UX Design</h3><p>User-centered designs that turn visitors into loyal customers.</p></div>
             <div class="service-card"><i class="ph ph-cloud"></i><h3>Cloud & DevOps</h3><p>Secure, scalable and high performance server infrastructure.</p></div>
             <div class="service-card"><i class="ph ph-shopping-cart"></i><h3>E-Commerce</h3><p>Stores that sell. From custom design to payment integration.</p></div>
-            <div class="service-card"><i class="ph ph-trend-up"></i><h3>Digital Marketing & SEO</h3><p>Data-driven strategies designed for real growth and visibility.</p></div>
+            <div class="service-card"><i class="ph ph-trend-up"></i><h3>Digital Marketing</h3><p>Data-driven strategies designed for real growth and visibility.</p></div>
             <div class="service-card"><i class="ph ph-bezier-curve"></i><h3>Branding & Graphics</h3><p>Memorable brand identities, stunning visuals, and lasting impact.</p></div>
-            <div class="service-card"><i class="ph ph-robot"></i><h3>AI & Automation</h3><p>Smarter systems and automated workflows for greater efficiency.</p></div>
+            <div class="service-card"><i class="ph ph-robot"></i><h3>AI & Automation</h3><p>Smarter systems and automated workflows for efficiency.</p></div>
         </div>
     </section>
 
-    <!-- Process Pinned Scroll Section -->
-    <section id="process">
-        <div class="process-pin-container">
-            <div class="process-pin-header">
-                <span class="badge">04 • HOW WE WORK</span>
-                <h2>Six milestones.<br>Predictable as a metronome.</h2>
+    <!-- NEW: FEATURED PROJECTS (FROSTED ALBUM) -->
+    <section id="featured" class="featured-album-section">
+        <div class="album-glow"></div>
+        
+        <div class="album-book">
+            <!-- 1. Front Cover -->
+            <div class="book-page p-1">
+                <div class="page-face page-front cover-design">
+                    <i class="ph-fill ph-folder-open" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
+                    <h2>Featured Work</h2>
+                    <p style="color: var(--text-muted); font-size: 14px;">Scroll to open</p>
+                </div>
+                <div class="page-face page-back"></div>
+            </div>
+
+            <!-- Page 2 to 8: 7 Social Media Posts -->
+            <!-- Note: Duplicate this block changing text for Post 1 to 7 -->
+            <div class="book-page p-2 flip-item">
+                <div class="page-face page-front content-frame">
+                    <span class="badge">Social Media Post</span>
+                    <div class="img-placeholder">[Post Image 1 Placeholder]</div>
+                    <div class="post-info"><h4>Campaign Design</h4><p>High-converting social media creatives for brand awareness.</p></div>
+                </div>
+                <div class="page-face page-back"></div>
             </div>
             
-            <div class="process-track-wrapper">
-                <div class="process-horizontal-track">
-                    <!-- Added ID tags for targeted selection -->
-                    <div class="process-box" id="box-0">
-                        <div class="box-num">01</div><h4>Discovery</h4><p>Workshops, audits and stakeholder interviews to map the problem and opportunity.</p>
-                    </div>
-                    <div class="process-box" id="box-1">
-                        <div class="box-num">02</div><h4>Define</h4><p>Strategy, scope, and success metrics. We commit to a thesis before pixels.</p>
-                    </div>
-                    <div class="process-box" id="box-2">
-                        <div class="box-num">03</div><h4>Design</h4><p>Prototypes, design systems and copy. Validated with users at every milestone.</p>
-                    </div>
-                    <div class="process-box" id="box-3">
-                        <div class="box-num">04</div><h4>Build</h4><p>Two-week sprints, demos every Friday. Production-quality code from week one.</p>
-                    </div>
-                    <div class="process-box" id="box-4">
-                        <div class="box-num">05</div><h4>Launch</h4><p>Migration, training, comms. We treat go-live as the start of the relationship.</p>
-                    </div>
-                    <div class="process-box" id="box-5">
-                        <div class="box-num">06</div><h4>Iterate</h4><p>Analytics, experiments, ongoing roadmap. We grow with you, quarter over quarter.</p>
-                    </div>
-                    <div class="process-box" id="box-6">
-                        <div class="box-num"><i class="ph-bold ph-check"></i></div><h4>Live</h4><p>Production & beyond. From kickoff to launch in 12 weeks. Then we keep shipping.</p>
-                    </div>
+            <div class="book-page p-3 flip-item">
+                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 2 Placeholder]</div><div class="post-info"><h4>Product Launch</h4><p>Visuals designed to capture attention and drive sales.</p></div></div><div class="page-face page-back"></div>
+            </div>
+            <div class="book-page p-4 flip-item">
+                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 3 Placeholder]</div><div class="post-info"><h4>Event Teaser</h4><p>Engaging social posts for upcoming events.</p></div></div><div class="page-face page-back"></div>
+            </div>
+            <div class="book-page p-5 flip-item">
+                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 4 Placeholder]</div><div class="post-info"><h4>Engagement Post</h4><p>Interactive creatives designed for maximum reach.</p></div></div><div class="page-face page-back"></div>
+            </div>
+            <div class="book-page p-6 flip-item">
+                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 5 Placeholder]</div><div class="post-info"><h4>Promo Graphic</h4><p>Clear and bold promotional messaging.</p></div></div><div class="page-face page-back"></div>
+            </div>
+            <div class="book-page p-7 flip-item">
+                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 6 Placeholder]</div><div class="post-info"><h4>Story Template</h4><p>Branded stories designed for Instagram & Facebook.</p></div></div><div class="page-face page-back"></div>
+            </div>
+            <div class="book-page p-8 flip-item">
+                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 7 Placeholder]</div><div class="post-info"><h4>Carousel Design</h4><p>Educational multi-slide graphics for LinkedIn.</p></div></div><div class="page-face page-back"></div>
+            </div>
+
+            <!-- Page 9 to 11: 3 Brand Logos -->
+            <div class="book-page p-9 flip-item">
+                <div class="page-face page-front content-frame">
+                    <span class="badge" style="color:var(--accent);">Brand Identity</span>
+                    <div class="logo-placeholder"><i class="ph-fill ph-bezier-curve"></i> <span style="font-size:24px; margin-left:10px;">[Logo 1]</span></div>
+                    <div class="post-info" style="margin-top:20px;"><h4>Tech Startup Rebrand</h4><p>Modern typography and minimal icon mark.</p></div>
+                </div>
+                <div class="page-face page-back"></div>
+            </div>
+            
+            <div class="book-page p-10 flip-item">
+                <div class="page-face page-front content-frame">
+                    <span class="badge" style="color:var(--accent);">Brand Identity</span>
+                    <div class="logo-placeholder"><i class="ph-fill ph-drop"></i> <span style="font-size:24px; margin-left:10px;">[Logo 2]</span></div>
+                    <div class="post-info" style="margin-top:20px;"><h4>Corporate Identity</h4><p>Clean and authoritative visual language.</p></div>
+                </div>
+                <div class="page-face page-back"></div>
+            </div>
+
+            <div class="book-page p-11 flip-item">
+                <div class="page-face page-front content-frame">
+                    <span class="badge" style="color:var(--accent);">Brand Identity</span>
+                    <div class="logo-placeholder"><i class="ph-fill ph-lightning"></i> <span style="font-size:24px; margin-left:10px;">[Logo 3]</span></div>
+                    <div class="post-info" style="margin-top:20px;"><h4>Agency Logo</h4><p>Dynamic and creative brand mark.</p></div>
+                </div>
+                <div class="page-face page-back"></div>
+            </div>
+
+            <!-- 12. Back Cover (Static Base) -->
+            <div class="book-page p-12">
+                <div class="page-face page-front cover-design">
+                    <i class="ph-fill ph-check-circle" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
+                    <h2>That's It!</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="pricing container">
-        <div class="section-header">
-            <span class="badge">07 • ENGAGEMENT MODELS</span>
-            <h2>Three ways to work with us.</h2>
+    <!-- Process -->
+    <section id="process">
+        <div class="process-pin-container">
+            <div class="process-pin-header"><span class="badge">04 • HOW WE WORK</span><h2>Six milestones.<br>Predictable as a metronome.</h2></div>
+            <div class="process-track-wrapper">
+                <div class="process-horizontal-track">
+                    <div class="process-box" id="box-0"><div class="box-num">01</div><h4>Discovery</h4><p>Workshops, audits and interviews.</p></div>
+                    <div class="process-box" id="box-1"><div class="box-num">02</div><h4>Define</h4><p>Strategy, scope, and success metrics.</p></div>
+                    <div class="process-box" id="box-2"><div class="box-num">03</div><h4>Design</h4><p>Prototypes and design systems.</p></div>
+                    <div class="process-box" id="box-3"><div class="box-num">04</div><h4>Build</h4><p>Two-week sprints, demos every Friday.</p></div>
+                    <div class="process-box" id="box-4"><div class="box-num">05</div><h4>Launch</h4><p>Migration, training, and comms.</p></div>
+                    <div class="process-box" id="box-5"><div class="box-num">06</div><h4>Iterate</h4><p>Analytics, experiments, ongoing roadmap.</p></div>
+                    <div class="process-box" id="box-6"><div class="box-num"><i class="ph-bold ph-check"></i></div><h4>Live</h4><p>Production & beyond.</p></div>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Pricing & CTA ... -->
+    <section id="pricing" class="pricing container">
+        <div class="section-header"><span class="badge">07 • ENGAGEMENT MODELS</span><h2>Three ways to work with us.</h2></div>
         <div class="pricing-grid">
             <div class="price-card">
-                <h3>Sprint</h3>
-                <div class="price">$8k</div>
-                <ul class="features">
-                    <li><i class="ph-fill ph-check-circle"></i> 1 senior designer + dev</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Daily demos</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Production-ready output</li>
-                    <li><i class="ph-fill ph-check-circle"></i> 30-day support</li>
-                </ul>
+                <h3>Sprint</h3><div class="price">$8k</div>
+                <ul class="features"><li><i class="ph-fill ph-check-circle"></i> 1 senior designer + dev</li><li><i class="ph-fill ph-check-circle"></i> Daily demos</li><li><i class="ph-fill ph-check-circle"></i> Production-ready output</li><li><i class="ph-fill ph-check-circle"></i> 30-day support</li></ul>
                 <a href="mailto:hello@tfgsolutions.pk" class="btn-outline" style="width: 100%; text-align: center; display: block;">Choose Sprint</a>
             </div>
             <div class="price-card featured">
-                <h3>Project</h3>
-                <div class="price" style="color: white;">$45k<span style="font-size: 24px; color: var(--text-muted);">+</span></div>
-                <ul class="features">
-                    <li><i class="ph-fill ph-check-circle"></i> Dedicated cross-functional team</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Bi-weekly demos</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Complete Design system</li>
-                    <li><i class="ph-fill ph-check-circle"></i> 90-day post-launch support</li>
-                </ul>
+                <h3>Project</h3><div class="price" style="color: white;">$45k<span style="font-size: 24px; color: var(--text-muted);">+</span></div>
+                <ul class="features"><li><i class="ph-fill ph-check-circle"></i> Dedicated cross-functional team</li><li><i class="ph-fill ph-check-circle"></i> Bi-weekly demos</li><li><i class="ph-fill ph-check-circle"></i> Complete Design system</li><li><i class="ph-fill ph-check-circle"></i> 90-day post-launch support</li></ul>
                 <a href="mailto:hello@tfgsolutions.pk" class="btn" style="width: 100%; text-align: center; display: block;">Start a Project</a>
             </div>
             <div class="price-card">
-                <h3>Retainer</h3>
-                <div class="price">$18k<span style="font-size: 16px; color: var(--text-muted); font-weight: normal;"> /mo</span></div>
-                <ul class="features">
-                    <li><i class="ph-fill ph-check-circle"></i> Embedded squad</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Quarterly roadmap</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Always on Slack</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Priority response</li>
-                </ul>
+                <h3>Retainer</h3><div class="price">$18k<span style="font-size: 16px; color: var(--text-muted); font-weight: normal;"> /mo</span></div>
+                <ul class="features"><li><i class="ph-fill ph-check-circle"></i> Embedded squad</li><li><i class="ph-fill ph-check-circle"></i> Quarterly roadmap</li><li><i class="ph-fill ph-check-circle"></i> Always on Slack</li><li><i class="ph-fill ph-check-circle"></i> Priority response</li></ul>
                 <a href="mailto:hello@tfgsolutions.pk" class="btn-outline" style="width: 100%; text-align: center; display: block;">Discuss Retainer</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta-section container">
         <div class="footer-cta">
             <span class="badge" style="text-align: center; margin-bottom: 10px;">LET'S BUILD TOGETHER</span>
             <h2>Let's build the <span class="gradient-text">next thing you ship.</span></h2>
-            <div style="margin-top: 30px;">
-                <a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a>
-            </div>
+            <div style="margin-top: 30px;"><a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a></div>
             <a href="mailto:hello@tfgsolutions.pk" class="cta-email"><i class="ph-fill ph-envelope-simple"></i> hello@tfgsolutions.pk</a>
         </div>
     </section>
-
-    <footer class="container">
-        <div style="color: var(--text-muted); font-size:12px;">© 2026 TFG Solutions. All rights reserved.</div>
-    </footer>
+    <footer class="container"><div style="color: var(--text-muted); font-size:12px;">© 2026 TFG Solutions. All rights reserved.</div></footer>
 
     <!-- GSAP Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -402,103 +425,92 @@
     <script>
         gsap.registerPlugin(ScrollTrigger, Draggable);
 
-        /* 1. HERO WORD CYCLING ANIMATION */
+        /* 1. HERO WORD CYCLING */
         const words = ["commerce", "websites", "apps", "designs", "brands", "growth"];
         let wordIndex = 0;
         const wordEl = document.getElementById("changingWord");
-        
         setInterval(() => {
             gsap.to(wordEl, { y: -40, opacity: 0, duration: 0.4, ease: "power2.in", onComplete: () => {
-                wordIndex = (wordIndex + 1) % words.length;
-                wordEl.innerText = words[wordIndex];
+                wordIndex = (wordIndex + 1) % words.length; wordEl.innerText = words[wordIndex];
                 gsap.fromTo(wordEl, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
             }});
         }, 3000);
 
-        /* 2. FIXED HERO ORBIT LOGIC (Slower Speed & Drag Resume) */
+        /* 2. ORBITS */
         function setupOrbit(containerId, duration, direction) {
             const container = document.querySelector(containerId);
             const tags = container.querySelectorAll('.orbit-tag');
-            
             let spinTween = gsap.to(container, {
-                rotation: direction === 'right' ? 360 : -360,
-                duration: duration, // Increased duration for slower speed
-                repeat: -1,
-                ease: "none",
-                onUpdate: () => {
-                    const currentRot = gsap.getProperty(container, "rotation");
-                    gsap.set(tags, { rotation: -currentRot });
-                }
+                rotation: direction === 'right' ? 360 : -360, duration: duration, repeat: -1, ease: "none",
+                onUpdate: () => { const currentRot = gsap.getProperty(container, "rotation"); gsap.set(tags, { rotation: -currentRot }); }
             });
-
             Draggable.create(container, {
-                type: "rotation",
-                onPress: () => spinTween.pause(),
-                onDrag: () => {
-                    const currentRot = gsap.getProperty(container, "rotation");
-                    gsap.set(tags, { rotation: -currentRot });
-                },
+                type: "rotation", onPress: () => spinTween.pause(),
+                onDrag: () => { const currentRot = gsap.getProperty(container, "rotation"); gsap.set(tags, { rotation: -currentRot }); },
                 onRelease: () => spinTween.play()
             });
         }
-        // Drastically increased duration (from 20/30 to 45/60) to slow them down
-        setupOrbit("#orbit-1", 45, 'right');
-        setupOrbit("#orbit-2", 60, 'left');
+        setupOrbit("#orbit-1", 45, 'right'); setupOrbit("#orbit-2", 60, 'left');
 
-        /* 3. SMOOTH MARQUEE HOVER PAUSE */
-        const track1 = document.getElementById('track-1');
-        const track2 = document.getElementById('track-2');
-        
-        const marqueeTween = gsap.to([track1, track2], {
-            xPercent: -100,
-            repeat: -1,
-            duration: 25,
-            ease: "none"
-        });
-
+        /* 3. MARQUEE */
+        const track1 = document.getElementById('track-1'); const track2 = document.getElementById('track-2');
+        const marqueeTween = gsap.to([track1, track2], { xPercent: -100, repeat: -1, duration: 25, ease: "none" });
         const marqueeContainer = document.getElementById('trusted-marquee');
         marqueeContainer.addEventListener('mouseenter', () => marqueeTween.pause());
         marqueeContainer.addEventListener('mouseleave', () => marqueeTween.play());
 
-        /* 4. PINNED PROCESS SECTION (Sequential Glow Logic 1-by-1) */
+        /* 4. NEW: ALBUM SCROLL ANIMATION */
+        const albumTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#featured",
+                start: "top top",
+                end: "+=6000", // Long scroll area for turning 10 pages
+                pin: true,
+                scrub: 1
+            }
+        });
+
+        // Intro: Glow and Album Appear
+        albumTl.to(".album-glow", { scale: 1, opacity: 1, duration: 1 })
+               .to(".album-book", { opacity: 1, y: 0, duration: 1 }, "<");
+
+        // Flip Front Cover
+        albumTl.to(".p-1", { rotationY: -180, duration: 2 });
+
+        // Flip the 10 item pages one by one
+        const flipItems = gsap.utils.toArray('.flip-item');
+        flipItems.forEach(item => {
+            // Little pause to look at the post before flipping
+            albumTl.to(item, { rotationY: -10, duration: 0.5 }) 
+                   .to(item, { rotationY: -180, duration: 2 });
+        });
+
+        // Outro: Close, Frost over and Disappear
+        albumTl.to(".album-book", { opacity: 0, scale: 0.8, filter: "blur(20px)", duration: 2 })
+               .to(".album-glow", { opacity: 0, scale: 0, duration: 2 }, "<");
+
+
+        /* 5. PROCESS SECTION */
         const processTrack = document.querySelector('.process-horizontal-track');
         const boxes = gsap.utils.toArray('.process-box');
         const totalBoxes = boxes.length;
         
-        function getScrollAmount() {
-            return -(processTrack.scrollWidth - window.innerWidth + 80);
-        }
+        function getScrollAmount() { return -(processTrack.scrollWidth - window.innerWidth + 80); }
 
         gsap.to(processTrack, {
-            x: getScrollAmount,
-            ease: "none",
+            x: getScrollAmount, ease: "none",
             scrollTrigger: {
-                trigger: "#process",
-                start: "top top",
-                end: () => `+=${processTrack.scrollWidth}`,
-                pin: true,
-                scrub: 1,
-                invalidateOnRefresh: true,
+                trigger: "#process", start: "top top", end: () => `+=${processTrack.scrollWidth}`, pin: true, scrub: 1, invalidateOnRefresh: true,
                 onUpdate: (self) => {
-                    // Map the scroll progress (0 to 1) to the number of boxes
                     let activeIndex = Math.floor(self.progress * totalBoxes);
-                    
-                    // Keep index within array bounds
-                    if (activeIndex >= totalBoxes) {
-                        activeIndex = totalBoxes - 1;
-                    }
+                    if (activeIndex >= totalBoxes) activeIndex = totalBoxes - 1;
 
-                    // If scroll is at the very end (>92%), light up all boxes
                     if (self.progress > 0.92) {
                         boxes.forEach(box => box.classList.add('bulb-glow'));
                     } else {
-                        // Sequential Glow: Light up only the current active index, turn off the rest
                         boxes.forEach((box, i) => {
-                            if (i === activeIndex) {
-                                box.classList.add('bulb-glow');
-                            } else {
-                                box.classList.remove('bulb-glow');
-                            }
+                            if (i === activeIndex) { box.classList.add('bulb-glow'); } 
+                            else { box.classList.remove('bulb-glow'); }
                         });
                     }
                 }
