@@ -3,345 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG Solutions | Digital Technology & Creative Partner</title>
+    <title>TFG Solutions | Premium Digital Partner</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Premium Fonts: Montserrat for Headings, Poppins for Body -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
+    <!-- GSAP for Premium Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         :root {
-            --brand-pink: #FF0066;
-            --brand-orange: #FF6600;
-            --bg-dark: #050505;
+            --pink: #FF0066;
+            --orange: #FF6600;
+            --dark: #030303;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            color: #ffffff;
+            background-color: var(--dark);
+            color: #fff;
             overflow-x: hidden;
+            cursor: none; /* Hide default cursor for custom one */
         }
 
-        h1, h2, h3, h4, .font-heading {
-            font-family: 'Montserrat', sans-serif;
-        }
+        h1, h2, h3, h4, .heading { font-family: 'Montserrat', sans-serif; }
 
-        /* Futuristic Animated Background */
-        .hero-bg {
-            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 102, 0.08) 0%, rgba(5, 5, 5, 1) 70%);
-            position: relative;
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px; height: 8px; background: white;
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 1px solid rgba(255, 0, 102, 0.5);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%; pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
         }
         
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: panBg 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes panBg {
-            0% { transform: translateY(0) }
-            100% { transform: translateY(60px) }
-        }
-
-        /* Premium Brand Gradient Text */
         .tfg-gradient {
-            background: linear-gradient(135deg, var(--brand-pink), var(--brand-orange));
+            background: linear-gradient(135deg, var(--pink), var(--orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
         }
 
-        .tfg-gradient-bg {
-            background: linear-gradient(135deg, var(--brand-pink), var(--brand-orange));
-        }
-
-        /* Clean Modern Service Cards */
-        .service-card {
-            background: rgba(255, 255, 255, 0.02);
+        /* Mouse Tracking Hover Cards (The Magic Glow) */
+        .mouse-card {
+            background: rgba(20, 20, 20, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+            border-radius: 1rem;
         }
-        
-        .service-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 0, 102, 0.3);
-            transform: translateY(-4px);
+        .mouse-card::before {
+            content: ""; position: absolute;
+            top: var(--y); left: var(--x);
+            transform: translate(-50%, -50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,0,102,0.15) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; z-index: 0;
         }
+        .mouse-card:hover::before { opacity: 1; }
+        .mouse-card > * { position: relative; z-index: 1; }
 
-        /* Clean Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--brand-pink), var(--brand-orange));
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+        /* Smooth Image Reveal for Process */
+        .process-img {
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s ease;
         }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, var(--brand-orange), var(--brand-pink));
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-        .btn-primary:hover {
-            box-shadow: 0 10px 30px -10px rgba(255, 0, 102, 0.6);
-            transform: translateY(-2px);
-        }
+        .process-img.active { opacity: 1; transform: scale(1.05); z-index: 10; }
+        .process-img.inactive { opacity: 0; transform: scale(1); z-index: 0; }
 
-        .btn-outline {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+        /* Premium Button */
+        .btn-glow {
+            background: linear-gradient(135deg, var(--pink), var(--orange));
+            position: relative; overflow: hidden; transition: 0.3s;
         }
-        .btn-outline:hover {
-            background: #ffffff;
-            color: #000000;
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(255,0,102,0.5);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-[#050505]/80 backdrop-blur-lg border-b border-white/5">
-        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="text-3xl font-black tracking-tighter font-heading tfg-gradient">
-                TFG
+    <nav class="fixed w-full z-50 top-0 bg-[#030303]/80 backdrop-blur-md border-b border-white/5 py-5">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-3xl font-black heading tfg-gradient">TFG</div>
+            <div class="hidden md:flex space-x-10 text-sm font-medium">
+                <a href="#services" class="hover:text-[#FF0066] transition">Services</a>
+                <a href="#work" class="hover:text-[#FF0066] transition">Work</a>
+                <a href="#process" class="hover:text-[#FF0066] transition">Process</a>
             </div>
-            <div class="hidden md:flex space-x-10 text-sm font-medium text-gray-300">
-                <a href="#services" class="hover:text-white transition">Services</a>
-                <a href="#work" class="hover:text-white transition">Selected Work</a>
-                <a href="#process" class="hover:text-white transition">Process</a>
-            </div>
-            <a href="#contact" class="btn-outline px-7 py-2.5 rounded-full text-sm font-medium">
-                Let's Talk
-            </a>
+            <a href="#contact" class="border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Let's Talk</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero-bg min-h-screen flex items-center justify-center pt-24 relative overflow-hidden">
-        <!-- Center glowing orb -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF0066]/10 rounded-full blur-[120px] pointer-events-none"></div>
-        
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center space-x-2 px-5 py-2 mb-8 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase text-gray-300">
-                <span class="w-2 h-2 rounded-full bg-[#FF0066] animate-pulse"></span>
-                <span>Digital Technology & Creative Partner</span>
-            </div>
-            
-            <h1 class="text-6xl md:text-8xl font-black leading-[1.1] mb-8 font-heading">
-                From Ideas To <br>
-                <span class="tfg-gradient">Real Impact.</span>
+    <!-- HERO SECTION (Animated) -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF0066] opacity-[0.07] blur-[100px] rounded-full"></div>
+        <div class="container mx-auto px-6 text-center z-10 hero-content">
+            <h1 class="text-6xl md:text-9xl font-black mb-6 heading leading-none">
+                <span class="block translate-y-[100px] opacity-0 anim-text">We Design.</span>
+                <span class="block translate-y-[100px] opacity-0 anim-text">We Engineer.</span>
+                <span class="block translate-y-[100px] opacity-0 anim-text tfg-gradient">We Ship.</span>
             </h1>
-            
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-                Strategy, creativity, and modern technology working together to turn your vision into sustainable growth for ambitious teams.
-            </p>
-            
-            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="#contact" class="btn-primary px-10 py-4 rounded-full font-bold text-white w-full md:w-auto font-heading tracking-wide">
-                    Start a Project
-                </a>
-                <a href="#work" class="btn-outline px-10 py-4 rounded-full font-bold text-white w-full md:w-auto font-heading tracking-wide">
-                    View Our Work
-                </a>
+            <p class="text-xl text-gray-400 mb-10 opacity-0 anim-subtext">A digital studio building software, brands, and growth for ambitious teams.</p>
+            <div class="opacity-0 anim-btn">
+                <a href="#contact" class="btn-glow px-10 py-4 rounded-full font-bold text-white uppercase tracking-widest text-sm inline-block">Start a Project</a>
             </div>
         </div>
     </section>
 
-    <!-- 9 SERVICES GRID -->
+    <!-- CAPABILITIES (Mouse Tracker Hover) -->
     <section id="services" class="py-32 bg-[#050505]">
         <div class="container mx-auto px-6">
-            <div class="mb-20 text-center">
-                <h2 class="text-xs font-bold tracking-[0.2em] text-[#FF0066] uppercase mb-4">01 • Capabilities</h2>
-                <h3 class="text-4xl md:text-6xl font-black font-heading">Nine disciplines.<br>One accountable team.</h3>
-            </div>
+            <h2 class="text-sm tracking-[0.3em] text-[#FF6600] uppercase mb-4 heading">01 • Capabilities</h2>
+            <h3 class="text-5xl font-black mb-20 heading">Nine disciplines. One team.</h3>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Service 1 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">Custom Software</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Bespoke platforms, internal tools and SaaS, built to scale with your operation.</p>
+                <!-- Javascript will handle the hover glow effect -->
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">Custom Software</h4>
+                    <p class="text-gray-400">Bespoke platforms, internal tools and SaaS.</p>
                 </div>
-                <!-- Service 2 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">Web Development</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Modern, responsive, and high-performing websites engineered for the future.</p>
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">Web Development</h4>
+                    <p class="text-gray-400">Modern, high-performing websites.</p>
                 </div>
-                <!-- Service 3 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">Mobile Apps</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Native and cross-platform applications delivering seamless mobile experiences.</p>
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">Mobile Apps</h4>
+                    <p class="text-gray-400">Native and cross-platform applications.</p>
                 </div>
-                <!-- Service 4 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">UI/UX Design</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">User-focused designs and intuitive interfaces that create better experiences.</p>
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">UI/UX Design</h4>
+                    <p class="text-gray-400">User-focused intuitive interfaces.</p>
                 </div>
-                <!-- Service 5 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">Cloud & DevOps</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Secure, scalable infrastructure and automated pipelines for faster deployment.</p>
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">Cloud & DevOps</h4>
+                    <p class="text-gray-400">Secure infrastructure and deployment.</p>
                 </div>
-                <!-- Service 6 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">E-Commerce</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Powerful, conversion-optimized online stores designed to grow your sales.</p>
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">E-Commerce</h4>
+                    <p class="text-gray-400">Powerful online stores to grow sales.</p>
                 </div>
-                <!-- Service 7 -->
-                <div class="service-card p-10 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 font-heading">Digital Marketing & SEO</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Data-driven strategies, SEO, and paid campaigns that maximize ROI.</p>
+                <div class="mouse-card p-10 cursor-pointer">
+                    <h4 class="text-2xl font-bold mb-3 heading">Digital Marketing</h4>
+                    <p class="text-gray-400">Data-driven strategies and paid campaigns.</p>
                 </div>
-                <!-- Service 8 -->
-                <div class="service-card p-10 rounded-2xl border-l border-l-[#FF0066]/50">
-                    <h4 class="text-xl font-bold mb-3 font-heading tfg-gradient">Branding & Graphics</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Logos, comprehensive brand strategy, visual identity, and stunning campaign visuals.</p>
+                <div class="mouse-card p-10 cursor-pointer border-l-4 border-l-[#FF0066]">
+                    <h4 class="text-2xl font-bold mb-3 heading text-[#FF0066]">Branding & Graphics</h4>
+                    <p class="text-gray-400">Visual identity and stunning campaigns.</p>
                 </div>
-                <!-- Service 9 -->
-                <div class="service-card p-10 rounded-2xl border-l border-l-[#FF6600]/50">
-                    <h4 class="text-xl font-bold mb-3 font-heading tfg-gradient">AI & Automation</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Smart technology integration to optimize workflows and business processes.</p>
+                <div class="mouse-card p-10 cursor-pointer border-l-4 border-l-[#FF6600]">
+                    <h4 class="text-2xl font-bold mb-3 heading text-[#FF6600]">AI & Automation</h4>
+                    <p class="text-gray-400">Smart tech to optimize workflows.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SELECTED WORK (Strictly from PDF Context) -->
-    <section id="work" class="py-32 bg-[#080808]">
-        <div class="container mx-auto px-6">
-            <div class="mb-20">
-                <h2 class="text-xs font-bold tracking-[0.2em] text-[#FF6600] uppercase mb-4">02 • Selected Work</h2>
-                <h3 class="text-4xl md:text-6xl font-black font-heading">Projects we crushed.</h3>
-            </div>
+    <!-- THE SCROLLABLE ACTION PLAN (Sticky Process with changing Images) -->
+    <section id="process" class="relative bg-[#020202]">
+        <div class="flex flex-col md:flex-row">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Klyne -->
-                <div class="group relative overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/5 cursor-pointer">
-                    <div class="h-[350px] p-10 relative z-10 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent">
-                        <div class="text-[10px] font-bold text-[#FF0066] tracking-widest uppercase mb-3">Fintech • Banking Dashboard</div>
-                        <h4 class="text-3xl font-black text-white font-heading mb-2">Klyne</h4>
-                        <p class="text-gray-400 text-sm">Complex financial data visualization and seamless user interface for modern banking operations.</p>
-                    </div>
-                    <!-- Abstract Tech Background instead of empty image -->
-                    <div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwYzAgMTEuMDQ2LTguOTU0IDIwLTIwIDIwVjIwSDIweiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
-                </div>
-
-                <!-- Saffron Delivery -->
-                <div class="group relative overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/5 cursor-pointer">
-                    <div class="h-[350px] p-10 relative z-10 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent">
-                        <div class="text-[10px] font-bold text-[#FF6600] tracking-widest uppercase mb-3">Food Delivery • Mobile App</div>
-                        <h4 class="text-3xl font-black text-white font-heading mb-2">Saffron Delivery</h4>
-                        <p class="text-gray-400 text-sm">A robust, bug-free mobile application offering real-time tracking and a sleek user experience.</p>
-                    </div>
-                    <div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwYzAgMTEuMDQ2LTguOTU0IDIwLTIwIDIwVjIwSDIweiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
-                </div>
-
-                <!-- Norden -->
-                <div class="group relative overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/5 cursor-pointer">
-                    <div class="h-[350px] p-10 relative z-10 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent">
-                        <div class="text-[10px] font-bold text-gray-400 tracking-widest uppercase mb-3">Logistics • Operations Console</div>
-                        <h4 class="text-3xl font-black text-white font-heading mb-2">Norden</h4>
-                        <p class="text-gray-400 text-sm">Real-time custom dashboard to track shipments, optimize routes, and manage fleets efficiently.</p>
-                    </div>
-                    <div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwYzAgMTEuMDQ2LTguOTU0IDIwLTIwIDIwVjIwSDIweiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
-                </div>
-
-                <!-- Ember Goods -->
-                <div class="group relative overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/5 cursor-pointer">
-                    <div class="h-[350px] p-10 relative z-10 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent">
-                        <div class="text-[10px] font-bold text-[#FF0066] tracking-widest uppercase mb-3">Commerce • E-Commerce Platform</div>
-                        <h4 class="text-3xl font-black text-white font-heading mb-2">Ember Goods</h4>
-                        <p class="text-gray-400 text-sm">High-performance e-commerce build that lifted checkout conversions significantly in month one.</p>
-                    </div>
-                    <div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwYzAgMTEuMDQ2LTguOTU0IDIwLTIwIDIwVjIwSDIweiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS (Redesigned from Kacha Boxes) -->
-    <section id="process" class="py-32 bg-[#050505]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-20 text-center">03 • How We Work</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                <!-- Connecting Line for Desktop -->
-                <div class="hidden md:block absolute top-10 left-10 right-10 h-[1px] bg-white/10"></div>
+            <!-- Left Side: Sticky Images -->
+            <div class="hidden md:block md:w-1/2 h-screen sticky top-0 overflow-hidden relative">
+                <!-- Image 1 -->
+                <img id="img-1" class="process-img active absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80">
+                <!-- Image 2 -->
+                <img id="img-2" class="process-img inactive absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1000&q=80">
+                <!-- Image 3 -->
+                <img id="img-3" class="process-img inactive absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80">
+                <!-- Image 4 -->
+                <img id="img-4" class="process-img inactive absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80">
                 
-                <div class="relative pt-6">
-                    <div class="w-8 h-8 rounded-full bg-[#050505] border-2 border-white/20 absolute -top-4 left-0 flex items-center justify-center">
-                        <div class="w-2 h-2 rounded-full bg-white/50"></div>
-                    </div>
-                    <div class="text-5xl font-black text-white/5 font-heading mb-4">01</div>
-                    <h4 class="text-2xl font-bold mb-2 font-heading">Ideas</h4>
-                    <p class="text-sm text-gray-500">Workshops, audits and mapping the core problem.</p>
-                </div>
+                <div class="absolute inset-0 bg-black/40"></div> <!-- Overlay -->
+            </div>
 
-                <div class="relative pt-6">
-                    <div class="w-8 h-8 rounded-full bg-[#050505] border-2 border-white/20 absolute -top-4 left-0 flex items-center justify-center">
-                        <div class="w-2 h-2 rounded-full bg-white/50"></div>
+            <!-- Right Side: Scrolling Content (The Steps) -->
+            <div class="md:w-1/2">
+                <!-- Step 1 -->
+                <div class="step-panel min-h-screen flex items-center p-10 md:p-20 border-b border-white/5" data-img="img-1">
+                    <div>
+                        <div class="text-[#FF0066] text-8xl font-black opacity-20 heading mb-4">01</div>
+                        <h4 class="text-4xl font-bold mb-6 heading">Ideas & Discovery</h4>
+                        <p class="text-xl text-gray-400">Workshops, audits, and stakeholder interviews to map the problem and the opportunity before we write a single line of code.</p>
                     </div>
-                    <div class="text-5xl font-black text-white/5 font-heading mb-4">02</div>
-                    <h4 class="text-2xl font-bold mb-2 font-heading">Design</h4>
-                    <p class="text-sm text-gray-500">Prototypes, design systems and visual strategy.</p>
                 </div>
-
-                <div class="relative pt-6">
-                    <div class="w-8 h-8 rounded-full bg-[#050505] border-2 border-[#FF0066] absolute -top-4 left-0 flex items-center justify-center shadow-[0_0_15px_rgba(255,0,102,0.5)]">
-                        <div class="w-2 h-2 rounded-full bg-[#FF0066]"></div>
+                <!-- Step 2 -->
+                <div class="step-panel min-h-screen flex items-center p-10 md:p-20 border-b border-white/5" data-img="img-2">
+                    <div>
+                        <div class="text-[#FF6600] text-8xl font-black opacity-20 heading mb-4">02</div>
+                        <h4 class="text-4xl font-bold mb-6 heading">Design & Prototyping</h4>
+                        <p class="text-xl text-gray-400">Prototypes, design systems, and visual copy. Validated with users at every milestone to ensure perfect user experience.</p>
                     </div>
-                    <div class="text-5xl font-black text-[#FF0066]/10 font-heading mb-4">03</div>
-                    <h4 class="text-2xl font-bold mb-2 font-heading text-[#FF0066]">Technology</h4>
-                    <p class="text-sm text-gray-500">Robust development and production-quality code.</p>
                 </div>
-
-                <div class="relative pt-6">
-                    <div class="w-8 h-8 rounded-full bg-[#050505] border-2 border-[#FF6600] absolute -top-4 left-0 flex items-center justify-center shadow-[0_0_15px_rgba(255,102,0,0.5)]">
-                        <div class="w-2 h-2 rounded-full bg-[#FF6600]"></div>
+                <!-- Step 3 -->
+                <div class="step-panel min-h-screen flex items-center p-10 md:p-20 border-b border-white/5" data-img="img-3">
+                    <div>
+                        <div class="text-[#FF0066] text-8xl font-black opacity-20 heading mb-4">03</div>
+                        <h4 class="text-4xl font-bold mb-6 heading">Technology & Build</h4>
+                        <p class="text-xl text-gray-400">Two-week sprints, demos every Friday. We deliver production-quality code from week one, keeping you in the loop constantly.</p>
                     </div>
-                    <div class="text-5xl font-black text-[#FF6600]/10 font-heading mb-4">04</div>
-                    <h4 class="text-2xl font-bold mb-2 font-heading text-[#FF6600]">Growth</h4>
-                    <p class="text-sm text-gray-500">Analytics, ongoing roadmap, and continuous scaling.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-panel min-h-screen flex items-center p-10 md:p-20" data-img="img-4">
+                    <div>
+                        <div class="text-[#FF6600] text-8xl font-black opacity-20 heading mb-4">04</div>
+                        <h4 class="text-4xl font-bold mb-6 heading">Growth & Iterate</h4>
+                        <p class="text-xl text-gray-400">Analytics, experiments, and ongoing roadmap. We treat go-live as the start of the relationship, growing with you quarter over quarter.</p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- PREMIUM HIGH-CONVERTING CTA -->
-    <section id="contact" class="py-40 relative border-t border-white/5 bg-[#030303]">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FF0066]/10 via-transparent to-transparent opacity-50"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h2 class="text-6xl md:text-8xl font-black mb-6 font-heading tracking-tight">Let's build the <br><span class="tfg-gradient">next thing you ship.</span></h2>
-            <p class="text-lg text-gray-400 mb-12 max-w-xl mx-auto">Tell us what you're working on. We'll come back within a working day with a starting point — no NDAs, no sales decks.</p>
-            <div class="inline-flex flex-col items-center">
-                <a href="mailto:hello@tfgsolutions.pk" class="btn-primary px-12 py-5 rounded-full font-bold text-white text-lg font-heading tracking-wide mb-4">
-                    hello@tfgsolutions.pk
-                </a>
-                <span class="text-xs text-gray-600 font-medium tracking-widest uppercase">Start Your Project Today</span>
-            </div>
-        </div>
-    </section>
+    <!-- JAVASCRIPT FOR PREMIUM ANIMATIONS -->
+    <script>
+        // 1. Custom Mouse Cursor
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            outline.style.left = e.clientX + 'px';
+            outline.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, .mouse-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { outline.style.transform = 'translate(-50%, -50%) scale(1.5)'; outline.style.backgroundColor = 'rgba(255,0,102,0.1)'; });
+            el.addEventListener('mouseleave', () => { outline.style.transform = 'translate(-50%, -50%) scale(1)'; outline.style.backgroundColor = 'transparent'; });
+        });
 
-    <!-- FOOTER -->
-    <footer class="py-8 bg-[#020202] border-t border-white/5">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="text-xl font-black font-heading tfg-gradient mb-4 md:mb-0">TFG</div>
-            <div class="text-sm text-gray-500 font-medium">© 2026 TFG Solutions. All rights reserved.</div>
-        </div>
-    </footer>
+        // 2. Mouse Tracking Glow Effect on Services
+        document.querySelectorAll('.mouse-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
 
+        // 3. GSAP Hero Animations
+        gsap.to('.anim-text', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power4.out", delay: 0.2 });
+        gsap.to('.anim-subtext', { opacity: 1, duration: 1, delay: 1 });
+        gsap.to('.anim-btn', { opacity: 1, y: -10, duration: 0.5, delay: 1.2 });
+
+        // 4. GSAP ScrollTrigger for Sticky Process Section
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const panels = document.querySelectorAll('.step-panel');
+        panels.forEach((panel) => {
+            ScrollTrigger.create({
+                trigger: panel,
+                start: "top center", // Trigger when the text panel hits the center of the screen
+                end: "bottom center",
+                onEnter: () => changeImage(panel.dataset.img),
+                onEnterBack: () => changeImage(panel.dataset.img)
+            });
+        });
+
+        function changeImage(imgId) {
+            // Hide all images
+            document.querySelectorAll('.process-img').forEach(img => {
+                img.classList.remove('active');
+                img.classList.add('inactive');
+            });
+            // Show the target image
+            document.getElementById(imgId).classList.remove('inactive');
+            document.getElementById(imgId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
