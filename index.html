@@ -3,388 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG Level Experience</title>
-    <!-- Premium Fonts -->
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    
+    <title>TFG Clone - Premium Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark: #0a0a0a;
-            --light: #f4f4f5;
-            --accent: #dcf836; /* High-end neon accent */
+            --bg-dark: #050505;
+            --card-bg: #0a0a0a;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #999999;
+            --accent-gradient: linear-gradient(90deg, #ff4040, #ff7340);
+            --card-hover: rgba(255,255,255,0.03);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* Custom cursor use kar rahe hain */
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--dark);
-            color: var(--light);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, .brand {
-            font-family: 'Clash Display', sans-serif;
-        }
-
-        /* CUSTOM CURSOR */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            mix-blend-mode: difference;
-            z-index: 9999;
-            transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
-            transform: translate(-50%, -50%);
-        }
-        
-        .cursor.hover-active {
-            width: 60px;
-            height: 60px;
-            background: #fff;
-        }
-
-        /* LOADER */
-        .loader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: var(--light);
-            color: var(--dark);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .loader-text {
-            font-size: 4vw;
-            font-weight: 700;
-            overflow: hidden;
-        }
-
-        .loader-text span {
-            display: inline-block;
-            transform: translateY(100%);
         }
 
         /* HEADER */
         header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 2vw 4vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
-            mix-blend-mode: difference;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .brand {
-            font-size: 1.5rem;
+        .logo {
+            font-size: 24px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: -1px;
+            color: #ff4040;
         }
 
-        .menu-btn {
-            font-size: 1rem;
-            text-transform: uppercase;
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--card-hover);
         }
 
         /* HERO SECTION */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 4vw;
-            position: relative;
+            padding: 100px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .hero-heading {
-            font-size: 8.5vw;
-            line-height: 0.9;
-            font-weight: 600;
+        .hero-badge {
+            font-size: 10px;
             text-transform: uppercase;
-            margin-bottom: 2vh;
+            letter-spacing: 2px;
+            color: #ff4040;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
         }
 
-        .line {
-            overflow: hidden;
+        .hero h1 {
+            font-size: 80px;
+            line-height: 1;
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-graphic {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: radial-gradient(circle, rgba(255,64,64,0.1) 0%, transparent 60%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .center-node {
+            background: var(--accent-gradient);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 0 40px rgba(255, 64, 64, 0.4);
+        }
+
+        /* STATS SECTION */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item h3 {
+            font-size: 64px;
+            font-weight: 500;
+            color: #ff4040;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* DISCIPLINES (BENTO GRID) SECTION */
+        .disciplines {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+        
+        .section-badge {
+            font-size: 10px;
+            color: #ff4040;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
             display: block;
         }
 
-        .line span {
-            display: inline-block;
-            transform: translateY(110%);
+        .section-header h2 {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
         }
 
-        .hero-sub {
-            margin-top: 4vh;
-            font-size: 1.2rem;
-            max-width: 400px;
-            color: #999;
-            opacity: 0;
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 500px;
         }
 
-        /* PARALLAX IMAGE SECTION */
-        .image-section {
-            width: 100%;
-            height: 80vh;
-            padding: 0 4vw;
-            margin: 10vh 0;
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 20px;
         }
 
-        .img-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 120%; /* Extra height for parallax */
-            object-fit: cover;
-            transform: translateY(-10%);
-        }
-
-        /* SERVICES LIST */
-        .services {
-            padding: 10vh 4vw;
-        }
-
-        .services h2 {
-            font-size: 4vw;
-            margin-bottom: 8vh;
-            font-weight: 400;
-        }
-
-        .service-item {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 4vh 0;
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: background 0.3s;
+            cursor: pointer;
         }
 
-        .service-item:first-of-type {
-            border-top: 1px solid rgba(255,255,255,0.1);
+        .bento-card:hover {
+            background-color: var(--card-hover);
         }
 
-        .service-name {
-            font-size: 4vw;
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 600;
-            color: #555;
-            transition: color 0.4s ease;
+        .card-tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-bottom: 40px;
         }
 
-        .service-detail {
-            font-size: 1.1rem;
-            color: #888;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.4s ease;
+        .bento-large h3 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
-        .service-item:hover {
-            padding-left: 2vw;
-            padding-right: 2vw;
-            background: rgba(255,255,255,0.02);
+        .bento-large p {
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
-        .service-item:hover .service-name {
-            color: var(--light);
+        .bento-right-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .service-item:hover .service-detail {
-            opacity: 1;
-            transform: translateX(0);
+        .bento-small h3 {
+            font-size: 24px;
+            font-weight: 500;
         }
 
-        /* FOOTER */
-        footer {
-            padding: 10vh 4vw 4vh;
-            text-align: center;
+        .arrow-icon {
+            font-size: 18px;
+            color: var(--text-muted);
+            align-self: flex-end;
         }
 
-        .huge-footer {
-            font-size: 12vw;
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 5vh;
-            color: var(--light);
-        }
-
-        .hover-target {
-            /* Helper class for custom cursor */
-        }
     </style>
 </head>
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-
-    <!-- Intro Loader -->
-    <div class="loader">
-        <div class="loader-text">
-            <span>TFG INSPIRED.</span>
-        </div>
-    </div>
-
-    <!-- Navigation -->
+    <!-- Header -->
     <header>
-        <div class="brand hover-target">Nexus</div>
-        <div class="menu-btn hover-target">Menu</div>
+        <div class="logo">TFG</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="btn-primary">Get in touch ↗</a>
+        </div>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-        <h1 class="hero-heading">
-            <div class="line"><span class="hero-text">Digital</span></div>
-            <div class="line"><span class="hero-text">Excellence</span></div>
-            <div class="line"><span class="hero-text">Redefined.</span></div>
-        </h1>
-        <p class="hero-sub">We build modern, aesthetic, and high-performance websites that actually move the needle.</p>
-    </section>
-
-    <!-- Parallax Image -->
-    <section class="image-section">
-        <div class="img-container">
-            <img class="parallax-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Abstract 3D">
+        <div class="hero-content">
+            <div class="hero-badge">STUDIO • KARACHI • WORLDWIDE</div>
+            <h1>We make <br> <span class="gradient-text">commerce</span> <br> that earns <br> its place.</h1>
+            <p>TFG Solutions partners with founders and operators to ship work that's measurably better. We obsess about craft, but we're paid for outcomes.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Start a project ↗</a>
+                <a href="#" class="btn-secondary">See our work</a>
+            </div>
+        </div>
+        <div class="hero-graphic">
+            <!-- Simulated Orbital Nodes -->
+            <div class="center-node">TFG</div>
+            <div style="position: absolute; top: 15%; left: 30%; font-size:12px; background:#ff4040; padding:4px 10px; border-radius:20px;">scale</div>
+            <div style="position: absolute; bottom: 25%; right: 20%; font-size:12px; background:#ff4040; padding:4px 10px; border-radius:20px;">code</div>
+            <div style="position: absolute; top: 40%; right: 10%; font-size:12px; background:#ff4040; padding:4px 10px; border-radius:20px;">design</div>
+            <div style="position: absolute; bottom: 30%; left: 20%; font-size:12px; background:#ff4040; padding:4px 10px; border-radius:20px;">brand</div>
         </div>
     </section>
 
-    <!-- Interactive Services -->
-    <section class="services">
-        <h2>Our Expertise</h2>
-        
-        <div class="service-item hover-target">
-            <div class="service-name">UI/UX Design</div>
-            <div class="service-detail">Heart-pleasing interfaces.</div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-item">
+            <h3>100+</h3>
+            <p>Digital projects shipped</p>
         </div>
-        <div class="service-item hover-target">
-            <div class="service-name">Web Development</div>
-            <div class="service-detail">Blazing fast performance.</div>
+        <div class="stat-item">
+            <h3>93%</h3>
+            <p>Project satisfaction rate</p>
         </div>
-        <div class="service-item hover-target">
-            <div class="service-name">Motion Graphics</div>
-            <div class="service-detail">Smooth, staggered reveals.</div>
+        <div class="stat-item">
+            <h3>80%</h3>
+            <p>Web development excellence</p>
         </div>
-        <div class="service-item hover-target">
-            <div class="service-name">3D Interaction</div>
-            <div class="service-detail">Next-level web experience.</div>
+        <div class="stat-item">
+            <h3>78%</h3>
+            <p>Mobile app development impact</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="huge-footer hover-target">LET'S TALK</div>
-        <p style="color: #666;">© 2026 Nexus Studio. All rights reserved.</p>
-    </footer>
+    <!-- Disciplines Bento Grid -->
+    <section class="disciplines">
+        <div class="section-header">
+            <span class="section-badge">02 • CAPABILITIES</span>
+            <h2>Nine disciplines.<br>One accountable team.</h2>
+            <p>Most agencies hand you off three times before launch. We don't. The same team you meet on day one ships the thing on day ninety.</p>
+        </div>
 
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <div class="bento-grid">
+            <!-- Large Card (Left) -->
+            <div class="bento-card bento-large">
+                <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <span class="card-tag">ENGINEERING</span>
+                    <span class="arrow-icon">↗</span>
+                </div>
+                <div>
+                    <h3>Custom Software</h3>
+                    <p>Bespoke platforms, internal tools and SaaS, built to scale with your operation.</p>
+                </div>
+            </div>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+            <!-- Right Grid of Smaller Cards -->
+            <div class="bento-right-grid">
+                
+                <div class="bento-card bento-small">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span class="card-tag">WEB</span>
+                        <span class="arrow-icon">↗</span>
+                    </div>
+                    <h3>Web <br>Development</h3>
+                </div>
 
-        // 1. Custom Cursor Logic
-        const cursor = document.querySelector('.cursor');
-        const hoverTargets = document.querySelectorAll('.hover-target, .service-item');
+                <div class="bento-card bento-small">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span class="card-tag">IOS / ANDROID</span>
+                        <span class="arrow-icon">↗</span>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                </div>
 
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.1,
-                ease: "power2.out"
-            });
-        });
+                <div class="bento-card bento-small">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span class="card-tag">INFRASTRUCTURE</span>
+                        <span class="arrow-icon">↗</span>
+                    </div>
+                    <h3>Cloud & DevOps</h3>
+                </div>
 
-        hoverTargets.forEach(target => {
-            target.addEventListener('mouseenter', () => cursor.classList.add('hover-active'));
-            target.addEventListener('mouseleave', () => cursor.classList.remove('hover-active'));
-        });
+                <div class="bento-card bento-small">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span class="card-tag">PRODUCT</span>
+                        <span class="arrow-icon">↗</span>
+                    </div>
+                    <h3>UI / UX Design</h3>
+                </div>
 
-        // 2. Initial Loader & Hero Reveal Animation
-        const tl = gsap.timeline();
+            </div>
+        </div>
+    </section>
 
-        // Reveal loader text
-        tl.to('.loader-text span', {
-            y: 0,
-            duration: 1,
-            ease: "power4.out",
-            delay: 0.2
-        })
-        // Hide loader text
-        .to('.loader-text span', {
-            y: "-100%",
-            duration: 0.8,
-            ease: "power4.in",
-            delay: 0.5
-        })
-        // Slide up loader background
-        .to('.loader', {
-            y: "-100%",
-            duration: 1,
-            ease: "expo.inOut"
-        })
-        // Reveal Hero Heading lines one by one
-        .to('.hero-text', {
-            y: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power4.out",
-        }, "-=0.5")
-        // Fade in subtitle
-        .to('.hero-sub', {
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out"
-        }, "-=0.8");
-
-        // 3. Image Parallax Effect on Scroll
-        gsap.to('.parallax-img', {
-            y: "20%", 
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".image-section",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-
-        // 4. Services Fade In on Scroll
-        gsap.from('.service-item', {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: ".services",
-                start: "top 70%",
-            }
-        });
-    </script>
 </body>
 </html>
