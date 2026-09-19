@@ -1,1 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Solutions | Digital & Creative Partner</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #FFFFFF;
+        }
+        .tfg-text-gradient {
+            background: linear-gradient(135deg, #FF0066, #FF6600);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tfg-bg-gradient {
+            background: linear-gradient(135deg, #FF0066, #FF6600);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 0, 102, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 102, 0.1);
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-grid overflow-x-hidden">
 
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-3xl font-extrabold tracking-tighter">
+                <span class="tfg-text-gradient">TFG</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-300">
+                <a href="#services" class="hover:text-white transition">Services</a>
+                <a href="#work" class="hover:text-white transition">Selected Work</a>
+                <a href="#process" class="hover:text-white transition">Process</a>
+            </div>
+            <a href="#contact" class="px-5 py-2 border border-gray-600 rounded-full hover:border-white transition font-medium text-sm">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="container mx-auto px-6 pt-40 pb-32 text-center relative z-10">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF0066] rounded-full blur-[150px] opacity-10 -z-10"></div>
+        
+        <div class="inline-block px-4 py-1.5 mb-8 rounded-full border border-[#FF6600]/30 bg-[#FF6600]/10 text-xs font-bold tracking-widest text-[#FF6600] uppercase">
+            Ideas / Design / Technology / Growth
+        </div>
+        <h1 class="text-5xl md:text-8xl font-extrabold leading-tight mb-8 tracking-tight">
+            From Ideas To <br>
+            <span class="tfg-text-gradient">Real Impact.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+            Strategy, creativity and technology working together to turn your vision into real results. We build digital solutions for ambitious brands.
+        </p>
+        <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+            <a href="#contact" class="tfg-bg-gradient px-8 py-4 rounded-full font-bold text-white shadow-[0_0_20px_rgba(255,0,102,0.3)] hover:scale-105 transition duration-300 w-full md:w-auto">
+                Start a Project
+            </a>
+            <a href="#work" class="px-8 py-4 rounded-full font-bold text-white border border-gray-600 hover:bg-white hover:text-black transition duration-300 w-full md:w-auto">
+                View Our Work
+            </a>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-24 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-2">01 • Capabilities</h2>
+                <h3 class="text-4xl md:text-5xl font-bold">Nine disciplines.<br>One accountable team.</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">Custom Software</h4>
+                    <p class="text-gray-400 text-sm">Bespoke platforms and SaaS built to scale.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">Web Development</h4>
+                    <p class="text-gray-400 text-sm">Modern, responsive, high-performing websites.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">Mobile Apps</h4>
+                    <p class="text-gray-400 text-sm">iOS and Android native & cross-platform apps.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">UI/UX Design</h4>
+                    <p class="text-gray-400 text-sm">User-focused designs that create better experiences.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">Cloud & DevOps</h4>
+                    <p class="text-gray-400 text-sm">Secure, scalable, and automated infrastructure.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">E-Commerce</h4>
+                    <p class="text-gray-400 text-sm">Powerful online stores to grow your sales.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">Digital Marketing & SEO</h4>
+                    <p class="text-gray-400 text-sm">Social media, paid campaigns & performance marketing.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3 tfg-text-gradient">Branding & Graphics</h4>
+                    <p class="text-gray-400 text-sm">Logos, visual identity, and stunning campaign visuals.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold mb-3">AI & Automation</h4>
+                    <p class="text-gray-400 text-sm">Smart technology to optimize your business processes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED WORK (MUSTAFA'S PORTFOLIO) -->
+    <section id="work" class="py-24 border-t border-white/5 relative">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 flex flex-col md:flex-row md:justify-between md:items-end">
+                <div>
+                    <h2 class="text-sm font-bold tracking-widest text-[#FF0066] uppercase mb-2">02 • Selected Work</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold">Projects we crushed.</h3>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="h-64 bg-gray-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-gray-900 to-gray-700 flex items-center justify-center group-hover:scale-105 transition duration-500">
+                            <span class="text-gray-500 font-medium tracking-widest">[Corporate Identity Mockup]</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-xs font-bold text-[#FF6600] mb-2 uppercase">Creative Lead / Branding</div>
+                        <h4 class="text-2xl font-bold mb-2">Muhammadi Exchange Co.</h4>
+                        <p class="text-gray-400">Complete corporate rebranding, advanced photo retouching, and premium visual identity design.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="h-64 bg-gray-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-gray-800 to-gray-900 flex items-center justify-center group-hover:scale-105 transition duration-500">
+                            <span class="text-gray-500 font-medium tracking-widest">[Digital Ad Campaign Mockup]</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-xs font-bold text-[#FF0066] mb-2 uppercase">Digital Marketing</div>
+                        <h4 class="text-2xl font-bold mb-2">Global Ad Campaigns</h4>
+                        <p class="text-gray-400">High-converting social media creatives and performance marketing for international clients.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer md:col-span-2">
+                    <div class="h-80 bg-gray-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center group-hover:scale-105 transition duration-500">
+                            <span class="text-gray-500 font-medium tracking-widest">[Event Badge & Commercial Shoot Mockup]</span>
+                        </div>
+                    </div>
+                    <div class="p-8 md:w-1/2">
+                        <div class="text-xs font-bold text-[#FF6600] mb-2 uppercase">Event & Commercial Visuals</div>
+                        <h4 class="text-2xl font-bold mb-2">IDEAS 2024 Mega Exhibition</h4>
+                        <p class="text-gray-400">Premium entry e-badge designs and high-end commercial product shoots using chroma key studio environments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & FOOTER -->
+    <section id="contact" class="py-24 border-t border-white/5 bg-gradient-to-b from-transparent to-black">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-8">Let's build the <br><span class="tfg-text-gradient">next thing you ship.</span></h2>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Tell us what you're working on. We'll come back within a working day with a starting point.</p>
+            <a href="mailto:hello@tfgsolutions.pk" class="tfg-bg-gradient px-10 py-5 rounded-full font-bold text-white text-lg shadow-[0_0_20px_rgba(255,0,102,0.3)] hover:scale-105 transition duration-300">
+                hello@tfgsolutions.pk
+            </a>
+            
+            <div class="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <div class="text-2xl font-extrabold tracking-tighter mb-4 md:mb-0">
+                    <span class="tfg-text-gradient">TFG</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition">Privacy</a>
+                    <a href="#" class="hover:text-white transition">Terms</a>
+                    <span>© 2026 TFG Solutions. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
