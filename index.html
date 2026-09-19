@@ -1,49 +1,390 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TFG Solutions — Digital Transformation Partners</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<style>
-:root{--bg:#08090d;--panel:#0e1017;--text:#f6f3ef;--muted:#94949b;--dim:#656771;--line:rgba(255,255,255,.105);--a:#ff6b22;--p:#ff4f8b;--v:#b43cff;--max:1280px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,sans-serif;overflow-x:hidden}a{text-decoration:none;color:inherit}.wrap{width:min(calc(100% - 64px),var(--max));margin:auto}.mono{font-family:'DM Mono',monospace}.grain{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 0;transition:.35s}.nav.scrolled{padding:11px 0;background:rgba(8,9,13,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.navrow{height:46px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px}.brandmark{font-weight:800;letter-spacing:-.13em;font-size:17px;background:linear-gradient(100deg,#ff8b27,#ff4f7d,#c13fff);-webkit-background-clip:text;color:transparent}.brandname{font-size:9px;font-weight:800;letter-spacing:.24em;color:#ddd9d3}.navlinks{display:flex;gap:32px;font-size:10px;color:#aaa8ae}.navlinks a{transition:.25s}.navlinks a:hover{color:#fff}.navbutton{height:38px;padding:0 15px;border:1px solid var(--line);border-radius:99px;font-size:9px;font-weight:800;background:rgba(255,255,255,.025);transition:.25s}.navbutton:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
-.hero{min-height:900px;height:100svh;min-height:720px;position:relative;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 72% 62%,rgba(255,67,116,.105),transparent 31%),radial-gradient(ellipse at 95% 20%,rgba(142,45,255,.09),transparent 30%)}.heroGrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:95px 95px;mask-image:linear-gradient(to bottom,#000 0%,transparent 90%)}.heroContent{position:relative;z-index:5;width:min(660px,58vw);padding-top:55px}.eyebrow{font:9px 'DM Mono';letter-spacing:.17em;text-transform:uppercase;color:#7d7d86;display:flex;align-items:center;gap:10px}.eyebrow i{width:30px;height:1px;background:linear-gradient(90deg,var(--a),var(--p));display:block}.hero h1{font-size:clamp(58px,6.65vw,102px);line-height:.91;letter-spacing:-.075em;margin:23px 0 0;font-weight:700;max-width:720px}.heroWord{display:inline-block;color:#ff6d32;min-width:4.6em}.heroSub{margin:25px 0 0;max-width:540px;font-size:12px;line-height:1.75;color:#85858d}.heroActions{display:flex;gap:10px;margin-top:28px}.btn{height:47px;padding:0 18px;border-radius:8px;display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:800;border:1px solid var(--line);transition:.3s}.btn.primary{border:0;background:linear-gradient(105deg,#ff6a22,#ff4e7e 68%,#a93dff);box-shadow:0 16px 45px rgba(255,78,120,.13)}.btn.secondary{background:rgba(255,255,255,.025)}.btn:hover{transform:translateY(-3px)}.heroMeta{display:flex;gap:30px;margin-top:37px;padding-top:17px;border-top:1px solid var(--line);font:8px 'DM Mono';color:#5f6067;text-transform:uppercase}.heroMeta b{display:block;color:#d1ced0;font:600 9px Manrope;text-transform:none;margin-top:5px}
-.heroVisual{position:absolute;right:2%;top:50%;width:min(690px,54vw);height:min(690px,54vw);transform:translateY(-47%);z-index:2}.aura{position:absolute;inset:13%;border-radius:50%;background:radial-gradient(circle,rgba(255,100,38,.34),rgba(255,65,121,.2) 27%,rgba(157,55,255,.11) 47%,transparent 70%);filter:blur(24px);animation:pulse 5s ease-in-out infinite}.rings{position:absolute;inset:6%;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 42px,rgba(255,255,255,.055) 43px 44px);mask-image:radial-gradient(circle,#000 0 56%,transparent 73%);animation:rotate 28s linear infinite}.ring{position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-17deg)}.r1{width:68%;height:40%}.r2{width:78%;height:48%;transform:translate(-50%,-50%) rotate(34deg)}.r3{width:52%;height:77%;transform:translate(-50%,-50%) rotate(68deg);border-color:rgba(255,108,34,.14)}.core{position:absolute;left:50%;top:50%;width:160px;height:160px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 38% 30%,#ff9a49 0,#ff5d54 12%,#b42d9e 32%,#26162d 61%,#0b0b10 78%);box-shadow:0 0 80px rgba(255,75,112,.32),inset 0 0 38px rgba(255,255,255,.12);display:grid;place-items:center;z-index:4}.core:after{content:'';position:absolute;inset:16px;border-radius:50%;border:1px solid rgba(255,255,255,.17)}.core b{font-size:29px;letter-spacing:-.13em;z-index:2}.core small{position:absolute;bottom:42px;font:6px 'DM Mono';letter-spacing:.22em;color:#ded7da}.pill{position:absolute;z-index:6;padding:7px 11px;border:1px solid rgba(255,255,255,.13);border-radius:99px;background:rgba(11,12,17,.62);backdrop-filter:blur(14px);color:#c3c1c6;font:7px 'DM Mono';letter-spacing:.08em;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25);animation:float 6s ease-in-out infinite}.pill:nth-child(7){top:13%;left:32%;animation-delay:-1.2s}.pill:nth-child(8){top:27%;right:4%;animation-delay:-3.5s}.pill:nth-child(9){top:49%;right:-2%;animation-delay:-2.2s}.pill:nth-child(10){bottom:25%;right:9%;animation-delay:-4s}.pill:nth-child(11){bottom:11%;left:29%;animation-delay:-2.7s}.pill:nth-child(12){top:46%;left:0;animation-delay:-.4s}.status{position:absolute;left:16%;bottom:12%;font:7px 'DM Mono';color:#7c7b83;border:1px solid var(--line);background:rgba(8,9,13,.6);padding:8px 10px;border-radius:7px;backdrop-filter:blur(12px)}.status em{display:inline-block;width:5px;height:5px;border-radius:50%;background:#ff6b22;box-shadow:0 0 10px #ff6b22;margin-right:6px}.heroLine{position:absolute;right:0;bottom:8%;font:7px 'DM Mono';letter-spacing:.14em;color:#55565e}.heroLine:before{content:'';display:inline-block;width:40px;height:1px;background:linear-gradient(90deg,#ff6a22,#c03dff);vertical-align:middle;margin-right:8px}
-.marquee{border-block:1px solid var(--line);overflow:hidden;padding:14px 0;background:#0a0b10}.marqueeTrack{display:flex;width:max-content;animation:marquee 34s linear infinite}.marquee span{font:8px 'DM Mono';letter-spacing:.14em;color:#666770;white-space:nowrap}.marquee b{color:#ff6b28;margin:0 22px}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes pulse{50%{transform:scale(1.07);opacity:.8}}@keyframes rotate{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-8px)}}
-.section{padding:130px 0}.sectionHead{display:grid;grid-template-columns:210px 1fr;gap:60px;margin-bottom:58px}.label{font:9px 'DM Mono';letter-spacing:.15em;text-transform:uppercase;color:#ff6b28;padding-top:8px}.title{font-size:clamp(42px,5.2vw,76px);line-height:.96;letter-spacing:-.07em;margin:0}.desc{font-size:12px;line-height:1.8;color:#85858c;max-width:590px;margin-top:18px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}.stat{padding:34px 25px;border-right:1px solid var(--line)}.stat:last-child{border-right:0}.stat b{font-size:clamp(40px,4.6vw,64px);letter-spacing:-.08em}.stat span{display:block;margin-top:10px;color:#66676e;font:8px 'DM Mono';letter-spacing:.12em;text-transform:uppercase}
-.services{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.service{min-height:205px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px;position:relative;transition:.35s;overflow:hidden}.service:before{content:'';position:absolute;width:150px;height:150px;right:-80px;bottom:-90px;border-radius:50%;background:radial-gradient(circle,rgba(255,80,120,.22),transparent 68%);transition:.4s}.service:hover{background:rgba(255,255,255,.018)}.service:hover:before{transform:scale(1.4)}.num{font:8px 'DM Mono';color:#62636a}.service h3{font-size:19px;letter-spacing:-.045em;margin:47px 0 9px}.service p{font-size:9px;line-height:1.7;color:#71727a;max-width:285px;margin:0}.service .arr{position:absolute;right:22px;top:21px;color:#51525a;font-size:17px;transition:.3s}.service:hover .arr{color:#ff6b28;transform:translate(3px,-3px)}
-.process{border-top:1px solid var(--line)}.processRow{min-height:135px;display:grid;grid-template-columns:60px 1.1fr 1fr 35px;align-items:center;gap:24px;border-bottom:1px solid var(--line);transition:.3s}.processRow:hover{background:rgba(255,255,255,.018)}.processRow .n{font:8px 'DM Mono';color:#ff6b28}.processRow h3{font-size:23px;letter-spacing:-.05em;margin:0}.processRow p{font-size:9px;line-height:1.7;color:#73747b;margin:0;max-width:400px}.processRow .arr{color:#55565d;font-size:18px}.processRow:hover .arr{color:#ff6b28}
-.workIntro{display:flex;justify-content:space-between;align-items:end;margin-bottom:45px}.workIntro .title{max-width:700px}.workNote{font:8px 'DM Mono';color:#66676e;max-width:230px;line-height:1.6}.workGrid{display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:330px 330px;gap:16px}.workCard{position:relative;overflow:hidden;border:1px solid var(--line);background:#0c0e13;border-radius:12px}.workCard.large{grid-row:span 2}.workVisual{position:absolute;inset:0;background:#10121a}.w1{background:radial-gradient(circle at 68% 32%,rgba(255,100,33,.6),transparent 18%),radial-gradient(circle at 70% 68%,rgba(183,52,255,.46),transparent 29%),linear-gradient(145deg,#171a24,#0a0b10 62%)}.w2{background:linear-gradient(135deg,rgba(255,75,123,.16),transparent 44%),repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.035) 47px 48px),#0d0f15}.w3{background:radial-gradient(circle at 32% 45%,rgba(183,52,255,.42),transparent 25%),radial-gradient(circle at 70% 58%,rgba(255,100,33,.34),transparent 24%),#0d0f15}.workCard .copy{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}.workCard .tag{font:7px 'DM Mono';color:#ff6b28;letter-spacing:.14em;text-transform:uppercase}.workCard h3{font-size:20px;letter-spacing:-.045em;margin:7px 0 0}.workCard p{font-size:9px;color:#8a8990;margin:5px 0 0}.workCard:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(4,5,8,.92));pointer-events:none}
-.quote{border-block:1px solid var(--line);padding:85px 0;display:grid;grid-template-columns:210px 1fr;gap:60px}.quoteMark{font-size:80px;color:#ff6b28;line-height:.5}.quote blockquote{font-size:clamp(28px,3.5vw,49px);line-height:1.06;letter-spacing:-.06em;margin:0;max-width:950px}.quote small{display:block;margin-top:25px;color:#66676e;font:8px 'DM Mono'}
-.cta{padding:130px 0}.ctaBox{min-height:490px;border:1px solid var(--line);border-radius:15px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 10%,rgba(255,103,37,.13),transparent 34%),#0b0c11}.ctaOrb{position:absolute;width:560px;height:560px;border-radius:50%;border:1px solid rgba(255,255,255,.05);box-shadow:0 0 150px rgba(255,72,119,.08)}.ctaBox>*{position:relative;z-index:2}.ctaBox h2{font-size:clamp(55px,7.5vw,102px);line-height:.88;letter-spacing:-.08em;margin:18px 0}.ctaBox p{font-size:11px;color:#85858d;max-width:450px;line-height:1.7;margin:0 auto 26px}
-footer{border-top:1px solid var(--line);padding:27px 0}.footer{display:flex;justify-content:space-between;align-items:center}.footer span,.footer a{font-size:8px;color:#66676e}.footer nav{display:flex;gap:20px}
-.reveal{opacity:0;transform:translateY(24px)}.scaleIn{opacity:0;transform:scale(.965)}
-@media(max-width:1050px){.heroVisual{right:-12%;opacity:.92}.heroContent{width:60vw}.navlinks{display:none}.sectionHead{grid-template-columns:1fr;gap:14px}.quote{grid-template-columns:1fr;gap:20px}}
-@media(max-width:760px){.wrap{width:calc(100% - 30px)}.hero{min-height:900px;align-items:flex-start;padding-top:130px}.heroContent{width:100%;padding:0}.hero h1{font-size:15vw}.heroVisual{width:600px;height:600px;max-width:none;right:50%;top:auto;bottom:-105px;transform:translateX(50%);opacity:.85}.heroMeta{gap:14px}.heroSub{max-width:100%}.services{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.processRow{grid-template-columns:42px 1fr 25px}.processRow p{display:none}.workGrid{grid-template-columns:1fr;grid-template-rows:400px 300px 300px}.workCard.large{grid-row:auto}.workNote{display:none}.workIntro{margin-bottom:28px}.quote{padding:65px 0}.cta{padding:90px 0}.ctaBox{min-height:410px}.footer{align-items:flex-start;gap:18px;flex-direction:column}.footer nav{order:-1}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFG Level Experience</title>
+    <!-- Premium Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark: #0a0a0a;
+            --light: #f4f4f5;
+            --accent: #dcf836; /* High-end neon accent */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor use kar rahe hain */
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Clash Display', sans-serif;
+        }
+
+        /* CUSTOM CURSOR */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor.hover-active {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+        }
+
+        /* LOADER */
+        .loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--light);
+            color: var(--dark);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .loader-text {
+            font-size: 4vw;
+            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .loader-text span {
+            display: inline-block;
+            transform: translateY(100%);
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 2vw 4vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-btn {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4vw;
+            position: relative;
+        }
+
+        .hero-heading {
+            font-size: 8.5vw;
+            line-height: 0.9;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 2vh;
+        }
+
+        .line {
+            overflow: hidden;
+            display: block;
+        }
+
+        .line span {
+            display: inline-block;
+            transform: translateY(110%);
+        }
+
+        .hero-sub {
+            margin-top: 4vh;
+            font-size: 1.2rem;
+            max-width: 400px;
+            color: #999;
+            opacity: 0;
+        }
+
+        /* PARALLAX IMAGE SECTION */
+        .image-section {
+            width: 100%;
+            height: 80vh;
+            padding: 0 4vw;
+            margin: 10vh 0;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 120%; /* Extra height for parallax */
+            object-fit: cover;
+            transform: translateY(-10%);
+        }
+
+        /* SERVICES LIST */
+        .services {
+            padding: 10vh 4vw;
+        }
+
+        .services h2 {
+            font-size: 4vw;
+            margin-bottom: 8vh;
+            font-weight: 400;
+        }
+
+        .service-item {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 4vh 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .service-item:first-of-type {
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .service-name {
+            font-size: 4vw;
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 600;
+            color: #555;
+            transition: color 0.4s ease;
+        }
+
+        .service-detail {
+            font-size: 1.1rem;
+            color: #888;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .service-item:hover {
+            padding-left: 2vw;
+            padding-right: 2vw;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .service-item:hover .service-name {
+            color: var(--light);
+        }
+
+        .service-item:hover .service-detail {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 10vh 4vw 4vh;
+            text-align: center;
+        }
+
+        .huge-footer {
+            font-size: 12vw;
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5vh;
+            color: var(--light);
+        }
+
+        .hover-target {
+            /* Helper class for custom cursor */
+        }
+    </style>
 </head>
-<body><div class="grain"></div>
-<header class="nav" id="nav"><div class="wrap navrow"><a class="brand" href="#top"><span class="brandmark">TFG</span><span class="brandname">SOLUTIONS</span></a><nav class="navlinks"><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a href="#about">About</a></nav><a class="navbutton" href="#contact">START A PROJECT ↗</a></div></header>
-<main id="top">
-<section class="hero"><div class="heroGrid"></div><div class="wrap heroContent"><div class="eyebrow reveal"><i></i> Studio · Karachi → Worldwide</div><h1 class="reveal">We make <span class="heroWord" id="heroWord">software</span><br>that earns<br>its place.</h1><p class="heroSub reveal">Digital technology and creative transformation for companies ready to build, launch and grow with purpose.</p><div class="heroActions reveal"><a class="btn primary" href="#work">Explore our work ↗</a><a class="btn secondary" href="#services">What we do ↓</a></div><div class="heroMeta reveal"><div>EST. 2015<b>Karachi, Pakistan</b></div><div>100+<b>Companies trusted</b></div><div>09 DISCIPLINES<b>One digital partner</b></div></div></div>
-<div class="heroVisual scaleIn"><div class="aura"></div><div class="rings"></div><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="core"><b>TFG</b><small>DIGITAL TRANSFORMATION</small></div><div class="pill">WEB</div><div class="pill">BRAND</div><div class="pill">AI</div><div class="pill">GROWTH</div><div class="pill">MOBILE</div><div class="pill">COMMERCE</div><div class="status"><em></em> BUILDING <b>WHAT'S NEXT</b></div><div class="heroLine">SYSTEMS · DESIGN · GROWTH</div></div></section>
-<div class="marquee"><div class="marqueeTrack"><span>Custom Software <b>•</b> Web Development <b>•</b> Mobile Apps <b>•</b> UI/UX Design <b>•</b> Cloud & DevOps <b>•</b> E-Commerce <b>•</b> Digital Marketing & SEO <b>•</b> Branding & Graphics <b>•</b> AI & Automation <b>•</b></span><span>Custom Software <b>•</b> Web Development <b>•</b> Mobile Apps <b>•</b> UI/UX Design <b>•</b> Cloud & DevOps <b>•</b> E-Commerce <b>•</b> Digital Marketing & SEO <b>•</b> Branding & Graphics <b>•</b> AI & Automation <b>•</b></span></div></div>
-<section class="section" id="about"><div class="wrap"><div class="sectionHead reveal"><div class="label">01 / The studio</div><div><h2 class="title">A digital studio<br>building things that matter.</h2><p class="desc">Technology, design and growth brought together under one roof — from the first idea to the finished experience.</p></div></div><div class="stats"><div class="stat reveal"><b>100+</b><span>Companies trusted</span></div><div class="stat reveal"><b>09</b><span>Core disciplines</span></div><div class="stat reveal"><b>2015</b><span>Established</span></div><div class="stat reveal"><b>01</b><span>Digital partner</span></div></div></div></section>
-<section class="section" id="services"><div class="wrap"><div class="sectionHead reveal"><div class="label">02 / Capabilities</div><div><h2 class="title">Everything you need<br>to move forward.</h2><p class="desc">Nine disciplines, connected by one team and one clear digital direction.</p></div></div><div class="services"><article class="service reveal"><span class="num">01</span><span class="arr">↗</span><h3>Custom Software</h3><p>Scalable platforms and business systems built around the way you actually work.</p></article><article class="service reveal"><span class="num">02</span><span class="arr">↗</span><h3>Web Development</h3><p>High-performance websites engineered for clarity, speed and conversion.</p></article><article class="service reveal"><span class="num">03</span><span class="arr">↗</span><h3>Mobile Apps</h3><p>Thoughtful mobile experiences from product architecture to launch.</p></article><article class="service reveal"><span class="num">04</span><span class="arr">↗</span><h3>UI/UX Design</h3><p>Interfaces that make complex products feel simple and natural.</p></article><article class="service reveal"><span class="num">05</span><span class="arr">↗</span><h3>Cloud & DevOps</h3><p>Reliable infrastructure, deployment and systems that scale with you.</p></article><article class="service reveal"><span class="num">06</span><span class="arr">↗</span><h3>E-Commerce</h3><p>Commerce experiences designed around discovery, trust and purchase.</p></article><article class="service reveal"><span class="num">07</span><span class="arr">↗</span><h3>Digital Marketing & SEO</h3><p>Search, content and performance campaigns built to create measurable growth.</p></article><article class="service reveal"><span class="num">08</span><span class="arr">↗</span><h3>Branding & Graphics</h3><p>Distinct identities and visual systems that give brands a clear presence.</p></article><article class="service reveal"><span class="num">09</span><span class="arr">↗</span><h3>AI & Automation</h3><p>Smarter workflows and intelligent products that reduce friction and scale output.</p></article></div></div></section>
-<section class="section" id="work"><div class="wrap"><div class="workIntro reveal"><div><div class="label">03 / Selected work</div><h2 class="title">Your creative work,<br>presented like a premium studio.</h2></div><div class="workNote">Replace these three artboards with your final portfolio pieces. The layout is already prepared for real work.</div></div><div class="workGrid"><article class="workCard large reveal"><div class="workVisual w1"></div><div class="copy"><div class="tag">Featured project</div><h3>Your Featured Creative</h3><p>Brand identity · Digital campaign · Visual design</p></div></article><article class="workCard reveal"><div class="workVisual w2"></div><div class="copy"><div class="tag">Project 02</div><h3>Creative Showcase</h3><p>Campaign · Social · Art direction</p></div></article><article class="workCard reveal"><div class="workVisual w3"></div><div class="copy"><div class="tag">Project 03</div><h3>Digital Experience</h3><p>UI/UX · Product · Interaction</p></div></article></div></div></section>
-<section class="section" id="process"><div class="wrap"><div class="sectionHead reveal"><div class="label">04 / How we work</div><div><h2 class="title">Clear thinking.<br>Clean execution.</h2><p class="desc">A focused process that keeps strategy, creativity and technology moving together.</p></div></div><div class="process"><div class="processRow reveal"><span class="n">01</span><h3>Discover</h3><p>We understand the problem, audience, goals and opportunity before anything gets built.</p><span class="arr">↗</span></div><div class="processRow reveal"><span class="n">02</span><h3>Design</h3><p>We shape the experience, identity and interface into a clear visual direction.</p><span class="arr">↗</span></div><div class="processRow reveal"><span class="n">03</span><h3>Build</h3><p>Design becomes a reliable digital product through focused engineering and iteration.</p><span class="arr">↗</span></div><div class="processRow reveal"><span class="n">04</span><h3>Grow</h3><p>Launch is the beginning — we measure, improve and keep the system moving.</p><span class="arr">↗</span></div></div></div></section>
-<section class="wrap quote reveal"><div class="quoteMark">“</div><div><blockquote>Good digital work should earn attention — then earn its place.</blockquote><small>TFG SOLUTIONS · DIGITAL TRANSFORMATION PARTNERS</small></div></section>
-<section class="cta" id="contact"><div class="wrap"><div class="ctaBox reveal"><div class="ctaOrb"></div><div class="label">05 / Start something</div><h2>LET'S BUILD<br><span style="color:#ff6b28">WHAT'S NEXT.</span></h2><p>Have a product, brand or digital challenge in mind? Let’s turn the idea into something people remember.</p><a class="btn primary" href="mailto:hello@tfgsolutions.pk">Start a project ↗</a></div></div></section>
-</main><footer><div class="wrap footer"><span>© 2026 TFG Solutions</span><nav><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a href="#top">Back to top ↑</a></nav><span>Karachi → Worldwide</span></div></footer>
-<script>
-gsap.registerPlugin(ScrollTrigger);
-const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
-gsap.utils.toArray('.reveal').forEach(el=>gsap.fromTo(el,{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}}));
-gsap.fromTo('.scaleIn',{autoAlpha:0,scale:.94},{autoAlpha:1,scale:1,duration:1.2,ease:'power3.out',delay:.15});
-const words=['software','brand','websites','apps','commerce','growth'];let wi=0;const hw=document.getElementById('heroWord');setInterval(()=>{wi=(wi+1)%words.length;gsap.to(hw,{y:12,autoAlpha:0,duration:.18,ease:'power2.in',onComplete:()=>{hw.textContent=words[wi];gsap.to(hw,{y:0,autoAlpha:1,duration:.35,ease:'power3.out'})}})},2200);
-gsap.to('.heroVisual',{y:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
-gsap.to('.core',{scale:1.055,duration:2.8,repeat:-1,yoyo:true,ease:'sine.inOut'});
-</script></body></html>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Intro Loader -->
+    <div class="loader">
+        <div class="loader-text">
+            <span>TFG INSPIRED.</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="brand hover-target">Nexus</div>
+        <div class="menu-btn hover-target">Menu</div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="hero-heading">
+            <div class="line"><span class="hero-text">Digital</span></div>
+            <div class="line"><span class="hero-text">Excellence</span></div>
+            <div class="line"><span class="hero-text">Redefined.</span></div>
+        </h1>
+        <p class="hero-sub">We build modern, aesthetic, and high-performance websites that actually move the needle.</p>
+    </section>
+
+    <!-- Parallax Image -->
+    <section class="image-section">
+        <div class="img-container">
+            <img class="parallax-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Abstract 3D">
+        </div>
+    </section>
+
+    <!-- Interactive Services -->
+    <section class="services">
+        <h2>Our Expertise</h2>
+        
+        <div class="service-item hover-target">
+            <div class="service-name">UI/UX Design</div>
+            <div class="service-detail">Heart-pleasing interfaces.</div>
+        </div>
+        <div class="service-item hover-target">
+            <div class="service-name">Web Development</div>
+            <div class="service-detail">Blazing fast performance.</div>
+        </div>
+        <div class="service-item hover-target">
+            <div class="service-name">Motion Graphics</div>
+            <div class="service-detail">Smooth, staggered reveals.</div>
+        </div>
+        <div class="service-item hover-target">
+            <div class="service-name">3D Interaction</div>
+            <div class="service-detail">Next-level web experience.</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="huge-footer hover-target">LET'S TALK</div>
+        <p style="color: #666;">© 2026 Nexus Studio. All rights reserved.</p>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        const hoverTargets = document.querySelectorAll('.hover-target, .service-item');
+
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => cursor.classList.add('hover-active'));
+            target.addEventListener('mouseleave', () => cursor.classList.remove('hover-active'));
+        });
+
+        // 2. Initial Loader & Hero Reveal Animation
+        const tl = gsap.timeline();
+
+        // Reveal loader text
+        tl.to('.loader-text span', {
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            delay: 0.2
+        })
+        // Hide loader text
+        .to('.loader-text span', {
+            y: "-100%",
+            duration: 0.8,
+            ease: "power4.in",
+            delay: 0.5
+        })
+        // Slide up loader background
+        .to('.loader', {
+            y: "-100%",
+            duration: 1,
+            ease: "expo.inOut"
+        })
+        // Reveal Hero Heading lines one by one
+        .to('.hero-text', {
+            y: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+        }, "-=0.5")
+        // Fade in subtitle
+        .to('.hero-sub', {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+        }, "-=0.8");
+
+        // 3. Image Parallax Effect on Scroll
+        gsap.to('.parallax-img', {
+            y: "20%", 
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // 4. Services Fade In on Scroll
+        gsap.from('.service-item', {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".services",
+                start: "top 70%",
+            }
+        });
+    </script>
+</body>
+</html>
