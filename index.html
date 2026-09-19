@@ -36,12 +36,7 @@
         .gradient-text { background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
         .badge { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; display: block; }
 
-        .btn {
-            background: var(--primary-grad); color: white; padding: 12px 28px; border-radius: 30px;
-            text-decoration: none; font-size: 14px; font-weight: 500; display: inline-flex;
-            align-items: center; gap: 8px; border: none; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(255,64,64,0.2);
-        }
+        .btn { background: var(--primary-grad); color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(255,64,64,0.2); }
         .btn:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255,64,64,0.4); }
         .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-size: 14px; transition: 0.3s; }
         .btn-outline:hover { background: var(--surface-light); border-color: var(--text-muted); }
@@ -57,9 +52,8 @@
         /* HERO */
         .hero { padding: 120px 0; display: flex; align-items: center; gap: 40px; min-height: 90vh; }
         .hero-content { flex: 1.2; z-index: 20; }
-        .hero h1 { font-size: 72px; line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin-bottom: 24px; }
+        .hero h1 { font-size: 72px; line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin-bottom: 24px; text-transform: uppercase; }
         
-        /* Animated Changing Word (Now ALL CAPS) */
         .word-cycler { display: inline-block; position: relative; height: 80px; overflow: hidden; vertical-align: bottom; }
         .changing-word { display: inline-block; position: relative; text-transform: uppercase; }
 
@@ -67,14 +61,7 @@
         
         /* HERO GRAPHIC */
         .hero-graphic { flex: 0.8; position: relative; height: 550px; display: flex; align-items: center; justify-content: center; }
-        .planet {
-            width: 220px; height: 220px; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ff7340, #ff4040, #1a0000);
-            box-shadow: 0 0 80px rgba(255, 64, 64, 0.5), inset -20px -20px 40px rgba(0,0,0,0.8);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 48px; font-weight: 800; position: absolute; z-index: 10;
-        }
-        
+        .planet { width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ff7340, #ff4040, #1a0000); box-shadow: 0 0 80px rgba(255, 64, 64, 0.5), inset -20px -20px 40px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 800; position: absolute; z-index: 10; }
         .static-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
         .ring-1 { width: 380px; height: 380px; }
         .ring-2 { width: 520px; height: 520px; }
@@ -85,11 +72,7 @@
         #orbit-2 { width: 520px; height: 520px; z-index: 14; }
 
         .tag-wrapper { position: absolute; width: 0; height: 0; display: flex; align-items: center; justify-content: center; }
-        .orbit-tag {
-            background: var(--surface); border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px;
-            font-size: 12px; display: flex; align-items: center; gap: 8px; white-space: nowrap;
-            transition: border-color 0.3s, background 0.3s; pointer-events: auto;
-        }
+        .orbit-tag { background: var(--surface); border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; font-size: 12px; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: border-color 0.3s, background 0.3s; pointer-events: auto; }
         .orbit-tag i { color: var(--accent); }
         .orbit-tag:hover { border-color: var(--accent); background: #151515; }
 
@@ -113,46 +96,30 @@
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* FEATURED PROJECTS (ALBUM SECTION) */
-        .featured-album-section {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden; background: var(--bg);
-        }
-        .album-glow {
-            position: absolute; width: 50vw; height: 50vw; top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 1; pointer-events: none;
-            background: radial-gradient(circle, rgba(255, 64, 64, 0.15) 0%, transparent 60%);
-        }
-        .album-book {
-            position: relative; width: 45vw; max-width: 500px; height: 60vh; max-height: 700px;
-            perspective: 2500px; z-index: 5; opacity: 0; transform: translateY(50px);
-        }
+        /* NEW: FEATURED PROJECTS (1080x1080 SQUARE FROSTED ALBUM) */
+        .featured-album-section { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--bg); }
+        .album-glow { position: absolute; width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle, rgba(255, 64, 64, 0.15) 0%, transparent 60%); }
         
-        /* Album Page Mechanics */
-        .book-page {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-            transform-origin: left center; transform-style: preserve-3d;
-        }
-        .page-face {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-            backface-visibility: hidden; border-radius: 12px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
-        }
+        /* Album Book set to strictly Square (1:1 Ratio) for 1080p images */
+        .album-book { position: relative; width: 40vw; max-width: 450px; aspect-ratio: 1 / 1; perspective: 2500px; z-index: 5; opacity: 0; transform: translateY(50px); }
+        
+        .book-page { position: absolute; width: 100%; height: 100%; top: 0; left: 0; transform-origin: left center; transform-style: preserve-3d; }
+        .page-face { position: absolute; width: 100%; height: 100%; top: 0; left: 0; backface-visibility: hidden; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; }
         .page-front { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(20px); }
-        .page-back { background: rgba(10, 10, 10, 0.95); transform: rotateY(180deg); } /* Blank back of the page */
+        .page-back { background: rgba(10, 10, 10, 0.95); transform: rotateY(180deg); }
 
-        /* Specific Page Designs */
         .cover-design { background: rgba(255,255,255,0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,64,64,0.3); display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .cover-design h2 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
         
-        .content-frame { flex: 1; padding: 24px; display: flex; flex-direction: column; }
-        .img-placeholder { flex: 1; background: #111; border-radius: 8px; border: 1px dashed rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 20px; overflow: hidden; position: relative; }
-        .post-info h4 { font-size: 18px; margin-bottom: 8px; }
-        .post-info p { font-size: 12px; color: var(--text-muted); }
+        .content-frame { flex: 1; padding: 12px; display: flex; flex-direction: column; }
+        
+        /* Full size image placeholder for posts */
+        .img-placeholder { flex: 1; background: #111; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); overflow: hidden; position: relative; width: 100%; height: 100%; }
         
         .logo-placeholder { flex: 1; background: radial-gradient(circle, rgba(255,255,255,0.05), transparent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 48px; }
+        .post-info h4 { font-size: 18px; margin-bottom: 8px; }
+        .post-info p { font-size: 12px; color: var(--text-muted); }
 
-        /* Set Z-Indexes Statically so pages stack properly */
         .p-1 { z-index: 12; } .p-2 { z-index: 11; } .p-3 { z-index: 10; }
         .p-4 { z-index: 9; }  .p-5 { z-index: 8; }  .p-6 { z-index: 7; }
         .p-7 { z-index: 6; }  .p-8 { z-index: 5; }  .p-9 { z-index: 4; }
@@ -163,18 +130,8 @@
         .process-pin-header { padding: 0 40px; max-width: 1300px; margin: 0 auto 40px; width: 100%; }
         .process-track-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
         .process-horizontal-track { display: flex; gap: 40px; padding: 40px 50vw 40px 40px; width: max-content; }
-        
-        .process-box {
-            width: 320px; min-height: 320px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-            padding: 40px; opacity: 0.3; transition: all 0.5s ease; display: flex; flex-direction: column; position: relative;
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.5); transform: perspective(1000px) rotateY(10deg);
-        }
-        .process-box.bulb-glow {
-            opacity: 1; background: #1a0505; border-color: var(--glow-color);
-            box-shadow: 0 0 40px rgba(255, 64, 64, 0.3), inset 0 0 20px rgba(255, 64, 64, 0.15), 0 20px 40px rgba(0,0,0,0.8);
-            transform: perspective(1000px) rotateY(0deg) scale(1.05); z-index: 10;
-        }
-
+        .process-box { width: 320px; min-height: 320px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; opacity: 0.3; transition: all 0.5s ease; display: flex; flex-direction: column; position: relative; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.5); transform: perspective(1000px) rotateY(10deg); }
+        .process-box.bulb-glow { opacity: 1; background: #1a0505; border-color: var(--glow-color); box-shadow: 0 0 40px rgba(255, 64, 64, 0.3), inset 0 0 20px rgba(255, 64, 64, 0.15), 0 20px 40px rgba(0,0,0,0.8); transform: perspective(1000px) rotateY(0deg) scale(1.05); z-index: 10; }
         .box-num { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; margin-bottom: 24px; transition: 0.5s; color: var(--text-muted); }
         .bulb-glow .box-num { background: var(--primary-grad); color: #fff; border-color: var(--glow-color); box-shadow: 0 0 15px rgba(255, 64, 64, 0.6); border-width: 0; }
         .process-box h4 { font-size: 24px; margin-bottom: 12px; transition: 0.5s; }
@@ -221,27 +178,20 @@
         <div class="hero-content">
             <span class="badge">DIGITAL STUDIO</span>
             <h1>We make <br>
-                <span class="word-cycler">
-                    <span class="changing-word gradient-text" id="changingWord">commerce</span>
-                </span>
+                <span class="word-cycler"><span class="changing-word gradient-text" id="changingWord">commerce</span></span>
                 <br>that earns<br>its place.
             </h1>
             <p>TFG is a creative & technology studio helping brands build digital experiences, grow faster and turn ideas into real business results.</p>
-            <div class="hero-actions">
-                <a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a>
-            </div>
+            <div class="hero-actions"><a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a></div>
         </div>
         
         <div class="hero-graphic">
-            <div class="static-ring ring-1"></div>
-            <div class="static-ring ring-2"></div>
-            <!-- Orbit 2 -->
+            <div class="static-ring ring-1"></div><div class="static-ring ring-2"></div>
             <div class="orbit-container" id="orbit-2">
                 <div class="tag-wrapper" style="top: 0; left: 50%;"><div class="orbit-tag"><i class="ph-fill ph-device-mobile"></i> Apps</div></div>
                 <div class="tag-wrapper" style="top: 75%; left: 6.6%;"><div class="orbit-tag"><i class="ph-fill ph-shopping-cart"></i> Commerce</div></div>
                 <div class="tag-wrapper" style="top: 75%; left: 93.3%;"><div class="orbit-tag"><i class="ph-fill ph-trend-up"></i> Growth</div></div>
             </div>
-            <!-- Orbit 1 -->
             <div class="orbit-container" id="orbit-1">
                 <div class="tag-wrapper" style="top: 50%; left: 0;"><div class="orbit-tag"><i class="ph-fill ph-globe"></i> Websites</div></div>
                 <div class="tag-wrapper" style="top: 50%; left: 100%;"><div class="orbit-tag"><i class="ph-fill ph-paint-brush"></i> Branding</div></div>
@@ -267,10 +217,7 @@
 
     <!-- Services -->
     <section id="services" class="services container">
-        <div class="section-header">
-            <span class="badge">02 • CAPABILITIES</span>
-            <h2>Nine disciplines.<br>One accountable team.</h2>
-        </div>
+        <div class="section-header"><span class="badge">02 • CAPABILITIES</span><h2>Nine disciplines.<br>One accountable team.</h2></div>
         <div class="services-grid">
             <div class="service-card"><i class="ph ph-code"></i><h3>Custom Software</h3><p>Bespoke platforms, internal tools and SaaS, built to scale.</p></div>
             <div class="service-card"><i class="ph ph-globe"></i><h3>Web Development</h3><p>Modern, fast and responsive websites built with latest tech.</p></div>
@@ -284,52 +231,45 @@
         </div>
     </section>
 
-    <!-- NEW: FEATURED PROJECTS (FROSTED ALBUM) -->
+    <!-- FEATURED PROJECTS (1080x1080 FROSTED ALBUM) -->
     <section id="featured" class="featured-album-section">
         <div class="album-glow"></div>
         
         <div class="album-book">
-            <!-- 1. Front Cover -->
+            <!-- Front Cover -->
             <div class="book-page p-1">
                 <div class="page-face page-front cover-design">
-                    <i class="ph-fill ph-folder-open" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
+                    <i class="ph-fill ph-image" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
                     <h2>Featured Work</h2>
-                    <p style="color: var(--text-muted); font-size: 14px;">Scroll to open</p>
+                    <p style="color: var(--text-muted); font-size: 14px;">Scroll to view album</p>
                 </div>
                 <div class="page-face page-back"></div>
             </div>
 
-            <!-- Page 2 to 8: 7 Social Media Posts -->
-            <!-- Note: Duplicate this block changing text for Post 1 to 7 -->
+            <!-- Page 2 to 8: 7 Pure Image Posts (No Text, Full Space) -->
             <div class="book-page p-2 flip-item">
-                <div class="page-face page-front content-frame">
-                    <span class="badge">Social Media Post</span>
-                    <div class="img-placeholder">[Post Image 1 Placeholder]</div>
-                    <div class="post-info"><h4>Campaign Design</h4><p>High-converting social media creatives for brand awareness.</p></div>
-                </div>
-                <div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 1]</div></div><div class="page-face page-back"></div>
             </div>
-            
             <div class="book-page p-3 flip-item">
-                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 2 Placeholder]</div><div class="post-info"><h4>Product Launch</h4><p>Visuals designed to capture attention and drive sales.</p></div></div><div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 2]</div></div><div class="page-face page-back"></div>
             </div>
             <div class="book-page p-4 flip-item">
-                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 3 Placeholder]</div><div class="post-info"><h4>Event Teaser</h4><p>Engaging social posts for upcoming events.</p></div></div><div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 3]</div></div><div class="page-face page-back"></div>
             </div>
             <div class="book-page p-5 flip-item">
-                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 4 Placeholder]</div><div class="post-info"><h4>Engagement Post</h4><p>Interactive creatives designed for maximum reach.</p></div></div><div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 4]</div></div><div class="page-face page-back"></div>
             </div>
             <div class="book-page p-6 flip-item">
-                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 5 Placeholder]</div><div class="post-info"><h4>Promo Graphic</h4><p>Clear and bold promotional messaging.</p></div></div><div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 5]</div></div><div class="page-face page-back"></div>
             </div>
             <div class="book-page p-7 flip-item">
-                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 6 Placeholder]</div><div class="post-info"><h4>Story Template</h4><p>Branded stories designed for Instagram & Facebook.</p></div></div><div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 6]</div></div><div class="page-face page-back"></div>
             </div>
             <div class="book-page p-8 flip-item">
-                <div class="page-face page-front content-frame"><span class="badge">Social Media Post</span><div class="img-placeholder">[Post Image 7 Placeholder]</div><div class="post-info"><h4>Carousel Design</h4><p>Educational multi-slide graphics for LinkedIn.</p></div></div><div class="page-face page-back"></div>
+                <div class="page-face page-front content-frame"><div class="img-placeholder">[1080x1080 Post 7]</div></div><div class="page-face page-back"></div>
             </div>
 
-            <!-- Page 9 to 11: 3 Brand Logos -->
+            <!-- Page 9 to 11: 3 Brand Logos (With text info kept as requested) -->
             <div class="book-page p-9 flip-item">
                 <div class="page-face page-front content-frame">
                     <span class="badge" style="color:var(--accent);">Brand Identity</span>
@@ -338,7 +278,6 @@
                 </div>
                 <div class="page-face page-back"></div>
             </div>
-            
             <div class="book-page p-10 flip-item">
                 <div class="page-face page-front content-frame">
                     <span class="badge" style="color:var(--accent);">Brand Identity</span>
@@ -347,7 +286,6 @@
                 </div>
                 <div class="page-face page-back"></div>
             </div>
-
             <div class="book-page p-11 flip-item">
                 <div class="page-face page-front content-frame">
                     <span class="badge" style="color:var(--accent);">Brand Identity</span>
@@ -357,7 +295,7 @@
                 <div class="page-face page-back"></div>
             </div>
 
-            <!-- 12. Back Cover (Static Base) -->
+            <!-- Back Cover -->
             <div class="book-page p-12">
                 <div class="page-face page-front cover-design">
                     <i class="ph-fill ph-check-circle" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
@@ -385,7 +323,7 @@
         </div>
     </section>
 
-    <!-- Pricing & CTA ... -->
+    <!-- Pricing & CTA -->
     <section id="pricing" class="pricing container">
         <div class="section-header"><span class="badge">07 • ENGAGEMENT MODELS</span><h2>Three ways to work with us.</h2></div>
         <div class="pricing-grid">
@@ -427,8 +365,7 @@
 
         /* 1. HERO WORD CYCLING */
         const words = ["commerce", "websites", "apps", "designs", "brands", "growth"];
-        let wordIndex = 0;
-        const wordEl = document.getElementById("changingWord");
+        let wordIndex = 0; const wordEl = document.getElementById("changingWord");
         setInterval(() => {
             gsap.to(wordEl, { y: -40, opacity: 0, duration: 0.4, ease: "power2.in", onComplete: () => {
                 wordIndex = (wordIndex + 1) % words.length; wordEl.innerText = words[wordIndex];
@@ -459,42 +396,33 @@
         marqueeContainer.addEventListener('mouseenter', () => marqueeTween.pause());
         marqueeContainer.addEventListener('mouseleave', () => marqueeTween.play());
 
-        /* 4. NEW: ALBUM SCROLL ANIMATION */
+        /* 4. ALBUM SCROLL ANIMATION (AUTO-CENTERING LOGIC ADDED) */
         const albumTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#featured",
-                start: "top top",
-                end: "+=6000", // Long scroll area for turning 10 pages
-                pin: true,
-                scrub: 1
-            }
+            scrollTrigger: { trigger: "#featured", start: "top top", end: "+=6000", pin: true, scrub: 1 }
         });
 
-        // Intro: Glow and Album Appear
+        // Glow & Appear
         albumTl.to(".album-glow", { scale: 1, opacity: 1, duration: 1 })
                .to(".album-book", { opacity: 1, y: 0, duration: 1 }, "<");
 
-        // Flip Front Cover
-        albumTl.to(".p-1", { rotationY: -180, duration: 2 });
+        // Open front cover AND slide the whole book to center (`xPercent: 50`)
+        albumTl.to(".p-1", { rotationY: -180, duration: 2 }, "openCover")
+               .to(".album-book", { xPercent: 50, duration: 2 }, "openCover");
 
-        // Flip the 10 item pages one by one
+        // Flip interior pages
         const flipItems = gsap.utils.toArray('.flip-item');
         flipItems.forEach(item => {
-            // Little pause to look at the post before flipping
-            albumTl.to(item, { rotationY: -10, duration: 0.5 }) 
-                   .to(item, { rotationY: -180, duration: 2 });
+            albumTl.to(item, { rotationY: -10, duration: 0.5 }).to(item, { rotationY: -180, duration: 2 });
         });
 
-        // Outro: Close, Frost over and Disappear
+        // Outro (Frost over and fade out)
         albumTl.to(".album-book", { opacity: 0, scale: 0.8, filter: "blur(20px)", duration: 2 })
                .to(".album-glow", { opacity: 0, scale: 0, duration: 2 }, "<");
 
 
         /* 5. PROCESS SECTION */
         const processTrack = document.querySelector('.process-horizontal-track');
-        const boxes = gsap.utils.toArray('.process-box');
-        const totalBoxes = boxes.length;
-        
+        const boxes = gsap.utils.toArray('.process-box'); const totalBoxes = boxes.length;
         function getScrollAmount() { return -(processTrack.scrollWidth - window.innerWidth + 80); }
 
         gsap.to(processTrack, {
@@ -504,19 +432,11 @@
                 onUpdate: (self) => {
                     let activeIndex = Math.floor(self.progress * totalBoxes);
                     if (activeIndex >= totalBoxes) activeIndex = totalBoxes - 1;
-
-                    if (self.progress > 0.92) {
-                        boxes.forEach(box => box.classList.add('bulb-glow'));
-                    } else {
-                        boxes.forEach((box, i) => {
-                            if (i === activeIndex) { box.classList.add('bulb-glow'); } 
-                            else { box.classList.remove('bulb-glow'); }
-                        });
-                    }
+                    if (self.progress > 0.92) { boxes.forEach(box => box.classList.add('bulb-glow')); } 
+                    else { boxes.forEach((box, i) => { if (i === activeIndex) { box.classList.add('bulb-glow'); } else { box.classList.remove('bulb-glow'); } }); }
                 }
             }
         });
-
     </script>
 </body>
 </html>
