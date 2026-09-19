@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG - Digital Studio</title>
+    <title>TFG - Digital Studio (Fixed & Pinned Progress)</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -17,9 +17,9 @@
             --border-hover: rgba(255, 64, 64, 0.4);
             --text-main: #ffffff;
             --text-muted: #888888;
-            /* TFG Official Orange Gradient */
             --primary-grad: linear-gradient(90deg, #ff4040, #ff7340);
             --accent: #ff4040;
+            --glow-yellow: #ffb703; /* Incandescent Bulb Color */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
@@ -33,73 +33,25 @@
                 radial-gradient(circle at 85% 30%, rgba(255, 115, 64, 0.03), transparent 25%);
         }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
 
         /* TYPOGRAPHY & UTILS */
-        .gradient-text {
-            background: var(--primary-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .badge {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            display: block;
-        }
+        .gradient-text { background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .badge { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; display: block; }
 
         .btn {
-            background: var(--primary-grad);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            cursor: pointer;
-            transition: opacity 0.3s, transform 0.3s;
+            background: var(--primary-grad); color: white; padding: 12px 24px; border-radius: 30px;
+            text-decoration: none; font-size: 14px; font-weight: 500; display: inline-flex;
+            align-items: center; gap: 8px; border: none; cursor: pointer; transition: 0.3s;
         }
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,64,64,0.3); }
         
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-        .btn-outline:hover { background: var(--surface-light); }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .btn-outline:hover { background: var(--surface-light); border-color: var(--text-muted); }
 
         /* HEADER */
-        header {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; color: var(--accent); }
         nav ul { display: flex; gap: 32px; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: 0.3s; }
@@ -111,162 +63,100 @@
         .hero h1 { font-size: 72px; line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin-bottom: 24px; }
         .hero p { color: var(--text-muted); font-size: 18px; max-width: 480px; margin-bottom: 40px; line-height: 1.6; }
         
-        /* HERO GRAPHIC (Fixed Rings, Orbiting Tags) */
-        .hero-graphic {
-            flex: 1;
-            position: relative;
-            height: 550px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        /* HERO GRAPHIC */
+        .hero-graphic { flex: 1; position: relative; height: 550px; display: flex; align-items: center; justify-content: center; }
         .planet {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            /* Orange TFG Gradient Fixed */
+            width: 220px; height: 220px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #ff7340, #ff4040, #2a0000);
             box-shadow: 0 0 60px rgba(255, 64, 64, 0.4), inset -20px -20px 40px rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: 800;
-            position: absolute;
-            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 48px; font-weight: 800; position: absolute; z-index: 10;
         }
         
-        /* Static Rings - Apni jagah par fixed rahengi */
-        .static-ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1px dashed rgba(255,255,255,0.15);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
+        .static-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
         .ring-1 { width: 380px; height: 380px; }
         .ring-2 { width: 520px; height: 520px; }
 
-        /* Draggable Orbit Containers */
-        .orbit-container {
-            position: absolute;
-            top: 50%; left: 50%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            cursor: grab;
-        }
+        .orbit-container { position: absolute; top: 50%; left: 50%; border-radius: 50%; transform: translate(-50%, -50%); cursor: grab; }
         .orbit-container:active { cursor: grabbing; }
-        
         #orbit-1 { width: 380px; height: 380px; z-index: 15; }
         #orbit-2 { width: 520px; height: 520px; z-index: 14; }
 
-        /* Tag Wrappers on the edges of the circle */
-        .tag-wrapper {
-            position: absolute;
-            width: 100px;
-            height: 36px;
-            margin-top: -18px;
-            margin-left: -50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .tag-wrapper { position: absolute; width: 100px; height: 36px; margin-top: -18px; margin-left: -50px; display: flex; align-items: center; justify-content: center; }
         .orbit-tag {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            transition: border-color 0.3s, background 0.3s;
-            pointer-events: auto; /* Ensure tags are clickable/hoverable */
+            background: var(--surface); border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px;
+            font-size: 12px; display: flex; align-items: center; gap: 8px; white-space: nowrap;
+            transition: border-color 0.3s, background 0.3s; pointer-events: auto;
         }
         .orbit-tag i { color: var(--accent); }
-        .orbit-tag:hover {
-            border-color: var(--accent);
-            background: #151515;
+        .orbit-tag:hover { border-color: var(--accent); background: #151515; }
+
+        /* MARQUEE TICKER (TRUSTED BY) */
+        .marquee-wrapper { 
+            display: flex; align-items: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            overflow: hidden; background: var(--surface); position: relative;
         }
+        .marquee-title {
+            font-size: 10px; color: var(--accent); letter-spacing: 2px; padding: 20px 40px; font-weight: 700;
+            border-right: 1px solid var(--border); z-index: 10; background: var(--surface); position: relative; white-space: nowrap;
+        }
+        .marquee-track { display: flex; gap: 80px; padding-left: 80px; animation: ticker 25s linear infinite; white-space: nowrap; align-items: center;}
+        .marquee-track span { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-muted); }
+        .marquee-track span i { font-size: 20px; color: var(--text-main); }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* LOGO MARQUEE */
-        .trusted-by { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 12px; font-weight: 500; letter-spacing: 1px; }
-        .logos { display: flex; gap: 60px; align-items: center; opacity: 0.5; }
-        .logos span { display: flex; align-items: center; gap: 8px; font-size: 16px;}
-
-        /* SECTIONS GENERAL */
-        section[id] { scroll-margin-top: 100px; }
-
-        /* ABOUT */
-        .about { padding: 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about h2 { font-size: 48px; line-height: 1.1; margin-bottom: 24px; font-weight: 600; letter-spacing: -1px;}
-
-        /* SERVICES */
+        /* SERVICES (ALL 9) */
         .services { padding: 120px 0; }
         .section-header { margin-bottom: 60px; }
         .section-header h2 { font-size: 42px; font-weight: 600; line-height: 1.1; letter-spacing: -1px; }
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .service-card { background: var(--surface); border: 1px solid var(--border); padding: 40px 30px; border-radius: 16px; transition: all 0.3s; }
-        .service-card:hover { border-color: var(--border-hover); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,64,64,0.1); }
-        .service-card i { font-size: 32px; color: var(--accent); margin-bottom: 24px; display: block; }
+        
+        .service-card { background: var(--surface); border: 1px solid var(--border); padding: 40px 30px; border-radius: 16px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;}
+        .service-card:hover { border-color: var(--border-hover); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(255,64,64,0.1); background: #111; }
+        .service-card i { font-size: 32px; color: var(--accent); margin-bottom: 24px; display: block; transition: transform 0.4s; }
+        .service-card:hover i { transform: scale(1.1) rotate(5deg); }
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* WORK */
-        .work { padding: 80px 0; }
-        .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .work-card { background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-        .work-img { height: 240px; background: #222; width: 100%; object-fit: cover; }
-        .work-info { padding: 24px; }
-        .work-info h3 { font-size: 18px; margin-bottom: 8px; }
-
-        /* PROCESS (REDESIGNED FOR SCROLL ANIMATION) */
-        .process { padding: 120px 0; }
-        .process-header { margin-bottom: 60px; max-width: 600px; }
-        .process-header h2 { font-size: 42px; line-height: 1.1; font-weight: 600; letter-spacing: -1px; margin-bottom: 16px; }
+        /* PROCESS PINNED SECTION (THE INCANDESCENT BULB EFFECT) */
+        .process-pin-container { height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; background: var(--bg); border-top: 1px solid var(--border);}
+        .process-pin-header { padding: 0 40px; max-width: 1300px; margin: 0 auto 40px; width: 100%; }
         
-        .process-layout { display: flex; position: relative; margin-left: 20px; }
-        /* Vertical Track */
-        .progress-track { position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: var(--surface-light); border-left: 1px dashed rgba(255,255,255,0.1); z-index: 1; }
-        /* Animated Fill */
-        .progress-fill { position: absolute; left: -1px; top: 0; width: 4px; height: 0%; background: var(--primary-grad); border-radius: 4px; z-index: 2; box-shadow: 0 0 15px rgba(255, 64, 64, 0.6); }
+        .process-track-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
+        .process-horizontal-track { display: flex; gap: 40px; padding: 40px 50vw 40px 40px; /* Right padding allows last item to reach center */ width: max-content; }
         
-        .process-steps { display: flex; flex-direction: column; gap: 80px; padding-left: 80px; padding-bottom: 40px; z-index: 3; width: 100%; }
-        .step { display: flex; flex-direction: column; position: relative; }
-        
-        /* Number Circles placed over the line */
-        .step-num { 
-            position: absolute; 
-            left: -80px; /* Offset to sit exactly on the line */
-            top: 0;
-            width: 40px; 
-            height: 40px; 
-            background: var(--surface); 
-            border: 2px solid var(--border); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: 700; 
-            font-size: 14px;
-            color: var(--text-muted);
-            transition: all 0.4s ease;
+        .process-box {
+            width: 320px; min-height: 320px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+            padding: 40px; opacity: 0.3; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex; flex-direction: column; position: relative;
         }
-        /* Style when step is active */
-        .step.active .step-num { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 0 20px rgba(255,64,64,0.5); }
         
-        .step h4 { font-size: 24px; margin-bottom: 12px; }
-        .step p { font-size: 16px; color: var(--text-muted); max-width: 500px; line-height: 1.6; }
+        /* The Glow Effect state */
+        .process-box.bulb-glow {
+            opacity: 1;
+            background: #151000;
+            border-color: var(--glow-yellow);
+            box-shadow: 0 0 50px rgba(255, 183, 3, 0.2), inset 0 0 20px rgba(255, 183, 3, 0.1);
+            transform: scale(1.05);
+        }
+
+        .box-num { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; margin-bottom: 24px; transition: 0.6s; }
+        .bulb-glow .box-num { background: var(--glow-yellow); color: #000; border-color: var(--glow-yellow); box-shadow: 0 0 15px rgba(255, 183, 3, 0.6); }
+        .process-box h4 { font-size: 24px; margin-bottom: 12px; transition: 0.6s; }
+        .bulb-glow h4 { color: var(--glow-yellow); }
+        .process-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+        /* PRICING */
+        .pricing { padding: 120px 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+        .price-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; border-radius: 20px; }
+        .price-card.featured { background: linear-gradient(180deg, rgba(255,64,64,0.1) 0%, var(--surface) 100%); border: 1px solid var(--accent); }
+        .price { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 24px; }
+        .features { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: var(--text-muted); }
 
         /* BOTTOM CTA */
         .footer-cta { margin: 80px 40px; padding: 80px; background: radial-gradient(circle at center, rgba(255,64,64,0.15) 0%, var(--surface) 100%); border: 1px solid var(--border); border-radius: 24px; text-align: center; }
-        .footer-cta h2 { font-size: 48px; font-weight: 600; margin-bottom: 16px; }
-
-        /* FOOTER */
         footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .footer-links { display: flex; gap: 24px; font-size: 13px; color: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -279,9 +169,8 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#about">About</a></li>
                     <li><a href="#process">Process</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                 </ul>
             </nav>
             <a href="mailto:hello@tfgsolutions.pk" class="btn btn-outline">Let's Talk →</a>
@@ -300,137 +189,154 @@
         </div>
         
         <div class="hero-graphic">
-            <!-- Static Dashed Rings -->
             <div class="static-ring ring-1"></div>
             <div class="static-ring ring-2"></div>
             
-            <!-- Draggable Orbit 2 (Outer) -->
             <div class="orbit-container" id="orbit-2">
-                <div class="tag-wrapper" style="top: 0; left: 50%;">
-                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Apps</div>
-                </div>
-                <div class="tag-wrapper" style="bottom: 15%; left: 10%;">
-                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Commerce</div>
-                </div>
-                <div class="tag-wrapper" style="top: 25%; right: 5%;">
-                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Growth</div>
-                </div>
+                <div class="tag-wrapper" style="top: 0; left: 50%;"><div class="orbit-tag"><i class="ph-fill ph-device-mobile"></i> Apps</div></div>
+                <div class="tag-wrapper" style="bottom: 15%; left: 10%;"><div class="orbit-tag"><i class="ph-fill ph-shopping-cart"></i> Commerce</div></div>
+                <div class="tag-wrapper" style="top: 25%; right: 5%;"><div class="orbit-tag"><i class="ph-fill ph-trend-up"></i> Growth</div></div>
             </div>
 
-            <!-- Draggable Orbit 1 (Inner) -->
             <div class="orbit-container" id="orbit-1">
-                <div class="tag-wrapper" style="top: 50%; left: 0;">
-                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Websites</div>
-                </div>
-                <div class="tag-wrapper" style="bottom: 10%; right: 10%;">
-                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Branding</div>
-                </div>
+                <div class="tag-wrapper" style="top: 50%; left: 0;"><div class="orbit-tag"><i class="ph-fill ph-globe"></i> Websites</div></div>
+                <div class="tag-wrapper" style="bottom: 10%; right: 10%;"><div class="orbit-tag"><i class="ph-fill ph-paint-brush"></i> Branding</div></div>
             </div>
 
-            <!-- Center Planet -->
             <div class="planet">TFG</div>
         </div>
     </section>
 
-    <!-- Trusted By -->
-    <section class="container">
-        <div class="trusted-by">
-            <span>TRUSTED BY</span>
-            <div class="logos">
-                <span><i class="ph ph-currency-circle-dollar"></i> Muhammadi Exchange</span>
-                <span><i class="ph ph-money"></i> Pakistan Currency</span>
-                <span><i class="ph ph-barbell"></i> Trifit</span>
-                <span><i class="ph ph-heart"></i> Jab We Weds</span>
+    <!-- Marquee Ticker -->
+    <section>
+        <div class="marquee-wrapper">
+            <div class="marquee-title">TRUSTED BY 100+ COMPANIES</div>
+            <div class="marquee-track">
+                <!-- Set 1 -->
+                <span><i class="ph-fill ph-triangle"></i> Alpha Web Studio</span>
+                <span><i class="ph-fill ph-wind"></i> Flixter</span>
+                <span><i class="ph-fill ph-coin"></i> Kon Financial</span>
+                <span><i class="ph-fill ph-sun"></i> Tempello</span>
+                <span><i class="ph-fill ph-infinity"></i> Zync Explorer</span>
+                <!-- Set 2 (for infinite loop) -->
+                <span><i class="ph-fill ph-triangle"></i> Alpha Web Studio</span>
+                <span><i class="ph-fill ph-wind"></i> Flixter</span>
+                <span><i class="ph-fill ph-coin"></i> Kon Financial</span>
+                <span><i class="ph-fill ph-sun"></i> Tempello</span>
+                <span><i class="ph-fill ph-infinity"></i> Zync Explorer</span>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about container">
-        <div>
-            <span class="badge">ABOUT TFG</span>
-            <h2>Nine disciplines.<br>One accountable team.</h2>
-            <p style="color: var(--text-muted); line-height: 1.6;">We're a digital studio, not just a service provider. Our team combines strategy, design, technology and marketing to build brands that perform — not just look good.</p>
-        </div>
-    </section>
-
-    <!-- Services -->
+    <!-- Services (9 Grid) -->
     <section id="services" class="services container">
         <div class="section-header">
-            <span class="badge">OUR SERVICES</span>
-            <h2>Everything you need<br>to move forward.</h2>
+            <span class="badge">02 • CAPABILITIES</span>
+            <h2>Nine disciplines.<br>One accountable team.</h2>
         </div>
         <div class="services-grid">
-            <div class="service-card"><i class="ph ph-code"></i><h3>Custom Software</h3><p>Scalable software solutions built for your business needs.</p></div>
-            <div class="service-card"><i class="ph ph-globe"></i><h3>Web Development</h3><p>Modern, fast and responsive websites and web apps.</p></div>
-            <div class="service-card"><i class="ph ph-device-mobile"></i><h3>Mobile Apps</h3><p>Native & cross-platform apps for iOS and Android.</p></div>
+            <div class="service-card"><i class="ph ph-code"></i><h3>Custom Software</h3><p>Bespoke platforms, internal tools and SaaS, built to scale with your operation.</p></div>
+            <div class="service-card"><i class="ph ph-globe"></i><h3>Web Development</h3><p>Modern, fast and responsive websites built with the latest technologies.</p></div>
+            <div class="service-card"><i class="ph ph-device-mobile"></i><h3>Mobile Apps</h3><p>Native & cross-platform apps designed for flawless mobile experiences.</p></div>
+            
+            <div class="service-card"><i class="ph ph-paint-brush-broad"></i><h3>UI / UX Design</h3><p>User-centered designs that turn visitors into loyal customers.</p></div>
+            <div class="service-card"><i class="ph ph-cloud"></i><h3>Cloud & DevOps</h3><p>Secure, scalable and high performance server infrastructure.</p></div>
+            <div class="service-card"><i class="ph ph-shopping-cart"></i><h3>E-Commerce</h3><p>Stores that sell. From custom design to payment integration.</p></div>
+            
+            <div class="service-card"><i class="ph ph-trend-up"></i><h3>Digital Marketing & SEO</h3><p>Data-driven strategies designed for real growth and visibility.</p></div>
+            <div class="service-card"><i class="ph ph-bezier-curve"></i><h3>Branding & Graphics</h3><p>Memorable brand identities, stunning visuals, and lasting impact.</p></div>
+            <div class="service-card"><i class="ph ph-robot"></i><h3>AI & Automation</h3><p>Smarter systems and automated workflows for greater efficiency.</p></div>
         </div>
     </section>
 
-    <!-- Process Section (Scroll Animated) -->
-    <section id="process" class="process container">
-        <div class="process-header">
-            <span class="badge">OUR PROCESS</span>
-            <h2>Ideas to impact.<br>In four clear steps.</h2>
-            <p style="color: var(--text-muted);">A focused process to turn your vision into measurable results. Scroll down to see our progress.</p>
-        </div>
-        
-        <div class="process-layout">
-            <!-- Background Track -->
-            <div class="progress-track"></div>
-            <!-- Foreground Animated Fill -->
-            <div class="progress-fill" id="progress-bar"></div>
+    <!-- Process Pinned Scroll Section -->
+    <section id="process">
+        <div class="process-pin-container">
+            <div class="process-pin-header">
+                <span class="badge">04 • HOW WE WORK</span>
+                <h2>Six milestones.<br>Predictable as a metronome.</h2>
+            </div>
             
-            <div class="process-steps">
-                <div class="step step-1">
-                    <div class="step-num">01</div>
-                    <h4>Discover</h4>
-                    <p>Understand your goals, market and audience through deep research.</p>
-                </div>
-                <div class="step step-2">
-                    <div class="step-num">02</div>
-                    <h4>Design</h4>
-                    <p>Create concepts, user experiences and a clear visual direction.</p>
-                </div>
-                <div class="step step-3">
-                    <div class="step-num">03</div>
-                    <h4>Build</h4>
-                    <p>Develop, test and bring the designs to life using modern tech.</p>
-                </div>
-                <div class="step step-4">
-                    <div class="step-num">04</div>
-                    <h4>Grow</h4>
-                    <p>Optimize, scale and keep improving your product post-launch.</p>
+            <div class="process-track-wrapper">
+                <div class="process-horizontal-track">
+                    <!-- 7 Steps -->
+                    <div class="process-box">
+                        <div class="box-num">01</div>
+                        <h4>Discovery</h4>
+                        <p>Workshops, audits and stakeholder interviews to map the problem and opportunity.</p>
+                    </div>
+                    <div class="process-box">
+                        <div class="box-num">02</div>
+                        <h4>Define</h4>
+                        <p>Strategy, scope, and success metrics. We commit to a thesis before pixels.</p>
+                    </div>
+                    <div class="process-box">
+                        <div class="box-num">03</div>
+                        <h4>Design</h4>
+                        <p>Prototypes, design systems and copy. Validated with users at every milestone.</p>
+                    </div>
+                    <div class="process-box">
+                        <div class="box-num">04</div>
+                        <h4>Build</h4>
+                        <p>Two-week sprints, demos every Friday. Production-quality code from week one.</p>
+                    </div>
+                    <div class="process-box">
+                        <div class="box-num">05</div>
+                        <h4>Launch</h4>
+                        <p>Migration, training, comms. We treat go-live as the start of the relationship.</p>
+                    </div>
+                    <div class="process-box">
+                        <div class="box-num">06</div>
+                        <h4>Iterate</h4>
+                        <p>Analytics, experiments, ongoing roadmap. We grow with you, quarter over quarter.</p>
+                    </div>
+                    <div class="process-box">
+                        <div class="box-num"><i class="ph-bold ph-check"></i></div>
+                        <h4>Live</h4>
+                        <p>Production & beyond. From kickoff to launch in 12 weeks. Then we keep shipping.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bottom CTA -->
+    <!-- Pricing & CTA Sections... -->
+    <section id="pricing" class="pricing container">
+        <div class="section-header">
+            <span class="badge">07 • ENGAGEMENT MODELS</span>
+            <h2>Three ways to work with us.</h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Sprint</h3>
+                <div class="price">$8k</div>
+                <ul class="features"><li><i class="ph-fill ph-check-circle" style="color:var(--accent);"></i> 1 senior designer + dev</li></ul>
+            </div>
+            <div class="price-card featured">
+                <h3>Project</h3>
+                <div class="price" style="color: white;">$45k+</div>
+                <ul class="features"><li><i class="ph-fill ph-check-circle" style="color:var(--accent);"></i> Dedicated cross-functional team</li></ul>
+            </div>
+            <div class="price-card">
+                <h3>Retainer</h3>
+                <div class="price">$18k</div>
+                <ul class="features"><li><i class="ph-fill ph-check-circle" style="color:var(--accent);"></i> Embedded squad</li></ul>
+            </div>
+        </div>
+    </section>
+
     <section class="container">
         <div class="footer-cta">
-            <span class="badge" style="text-align: center;">LET'S BUILD TOGETHER</span>
             <h2>Let's build the <br><span class="gradient-text">next thing you ship.</span></h2>
-            <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px;">
-                <a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a>
-            </div>
+            <a href="mailto:hello@tfgsolutions.pk" class="btn" style="margin-top: 20px;">Start a Project →</a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="container">
-        <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="logo" style="font-size: 20px;">TFG</div>
-            <span style="font-size: 12px; color: var(--text-muted);">Digital Studio for Modern Brands</span>
-        </div>
-        <div class="footer-links">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-        </div>
+        <div style="color: var(--text-muted); font-size:12px;">© 2026 TFG Solutions. All rights reserved.</div>
     </footer>
 
-    <!-- GSAP & Plugins for Animations -->
+    <!-- GSAP Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
@@ -438,64 +344,93 @@
     <script>
         gsap.registerPlugin(ScrollTrigger, Draggable);
 
-        /* 1. HERO TAGS ORBIT ANIMATION & INTERACTION */
+        /* 1. FIXED HERO ORBIT LOGIC */
         function setupInteractiveOrbit(containerId, duration, direction) {
             const container = document.querySelector(containerId);
             const tags = container.querySelectorAll('.orbit-tag');
+            let currentRot = 0;
 
-            // Counter rotate tags to keep text upright
             function updateTags() {
-                const currentRot = gsap.getProperty(container, "rotation");
                 gsap.set(tags, { rotation: -currentRot });
             }
 
-            // Continuous rotation tween
-            const spinTween = gsap.to(container, {
-                rotation: direction === 'right' ? 360 : -360,
+            // Creating the infinite spin using GSAP modifiers to track exact rotation
+            let spinTween = gsap.to(container, {
+                rotation: direction === 'right' ? "+=360" : "-=360",
                 duration: duration,
                 repeat: -1,
                 ease: "none",
-                onUpdate: updateTags
+                modifiers: {
+                    rotation: function(r) {
+                        currentRot = parseFloat(r);
+                        updateTags();
+                        return r + "deg";
+                    }
+                }
             });
 
-            // Make the entire circle draggable
             Draggable.create(container, {
                 type: "rotation",
-                onDragStart: () => spinTween.pause(), // Stop auto-spin when grabbing
-                onDragEnd: () => spinTween.play(),    // Resume auto-spin when released
-                onDrag: updateTags                    // Keep text upright while dragging
+                onDragStart: () => spinTween.pause(),
+                onDrag: function() {
+                    currentRot = this.rotation;
+                    updateTags();
+                },
+                onDragEnd: function() {
+                    // Resume tween relative to where we dropped it
+                    spinTween.kill();
+                    spinTween = gsap.to(container, {
+                        rotation: (direction === 'right' ? "+=360" : "-=360"),
+                        duration: duration,
+                        repeat: -1,
+                        ease: "none",
+                        modifiers: {
+                            rotation: function(r) {
+                                currentRot = parseFloat(r);
+                                updateTags();
+                                return r + "deg";
+                            }
+                        }
+                    });
+                }
             });
-            
-            // Set initial state
             updateTags();
         }
 
-        // Initialize Orbits
         setupInteractiveOrbit("#orbit-1", 25, 'right');
         setupInteractiveOrbit("#orbit-2", 40, 'left');
 
-        /* 2. PROCESS SCROLL PROGRESS ANIMATION */
+        /* 2. PINNED PROCESS SECTION (HORIZONTAL SCROLL & INCANDESCENT GLOW) */
+        const track = document.querySelector('.process-horizontal-track');
+        const boxes = gsap.utils.toArray('.process-box');
         
-        // Animate the vertical line height
-        gsap.to('#progress-bar', {
-            height: '100%',
-            ease: 'none',
+        function getScrollAmount() {
+            let trackWidth = track.scrollWidth;
+            return -(trackWidth - window.innerWidth + 80); // Calculate max horizontal slide
+        }
+
+        // The master timeline that pins the section and moves the track
+        const processTl = gsap.to(track, {
+            x: getScrollAmount,
+            ease: "none",
             scrollTrigger: {
-                trigger: '.process-layout',
-                start: 'top 60%',   // Start filling when top of section hits 60% of viewport
-                end: 'bottom 80%',  // Finish filling when bottom hits 80%
-                scrub: 0.5          // 0.5s delay for smooth catching up on reverse scroll
+                trigger: "#process",
+                start: "top top",
+                end: () => `+=${track.scrollWidth}`, // Make scroll duration equal to track length
+                pin: true,
+                scrub: 1,
+                invalidateOnRefresh: true
             }
         });
 
-        // Highlight step numbers as the line passes them
-        const steps = gsap.utils.toArray('.step');
-        steps.forEach((step, i) => {
+        // The "Incandescent Bulb" glow effect as each box hits the center of screen
+        boxes.forEach(box => {
             ScrollTrigger.create({
-                trigger: step,
-                start: 'top 60%',
-                end: 'bottom top',
-                toggleClass: { targets: step, className: "active" }
+                trigger: box,
+                containerAnimation: processTl, // Tie this to the horizontal timeline
+                start: "left 65%", // Glow turns on when box is near center
+                end: "right 35%",  // Glow turns off when it passes center
+                toggleClass: "bulb-glow"
             });
         });
 
