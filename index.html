@@ -1,410 +1,508 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG Solutions | Digital & Creative Partner</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- GSAP (For Process Scroll Animations) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+    <title>Modern Premium Experience</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
+        /* BASE STYLES */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
         :root {
-            --pink: #FF0066;
-            --orange: #FF6600;
-            --dark: #030303;
+            --bg-color: #050505;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --accent-1: #8b5cf6;
+            --accent-2: #3b82f6;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             overflow-x: hidden;
-            position: relative;
+            scroll-behavior: smooth;
         }
 
-        h1, h2, h3, h4, .font-heading { font-family: 'Montserrat', sans-serif; }
+        /* UTILITIES */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        /* iPhone Style Fluid Background Tracker */
-        #fluid-orb {
+        /* HEADER - GLASSMORPHISM */
+        header {
             position: fixed;
-            top: -250px; left: -250px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(255, 0, 102, 0.15) 0%, rgba(255, 102, 0, 0.05) 40%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            filter: blur(40px);
-            will-change: transform;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
         }
 
-        /* Ensure content stays above the fluid orb */
-        .content-layer { position: relative; z-index: 10; }
-
-        .tfg-gradient {
-            background: linear-gradient(135deg, var(--pink), var(--orange));
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-1), var(--accent-2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Services Premium Cards */
-        .service-card {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
         }
-        .service-card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,0,102,0.1), rgba(255,102,0,0.1));
-            opacity: 0; transition: opacity 0.4s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 0, 102, 0.4);
-            box-shadow: 0 10px 30px rgba(255, 0, 102, 0.1);
-        }
-        .service-card:hover::before { opacity: 1; }
 
-        /* Process Abstract Graphics (Replacing weird images) */
-        .process-visual {
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 1.2s ease;
-            background: #050505;
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
         }
-        .process-visual.active {
-            opacity: 1; transform: scale(1); z-index: 10;
+
+        nav a:hover {
+            color: var(--accent-2);
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        /* HERO SECTION */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        /* Animated Background Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            width: 300px; height: 300px;
+            background: var(--accent-1);
+            top: 20%; left: 15%;
+            opacity: 0.3;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: var(--accent-2);
+            bottom: 10%; right: 10%;
+            opacity: 0.2;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* SERVICES SECTION */
+        #services {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            perspective: 1000px; /* For 3D effect */
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: left;
+            transition: transform 0.1s ease, background 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-2);
+            margin-bottom: 20px;
+            transform: translateZ(30px); /* Pops out during 3D tilt */
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            transform: translateZ(20px);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            transform: translateZ(10px);
+        }
+
+        /* FAQ SECTION */
+        #faq {
+            padding: 100px 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            padding: 0 20px;
+            overflow: hidden;
+            color: var(--text-muted);
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px; /* Arbitrary large number for animation */
+            padding: 0 20px 20px 20px;
+        }
+
+        .faq-item.open .ph-caret-down {
+            transform: rotate(180deg);
         }
         
-        .abstract-number {
-            font-size: 25rem; font-weight: 900; line-height: 1;
-            background: linear-gradient(135deg, rgba(255,0,102,0.1), rgba(255,102,0,0.1));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-family: 'Montserrat', sans-serif; user-select: none;
+        .ph-caret-down {
+            transition: transform 0.3s ease;
         }
 
-        .btn-glow {
-            background: linear-gradient(135deg, var(--pink), var(--orange));
-            transition: 0.3s;
+        /* FOOTER */
+        footer {
+            background: #020202;
+            border-top: 1px solid var(--card-border);
+            padding: 60px 5% 30px;
         }
-        .btn-glow:hover {
-            box-shadow: 0 0 25px rgba(255, 0, 102, 0.5);
-            transform: translateY(-2px);
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 40px;
         }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-1);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 20px;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- iPhone Style Fluid Tracker -->
-    <div id="fluid-orb"></div>
-
-    <div class="content-layer">
-        <!-- NAVBAR -->
-        <nav class="fixed w-full z-50 top-0 bg-[#030303]/90 backdrop-blur-md border-b border-white/5 py-5">
-            <div class="container mx-auto px-6 flex justify-between items-center">
-                <div class="text-3xl font-black font-heading tfg-gradient">TFG</div>
-                <div class="hidden md:flex space-x-10 text-sm font-medium text-gray-300">
-                    <a href="#services" class="hover:text-white transition">Services</a>
-                    <a href="#work" class="hover:text-white transition">Selected Work</a>
-                    <a href="#process" class="hover:text-white transition">Process</a>
-                </div>
-                <a href="#contact" class="border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Let's Talk</a>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="logo">NexusDesign</div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
         </nav>
+        <button class="cta-btn">Let's Talk</button>
+    </header>
 
-        <!-- HERO SECTION -->
-        <section class="min-h-screen flex items-center justify-center pt-20">
-            <div class="container mx-auto px-6 text-center">
-                <div class="inline-block px-4 py-1.5 mb-8 rounded-full border border-white/10 bg-white/5 text-xs font-semibold tracking-[0.2em] uppercase text-gray-400">
-                    Ideas • Design • Technology • Growth
-                </div>
-                <h1 class="text-6xl md:text-8xl font-black mb-6 font-heading leading-tight">
-                    From Ideas To <br>
-                    <span class="tfg-gradient">Real Impact.</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Strategy, creativity and technology working together to turn your vision into real results.
-                </p>
-                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="#contact" class="btn-glow px-10 py-4 rounded-full font-bold text-white uppercase tracking-wider text-sm">Start a Project</a>
-                    <a href="#work" class="border border-white/20 px-10 py-4 rounded-full font-bold hover:bg-white hover:text-black transition uppercase tracking-wider text-sm">View Our Work</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9 SERVICES (All colorful on hover) -->
-        <section id="services" class="py-32 bg-[#050505]">
-            <div class="container mx-auto px-6">
-                <h2 class="text-xs tracking-[0.3em] text-[#FF0066] uppercase mb-4 font-bold">01 • Capabilities</h2>
-                <h3 class="text-4xl md:text-5xl font-black mb-16 font-heading">Nine disciplines.<br>One accountable team.</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF0066]/20 transition-colors duration-300">
-                            <span class="text-[#FF0066] font-bold text-lg">&lt;/&gt;</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading group-hover:text-white transition-colors">Custom Software</h4>
-                        <p class="text-gray-400 text-sm">Bespoke platforms, internal tools and SaaS.</p>
-                    </div>
-                    
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF6600]/20 transition-colors duration-300">
-                            <span class="text-[#FF6600] font-bold text-lg">🌐</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading">Web Development</h4>
-                        <p class="text-gray-400 text-sm">Modern, responsive, high-performing websites.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF0066]/20 transition-colors duration-300">
-                            <span class="text-[#FF0066] font-bold text-lg">📱</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading">Mobile Apps</h4>
-                        <p class="text-gray-400 text-sm">iOS and Android native cross-platform apps.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF6600]/20 transition-colors duration-300">
-                            <span class="text-[#FF6600] font-bold text-lg">🎨</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading">UI/UX Design</h4>
-                        <p class="text-gray-400 text-sm">User-focused designs that create better experiences.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF0066]/20 transition-colors duration-300">
-                            <span class="text-[#FF0066] font-bold text-lg">☁️</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading">Cloud & DevOps</h4>
-                        <p class="text-gray-400 text-sm">Secure, scalable, and automated infrastructure.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF6600]/20 transition-colors duration-300">
-                            <span class="text-[#FF6600] font-bold text-lg">🛒</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading">E-Commerce</h4>
-                        <p class="text-gray-400 text-sm">Powerful online stores to grow your sales.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF0066]/20 transition-colors duration-300">
-                            <span class="text-[#FF0066] font-bold text-lg">📈</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading">Digital Marketing & SEO</h4>
-                        <p class="text-gray-400 text-sm">Social media, paid campaigns & performance marketing.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group border-l-2 border-l-[#FF0066]/50">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF0066]/20 transition-colors duration-300">
-                            <span class="text-[#FF0066] font-bold text-lg">✨</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading text-[#FF0066] group-hover:text-white transition">Branding & Graphics</h4>
-                        <p class="text-gray-400 text-sm">Logos, visual identity, and stunning campaigns.</p>
-                    </div>
-
-                    <div class="service-card p-10 rounded-2xl group border-l-2 border-l-[#FF6600]/50">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#FF6600]/20 transition-colors duration-300">
-                            <span class="text-[#FF6600] font-bold text-lg">🤖</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3 font-heading text-[#FF6600] group-hover:text-white transition">AI & Automation</h4>
-                        <p class="text-gray-400 text-sm">Smart technology to optimize your business processes.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SELECTED WORK (From PDF strictly) -->
-        <section id="work" class="py-32">
-            <div class="container mx-auto px-6">
-                <h2 class="text-xs tracking-[0.3em] text-[#FF6600] uppercase mb-4 font-bold">02 • Selected Work</h2>
-                <h3 class="text-4xl md:text-5xl font-black mb-16 font-heading">Projects we crushed.</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="service-card p-10 rounded-2xl cursor-pointer">
-                        <div class="text-[10px] font-bold text-[#FF0066] tracking-widest uppercase mb-3">Fintech • Dashboard</div>
-                        <h4 class="text-3xl font-black font-heading mb-2">Klyne</h4>
-                        <p class="text-gray-400 text-sm">Complex financial data visualization and seamless user interface for modern banking operations.</p>
-                    </div>
-                    <div class="service-card p-10 rounded-2xl cursor-pointer">
-                        <div class="text-[10px] font-bold text-[#FF6600] tracking-widest uppercase mb-3">Food Delivery • Mobile App</div>
-                        <h4 class="text-3xl font-black font-heading mb-2">Saffron Delivery</h4>
-                        <p class="text-gray-400 text-sm">A robust, bug-free mobile application offering real-time tracking and a sleek user experience.</p>
-                    </div>
-                    <div class="service-card p-10 rounded-2xl cursor-pointer">
-                        <div class="text-[10px] font-bold text-gray-400 tracking-widest uppercase mb-3">Logistics • Operations Console</div>
-                        <h4 class="text-3xl font-black font-heading mb-2">Norden</h4>
-                        <p class="text-gray-400 text-sm">Real-time custom dashboard to track shipments, optimize routes, and manage fleets efficiently.</p>
-                    </div>
-                    <div class="service-card p-10 rounded-2xl cursor-pointer">
-                        <div class="text-[10px] font-bold text-[#FF0066] tracking-widest uppercase mb-3">Commerce • Platform</div>
-                        <h4 class="text-3xl font-black font-heading mb-2">Ember Goods</h4>
-                        <p class="text-gray-400 text-sm">High-performance e-commerce build that lifted checkout conversions significantly in month one.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROCESS (Sticky Scroll with Abstract Tech Graphics) -->
-        <section id="process" class="bg-[#020202] border-t border-white/5 relative">
-            <div class="flex flex-col md:flex-row">
-                
-                <!-- Left Side: Abstract Tech Graphics (Instead of weird images) -->
-                <div class="hidden md:block md:w-1/2 h-screen sticky top-0 overflow-hidden relative bg-black border-r border-white/5">
-                    
-                    <div id="vis-1" class="process-visual active">
-                        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,0,102,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,0,102,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-                        <div class="abstract-number">01</div>
-                    </div>
-                    
-                    <div id="vis-2" class="process-visual">
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,102,0,0.1)_0,transparent_50%)]"></div>
-                        <div class="abstract-number">02</div>
-                    </div>
-                    
-                    <div id="vis-3" class="process-visual">
-                        <div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,0,102,0.05)_25%,transparent_25%,transparent_75%,rgba(255,0,102,0.05)_75%,rgba(255,0,102,0.05)),linear-gradient(45deg,rgba(255,0,102,0.05)_25%,transparent_25%,transparent_75%,rgba(255,0,102,0.05)_75%,rgba(255,0,102,0.05))] bg-[size:60px_60px] bg-[position:0_0,30px_30px]"></div>
-                        <div class="abstract-number">03</div>
-                    </div>
-                    
-                    <div id="vis-4" class="process-visual">
-                        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,102,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,102,0,0.05)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
-                        <div class="abstract-number">04</div>
-                    </div>
-                </div>
-
-                <!-- Right Side: The Steps Text -->
-                <div class="md:w-1/2">
-                    <!-- Step 1 -->
-                    <div class="step-panel min-h-screen flex flex-col justify-center p-10 md:p-20 border-b border-white/5" data-target="vis-1">
-                        <div class="text-[#FF0066] text-8xl font-black opacity-20 font-heading mb-4">01</div>
-                        <h4 class="text-4xl font-bold mb-6 font-heading">Ideas & Discovery</h4>
-                        <p class="text-lg text-gray-400">Workshops, audits, and stakeholder interviews to map the problem and the opportunity before we write a single line of code.</p>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="step-panel min-h-screen flex flex-col justify-center p-10 md:p-20 border-b border-white/5" data-target="vis-2">
-                        <div class="text-[#FF6600] text-8xl font-black opacity-20 font-heading mb-4">02</div>
-                        <h4 class="text-4xl font-bold mb-6 font-heading">Design & Prototyping</h4>
-                        <p class="text-lg text-gray-400">Prototypes, design systems, and visual copy. Validated with users at every milestone to ensure perfect user experience.</p>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="step-panel min-h-screen flex flex-col justify-center p-10 md:p-20 border-b border-white/5" data-target="vis-3">
-                        <div class="text-[#FF0066] text-8xl font-black opacity-20 font-heading mb-4">03</div>
-                        <h4 class="text-4xl font-bold mb-6 font-heading">Technology & Build</h4>
-                        <p class="text-lg text-gray-400">Two-week sprints, demos every Friday. We deliver production-quality code from week one, keeping you in the loop constantly.</p>
-                    </div>
-                    <!-- Step 4 -->
-                    <div class="step-panel min-h-screen flex flex-col justify-center p-10 md:p-20 border-b border-white/5" data-target="vis-4">
-                        <div class="text-[#FF6600] text-8xl font-black opacity-20 font-heading mb-4">04</div>
-                        <h4 class="text-4xl font-bold mb-6 font-heading">Growth & Iterate</h4>
-                        <p class="text-lg text-gray-400">Analytics, experiments, and ongoing roadmap. We treat go-live as the start of the relationship, growing with you quarter over quarter.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- REFERRAL (Bro Chat UI Restored) -->
-        <section class="py-32 bg-[#050505]">
-            <div class="container mx-auto px-6">
-                <div class="service-card rounded-3xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between border-[#FF0066]/20">
-                    <div class="md:w-1/2 mb-10 md:mb-0">
-                        <h3 class="text-4xl md:text-5xl font-black mb-6 font-heading">Know someone who needs creative solutions?</h3>
-                        <p class="text-gray-400 text-lg mb-8">Share the opportunity. They get amazing digital solutions. You get rewarded because your trust means a lot to us.</p>
-                        <a href="#" class="px-8 py-4 rounded-full font-bold text-black bg-white hover:bg-gray-200 transition">Refer a Friend</a>
-                    </div>
-                    <div class="md:w-5/12 bg-black p-6 rounded-2xl border border-white/10">
-                        <div class="flex items-center space-x-4 mb-6 border-b border-white/10 pb-4">
-                            <div class="w-12 h-12 rounded-full bg-gray-800"></div>
-                            <div>
-                                <div class="text-sm font-bold">Bro</div>
-                                <div class="text-xs text-[#FF0066]">Online</div>
-                            </div>
-                        </div>
-                        <div class="bg-gradient-to-r from-[#FF0066]/20 to-[#FF6600]/20 border border-[#FF0066]/30 p-4 rounded-2xl rounded-tl-none inline-block shadow-[0_0_15px_rgba(255,0,102,0.1)]">
-                            <p class="text-white font-medium">Bro, you need TFG.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA & FOOTER (Ensured it never disappears) -->
-        <section id="contact" class="py-40 relative bg-[#020202]">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FF0066]/10 via-transparent to-transparent opacity-50 z-0 pointer-events-none"></div>
-            
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-6xl md:text-8xl font-black mb-8 font-heading">Let's build the <br><span class="tfg-gradient">next thing you ship.</span></h2>
-                <p class="text-lg text-gray-400 mb-12 max-w-xl mx-auto">Tell us what you're working on. We'll come back within a working day with a starting point.</p>
-                <a href="mailto:hello@tfgsolutions.pk" class="btn-glow px-12 py-5 rounded-full font-bold text-white text-lg font-heading inline-block">
-                    hello@tfgsolutions.pk
-                </a>
-            </div>
-        </section>
-
-        <footer class="py-8 bg-black border-t border-white/5 relative z-10">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <div class="text-xl font-black font-heading tfg-gradient mb-4 md:mb-0">TFG</div>
-                <div>© 2026 TFG Solutions. All rights reserved.</div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- JAVASCRIPT FOR LIQUID FLUID CURSOR & GSAP -->
-    <script>
-        // 1. iPhone Style Liquid Fluid Background Tracker
-        const fluidOrb = document.getElementById('fluid-orb');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let orbX = mouseX;
-        let orbY = mouseY;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        // Butter smooth lerp animation for the fluid orb
-        function animateFluid() {
-            // The 0.05 controls the "liquid/delay" feel. Lower = more liquid.
-            orbX += (mouseX - orbX) * 0.05;
-            orbY += (mouseY - orbY) * 0.05;
-            fluidOrb.style.transform = `translate(${orbX}px, ${orbY}px)`;
-            requestAnimationFrame(animateFluid);
-        }
-        animateFluid();
-
-        // 2. GSAP ScrollTrigger for Process Section
-        gsap.registerPlugin(ScrollTrigger);
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
         
-        const panels = document.querySelectorAll('.step-panel');
-        panels.forEach((panel) => {
-            ScrollTrigger.create({
-                trigger: panel,
-                start: "top center",
-                end: "bottom center",
-                onEnter: () => changeVisual(panel.dataset.target),
-                onEnterBack: () => changeVisual(panel.dataset.target)
+        <h1 class="hero-title reveal">Designing the Future <br> of Digital Experiences</h1>
+        <p class="hero-subtitle reveal" style="transition-delay: 0.2s;">
+            We build modern, aesthetic, and high-performance websites that leave a lasting impression and drive real results.
+        </p>
+        <div class="reveal" style="transition-delay: 0.4s;">
+            <button class="cta-btn" style="padding: 15px 32px; font-size: 1.1rem;">Explore Our Work</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header reveal">
+            <h2>Our Expertise</h2>
+            <p style="color: var(--text-muted);">Crafting pixel-perfect solutions for your brand.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card reveal">
+                <i class="ph ph-paint-brush-broad service-icon"></i>
+                <h3>UI/UX Design</h3>
+                <p>Creating heart-pleasing, intuitive interfaces that users love. We focus on modern aesthetics and seamless user journeys.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="service-card reveal" style="transition-delay: 0.2s;">
+                <i class="ph ph-code service-icon"></i>
+                <h3>Web Development</h3>
+                <p>Blazing fast, responsive, and robust websites built with the latest technologies to ensure top-tier performance.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="service-card reveal" style="transition-delay: 0.4s;">
+                <i class="ph ph-rocket-launch service-icon"></i>
+                <h3>Motion & Animation</h3>
+                <p>Bringing your website to life with smooth, staggered reveals and interactive 3D elements that captivate attention.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-header reveal">
+            <h2>Common Questions</h2>
+        </div>
+        
+        <div class="faq-item reveal">
+            <div class="faq-question">
+                <span>How long does a typical project take?</span>
+                <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Depending on the complexity, a standard website takes between 2 to 4 weeks from design to deployment.</p>
+            </div>
+        </div>
+
+        <div class="faq-item reveal" style="transition-delay: 0.1s;">
+            <div class="faq-question">
+                <span>Do you provide custom animations?</span>
+                <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Absolutely. We specialize in high-end micro-interactions, parallax scrolling, and 3D hover effects to make your site stand out.</p>
+            </div>
+        </div>
+
+        <div class="faq-item reveal" style="transition-delay: 0.2s;">
+            <div class="faq-question">
+                <span>Is the website mobile friendly?</span>
+                <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, all our designs are 100% responsive and optimized for mobile, tablet, and desktop devices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content reveal">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">NexusDesign</div>
+                <p style="color: var(--text-muted); max-width: 250px;">Elevating digital experiences with modern design and smooth animations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Sitemap</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Social</h4>
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Dribbble</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 NexusDesign. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR ANIMATIONS -->
+    <script>
+        // 1. Staggered Scroll Reveals (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Run only once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 2. 3D Card Hover Tilt Effect
+        const cards = document.querySelectorAll('.service-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // X position within card
+                const y = e.clientY - rect.top;  // Y position within card
+                
+                // Calculate rotation (max 15 degrees)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -15;
+                const rotateY = ((x - centerX) / centerX) * 15;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Reset rotation smoothly
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+            
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none'; // Remove transition for instant mouse tracking
             });
         });
 
-        function changeVisual(targetId) {
-            document.querySelectorAll('.process-visual').forEach(vis => {
-                vis.classList.remove('active');
+        // 3. FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close others
+                faqItems.forEach(otherItem => {
+                    if(otherItem !== item) {
+                        otherItem.classList.remove('open');
+                    }
+                });
+                // Toggle current
+                item.classList.toggle('open');
             });
-            const targetVisual = document.getElementById(targetId);
-            if(targetVisual) targetVisual.classList.add('active');
-        }
+        });
     </script>
 </body>
 </html>
