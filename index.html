@@ -19,7 +19,7 @@
             --text-muted: #888888;
             --primary-grad: linear-gradient(90deg, #ff4040, #ff7340);
             --accent: #ff4040;
-            --glow-yellow: #ffb703; /* Incandescent Bulb */
+            --glow-color: #ff4040; /* Updated from yellow to TFG Orange/Red */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
@@ -133,19 +133,21 @@
             transform: perspective(1000px) rotateY(10deg);
         }
         
+        /* Updated Glow Effect - Orange Theme */
         .process-box.bulb-glow {
             opacity: 1;
-            background: #151000;
-            border-color: var(--glow-yellow);
-            box-shadow: 0 0 40px rgba(255, 183, 3, 0.3), inset 0 0 20px rgba(255, 183, 3, 0.15), 0 20px 40px rgba(0,0,0,0.8);
+            background: #1a0505; /* Subtle red tint */
+            border-color: var(--glow-color);
+            box-shadow: 0 0 40px rgba(255, 64, 64, 0.3), inset 0 0 20px rgba(255, 64, 64, 0.15), 0 20px 40px rgba(0,0,0,0.8);
             transform: perspective(1000px) rotateY(0deg) scale(1.05);
             z-index: 10;
         }
 
-        .box-num { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; margin-bottom: 24px; transition: 0.5s; }
-        .bulb-glow .box-num { background: var(--glow-yellow); color: #000; border-color: var(--glow-yellow); box-shadow: 0 0 15px rgba(255, 183, 3, 0.6); }
+        .box-num { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; margin-bottom: 24px; transition: 0.5s; color: var(--text-muted); }
+        .bulb-glow .box-num { background: var(--primary-grad); color: #fff; border-color: var(--glow-color); box-shadow: 0 0 15px rgba(255, 64, 64, 0.6); border-width: 0; }
+        
         .process-box h4 { font-size: 24px; margin-bottom: 12px; transition: 0.5s; }
-        .bulb-glow h4 { color: var(--glow-yellow); }
+        .bulb-glow h4 { background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .process-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
         /* PRICING (3D & DETAILED) */
@@ -296,7 +298,7 @@
         </div>
     </section>
 
-    <!-- Process Pinned Scroll Section (1-by-1 Glow) -->
+    <!-- Process Pinned Scroll Section -->
     <section id="process">
         <div class="process-pin-container">
             <div class="process-pin-header">
@@ -306,25 +308,26 @@
             
             <div class="process-track-wrapper">
                 <div class="process-horizontal-track">
-                    <div class="process-box">
+                    <!-- Added ID tags for targeted selection -->
+                    <div class="process-box" id="box-0">
                         <div class="box-num">01</div><h4>Discovery</h4><p>Workshops, audits and stakeholder interviews to map the problem and opportunity.</p>
                     </div>
-                    <div class="process-box">
+                    <div class="process-box" id="box-1">
                         <div class="box-num">02</div><h4>Define</h4><p>Strategy, scope, and success metrics. We commit to a thesis before pixels.</p>
                     </div>
-                    <div class="process-box">
+                    <div class="process-box" id="box-2">
                         <div class="box-num">03</div><h4>Design</h4><p>Prototypes, design systems and copy. Validated with users at every milestone.</p>
                     </div>
-                    <div class="process-box">
+                    <div class="process-box" id="box-3">
                         <div class="box-num">04</div><h4>Build</h4><p>Two-week sprints, demos every Friday. Production-quality code from week one.</p>
                     </div>
-                    <div class="process-box">
+                    <div class="process-box" id="box-4">
                         <div class="box-num">05</div><h4>Launch</h4><p>Migration, training, comms. We treat go-live as the start of the relationship.</p>
                     </div>
-                    <div class="process-box">
+                    <div class="process-box" id="box-5">
                         <div class="box-num">06</div><h4>Iterate</h4><p>Analytics, experiments, ongoing roadmap. We grow with you, quarter over quarter.</p>
                     </div>
-                    <div class="process-box">
+                    <div class="process-box" id="box-6">
                         <div class="box-num"><i class="ph-bold ph-check"></i></div><h4>Live</h4><p>Production & beyond. From kickoff to launch in 12 weeks. Then we keep shipping.</p>
                     </div>
                 </div>
@@ -332,7 +335,7 @@
         </div>
     </section>
 
-    <!-- Pricing (3D Detailed) -->
+    <!-- Pricing -->
     <section id="pricing" class="pricing container">
         <div class="section-header">
             <span class="badge">07 • ENGAGEMENT MODELS</span>
@@ -383,7 +386,7 @@
             <div style="margin-top: 30px;">
                 <a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a>
             </div>
-            <a href="mailto:hello@tfgsolutions.pk" class="cta-email"><i class="ph ph-envelope-simple"></i> hello@tfgsolutions.pk</a>
+            <a href="mailto:hello@tfgsolutions.pk" class="cta-email"><i class="ph-fill ph-envelope-simple"></i> hello@tfgsolutions.pk</a>
         </div>
     </section>
 
@@ -405,28 +408,24 @@
         const wordEl = document.getElementById("changingWord");
         
         setInterval(() => {
-            // Slide up and fade out
             gsap.to(wordEl, { y: -40, opacity: 0, duration: 0.4, ease: "power2.in", onComplete: () => {
                 wordIndex = (wordIndex + 1) % words.length;
                 wordEl.innerText = words[wordIndex];
-                // Reset position to bottom and slide in
                 gsap.fromTo(wordEl, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
             }});
         }, 3000);
 
-        /* 2. FIXED HERO ORBIT LOGIC (Smooth Tawaf & Drag Resume) */
+        /* 2. FIXED HERO ORBIT LOGIC (Slower Speed & Drag Resume) */
         function setupOrbit(containerId, duration, direction) {
             const container = document.querySelector(containerId);
             const tags = container.querySelectorAll('.orbit-tag');
             
-            // GSAP tween for infinite rotation
             let spinTween = gsap.to(container, {
                 rotation: direction === 'right' ? 360 : -360,
-                duration: duration,
+                duration: duration, // Increased duration for slower speed
                 repeat: -1,
                 ease: "none",
                 onUpdate: () => {
-                    // Counter rotate tags to keep them upright
                     const currentRot = gsap.getProperty(container, "rotation");
                     gsap.set(tags, { rotation: -currentRot });
                 }
@@ -434,28 +433,26 @@
 
             Draggable.create(container, {
                 type: "rotation",
-                onPress: () => spinTween.pause(), // Pause on grab
+                onPress: () => spinTween.pause(),
                 onDrag: () => {
-                    // Keep updating tags while dragging
                     const currentRot = gsap.getProperty(container, "rotation");
                     gsap.set(tags, { rotation: -currentRot });
                 },
-                onRelease: () => spinTween.play() // Smoothly resume on release
+                onRelease: () => spinTween.play()
             });
         }
-        setupOrbit("#orbit-1", 20, 'right');
-        setupOrbit("#orbit-2", 30, 'left');
+        // Drastically increased duration (from 20/30 to 45/60) to slow them down
+        setupOrbit("#orbit-1", 45, 'right');
+        setupOrbit("#orbit-2", 60, 'left');
 
         /* 3. SMOOTH MARQUEE HOVER PAUSE */
-        const marqueeTrackWrapper = document.querySelector('.marquee-track-wrapper');
         const track1 = document.getElementById('track-1');
         const track2 = document.getElementById('track-2');
         
-        // Use GSAP to slide both tracks left by 100% smoothly
         const marqueeTween = gsap.to([track1, track2], {
             xPercent: -100,
             repeat: -1,
-            duration: 20,
+            duration: 25,
             ease: "none"
         });
 
@@ -463,15 +460,16 @@
         marqueeContainer.addEventListener('mouseenter', () => marqueeTween.pause());
         marqueeContainer.addEventListener('mouseleave', () => marqueeTween.play());
 
-        /* 4. PINNED PROCESS SECTION (1-BY-1 GLOW LOGIC) */
+        /* 4. PINNED PROCESS SECTION (Sequential Glow Logic 1-by-1) */
         const processTrack = document.querySelector('.process-horizontal-track');
         const boxes = gsap.utils.toArray('.process-box');
+        const totalBoxes = boxes.length;
         
         function getScrollAmount() {
             return -(processTrack.scrollWidth - window.innerWidth + 80);
         }
 
-        const processTl = gsap.to(processTrack, {
+        gsap.to(processTrack, {
             x: getScrollAmount,
             ease: "none",
             scrollTrigger: {
@@ -482,17 +480,21 @@
                 scrub: 1,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
-                    // If at the very end of scroll (98%), light up all boxes
-                    if(self.progress > 0.95) {
+                    // Map the scroll progress (0 to 1) to the number of boxes
+                    let activeIndex = Math.floor(self.progress * totalBoxes);
+                    
+                    // Keep index within array bounds
+                    if (activeIndex >= totalBoxes) {
+                        activeIndex = totalBoxes - 1;
+                    }
+
+                    // If scroll is at the very end (>92%), light up all boxes
+                    if (self.progress > 0.92) {
                         boxes.forEach(box => box.classList.add('bulb-glow'));
                     } else {
-                        // Logic to light up only the box nearest to the center of the screen
-                        boxes.forEach(box => {
-                            const rect = box.getBoundingClientRect();
-                            const center = window.innerWidth / 2;
-                            // If the center of the box is close to the center of the screen
-                            const boxCenter = rect.left + (rect.width / 2);
-                            if(boxCenter > center - 200 && boxCenter < center + 200) {
+                        // Sequential Glow: Light up only the current active index, turn off the rest
+                        boxes.forEach((box, i) => {
+                            if (i === activeIndex) {
                                 box.classList.add('bulb-glow');
                             } else {
                                 box.classList.remove('bulb-glow');
