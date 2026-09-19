@@ -107,56 +107,72 @@
 
         /* HERO */
         .hero { padding: 120px 0; display: flex; align-items: center; gap: 60px; min-height: 90vh; }
-        .hero-content { flex: 1; }
+        .hero-content { flex: 1; z-index: 20; }
         .hero h1 { font-size: 72px; line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin-bottom: 24px; }
         .hero p { color: var(--text-muted); font-size: 18px; max-width: 480px; margin-bottom: 40px; line-height: 1.6; }
-        .hero-actions { display: flex; gap: 16px; align-items: center; }
         
-        /* HERO GRAPHIC (Orbiting Sphere) */
+        /* HERO GRAPHIC (Fixed Rings, Orbiting Tags) */
         .hero-graphic {
             flex: 1;
             position: relative;
-            height: 500px;
+            height: 550px;
             display: flex;
             align-items: center;
             justify-content: center;
-            perspective: 1000px; /* For Parallax */
-            transition: transform 0.1s ease-out;
         }
         .planet {
-            width: 250px;
-            height: 250px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            /* Orange TFG Gradient */
+            /* Orange TFG Gradient Fixed */
             background: radial-gradient(circle at 30% 30%, #ff7340, #ff4040, #2a0000);
-            box-shadow: 0 0 80px rgba(255, 64, 64, 0.5), inset -20px -20px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 0 60px rgba(255, 64, 64, 0.4), inset -20px -20px 40px rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 48px;
             font-weight: 800;
-            position: relative;
+            position: absolute;
             z-index: 10;
         }
         
-        /* Orbit Containers */
+        /* Static Rings - Apni jagah par fixed rahengi */
+        .static-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(255,255,255,0.15);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .ring-1 { width: 380px; height: 380px; }
+        .ring-2 { width: 520px; height: 520px; }
+
+        /* Draggable Orbit Containers */
         .orbit-container {
             position: absolute;
             top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
             border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: grab;
         }
-        .orbit-1 { width: 400px; height: 400px; border: 1px dashed rgba(255,255,255,0.15); animation: spin 20s linear infinite; }
-        .orbit-2 { width: 550px; height: 550px; border: 1px dashed rgba(255,255,255,0.15); animation: spinReverse 35s linear infinite; }
+        .orbit-container:active { cursor: grabbing; }
+        
+        #orbit-1 { width: 380px; height: 380px; z-index: 15; }
+        #orbit-2 { width: 520px; height: 520px; z-index: 14; }
 
-        /* Orbiting Tags */
-        .orbit-element {
+        /* Tag Wrappers on the edges of the circle */
+        .tag-wrapper {
             position: absolute;
-            width: 100%; height: 100%;
-            top: 0; left: 0;
+            width: 100px;
+            height: 36px;
+            margin-top: -18px;
+            margin-left: -50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .orbit-tag {
-            position: absolute;
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 8px 16px;
@@ -165,137 +181,90 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s;
+            white-space: nowrap;
+            transition: border-color 0.3s, background 0.3s;
+            pointer-events: auto; /* Ensure tags are clickable/hoverable */
         }
         .orbit-tag i { color: var(--accent); }
         .orbit-tag:hover {
             border-color: var(--accent);
-            transform: scale(1.1);
+            background: #151515;
         }
-
-        /* Counter-rotation to keep text upright */
-        .orbit-1 .orbit-tag { animation: spinReverse 20s linear infinite; }
-        .orbit-2 .orbit-tag { animation: spin 35s linear infinite; }
-
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
 
         /* LOGO MARQUEE */
-        .trusted-by {
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
+        .trusted-by { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 12px; font-weight: 500; letter-spacing: 1px; }
         .logos { display: flex; gap: 60px; align-items: center; opacity: 0.5; }
         .logos span { display: flex; align-items: center; gap: 8px; font-size: 16px;}
 
         /* SECTIONS GENERAL */
         section[id] { scroll-margin-top: 100px; }
 
-        /* STATS */
-        .stats { padding: 80px 0; display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; }
-        .stat-card h3 { font-size: 56px; font-weight: 600; background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px;}
-        .stat-card p { font-size: 13px; color: var(--text-muted); }
-
         /* ABOUT */
         .about { padding: 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .about h2 { font-size: 48px; line-height: 1.1; margin-bottom: 24px; font-weight: 600; letter-spacing: -1px;}
-        .about-visual {
-            background: var(--surface);
-            border-radius: 20px;
-            height: 100%;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-            background-image: radial-gradient(circle at center, rgba(255, 64, 64, 0.1), transparent 60%);
-        }
 
-        /* SERVICES (BENTO GRID) */
+        /* SERVICES */
         .services { padding: 120px 0; }
-        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+        .section-header { margin-bottom: 60px; }
         .section-header h2 { font-size: 42px; font-weight: 600; line-height: 1.1; letter-spacing: -1px; }
-        .section-header p { color: var(--text-muted); margin-top: 16px; }
-        
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .service-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 40px 30px;
-            border-radius: 16px;
-            transition: all 0.3s;
-            position: relative;
-        }
+        .service-card { background: var(--surface); border: 1px solid var(--border); padding: 40px 30px; border-radius: 16px; transition: all 0.3s; }
         .service-card:hover { border-color: var(--border-hover); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,64,64,0.1); }
         .service-card i { font-size: 32px; color: var(--accent); margin-bottom: 24px; display: block; }
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* WORK CAROUSEL */
+        /* WORK */
         .work { padding: 80px 0; }
         .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .work-card { background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
         .work-img { height: 240px; background: #222; width: 100%; object-fit: cover; }
         .work-info { padding: 24px; }
         .work-info h3 { font-size: 18px; margin-bottom: 8px; }
-        .work-info p { font-size: 12px; color: var(--text-muted); }
 
-        /* PROCESS */
-        .process { padding: 120px 0; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
-        .process-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; }
-        .step { position: relative; }
-        .step-num { width: 40px; height: 40px; background: var(--primary-grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-bottom: 16px; font-size: 14px;}
-        .step h4 { font-size: 20px; margin-bottom: 12px; }
-        .step p { font-size: 14px; color: var(--text-muted); }
-        .process-steps::before { content: ''; position: absolute; top: 20px; left: 20px; width: 100%; height: 1px; border-top: 1px dashed rgba(255,255,255,0.2); z-index: -1;}
-
-        /* TESTIMONIAL */
-        .testimonial { padding: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px;}
-        .quote-box { background: var(--surface); padding: 40px; border-radius: 16px; border: 1px solid var(--border); }
-        .quote-box p { font-size: 18px; line-height: 1.6; margin-bottom: 24px; font-style: italic;}
-        .author { display: flex; align-items: center; gap: 16px; }
-        .author-img { width: 48px; height: 48px; border-radius: 50%; background: #333; }
-        .author-info h5 { font-size: 16px; }
-        .author-info span { font-size: 12px; color: var(--text-muted); }
-
-        /* PRICING */
-        .pricing { padding: 120px 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; align-items: center;}
-        .price-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; border-radius: 20px; }
-        .price-card.featured { 
-            background: linear-gradient(180deg, rgba(255,64,64,0.1) 0%, var(--surface) 100%);
-            border: 1px solid var(--accent);
-            transform: scale(1.05);
-            position: relative;
+        /* PROCESS (REDESIGNED FOR SCROLL ANIMATION) */
+        .process { padding: 120px 0; }
+        .process-header { margin-bottom: 60px; max-width: 600px; }
+        .process-header h2 { font-size: 42px; line-height: 1.1; font-weight: 600; letter-spacing: -1px; margin-bottom: 16px; }
+        
+        .process-layout { display: flex; position: relative; margin-left: 20px; }
+        /* Vertical Track */
+        .progress-track { position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: var(--surface-light); border-left: 1px dashed rgba(255,255,255,0.1); z-index: 1; }
+        /* Animated Fill */
+        .progress-fill { position: absolute; left: -1px; top: 0; width: 4px; height: 0%; background: var(--primary-grad); border-radius: 4px; z-index: 2; box-shadow: 0 0 15px rgba(255, 64, 64, 0.6); }
+        
+        .process-steps { display: flex; flex-direction: column; gap: 80px; padding-left: 80px; padding-bottom: 40px; z-index: 3; width: 100%; }
+        .step { display: flex; flex-direction: column; position: relative; }
+        
+        /* Number Circles placed over the line */
+        .step-num { 
+            position: absolute; 
+            left: -80px; /* Offset to sit exactly on the line */
+            top: 0;
+            width: 40px; 
+            height: 40px; 
+            background: var(--surface); 
+            border: 2px solid var(--border); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 700; 
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: all 0.4s ease;
         }
-        .popular-tag { position: absolute; top: -12px; right: 20px; background: var(--primary-grad); padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 600;}
-        .price-card h3 { font-size: 20px; margin-bottom: 16px; font-weight: 500;}
-        .price { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 24px; }
-        .features { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px;}
-        .features li { font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;}
-        .features li i { color: var(--accent); }
+        /* Style when step is active */
+        .step.active .step-num { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 0 20px rgba(255,64,64,0.5); }
+        
+        .step h4 { font-size: 24px; margin-bottom: 12px; }
+        .step p { font-size: 16px; color: var(--text-muted); max-width: 500px; line-height: 1.6; }
 
-        /* FOOTER CTA & FOOTER */
-        .footer-cta { 
-            margin: 80px 40px;
-            padding: 80px; 
-            background: radial-gradient(circle at center, rgba(255,64,64,0.15) 0%, var(--surface) 100%);
-            border: 1px solid var(--border); 
-            border-radius: 24px;
-            text-align: center;
-        }
+        /* BOTTOM CTA */
+        .footer-cta { margin: 80px 40px; padding: 80px; background: radial-gradient(circle at center, rgba(255,64,64,0.15) 0%, var(--surface) 100%); border: 1px solid var(--border); border-radius: 24px; text-align: center; }
         .footer-cta h2 { font-size: 48px; font-weight: 600; margin-bottom: 16px; }
+
+        /* FOOTER */
         footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .footer-links { display: flex; gap: 24px; font-size: 13px; color: var(--text-muted); }
     </style>
@@ -313,7 +282,6 @@
                     <li><a href="#work">Work</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#process">Process</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
                 </ul>
             </nav>
             <a href="mailto:hello@tfgsolutions.pk" class="btn btn-outline">Let's Talk →</a>
@@ -331,31 +299,35 @@
             </div>
         </div>
         
-        <div class="hero-graphic" id="interactive-graphic">
-            <!-- Orbit 2 (Outer) -->
-            <div class="orbit-container orbit-2">
-                <div class="orbit-element" style="transform: rotate(0deg);">
-                    <div class="orbit-tag" style="top: -15px; left: 50%; margin-left: -50px;"><i class="ph-fill ph-circle"></i> Apps</div>
+        <div class="hero-graphic">
+            <!-- Static Dashed Rings -->
+            <div class="static-ring ring-1"></div>
+            <div class="static-ring ring-2"></div>
+            
+            <!-- Draggable Orbit 2 (Outer) -->
+            <div class="orbit-container" id="orbit-2">
+                <div class="tag-wrapper" style="top: 0; left: 50%;">
+                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Apps</div>
                 </div>
-                <div class="orbit-element" style="transform: rotate(120deg);">
-                    <div class="orbit-tag" style="top: -15px; left: 50%; margin-left: -50px;"><i class="ph-fill ph-circle"></i> Commerce</div>
+                <div class="tag-wrapper" style="bottom: 15%; left: 10%;">
+                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Commerce</div>
                 </div>
-                <div class="orbit-element" style="transform: rotate(240deg);">
-                    <div class="orbit-tag" style="top: -15px; left: 50%; margin-left: -50px;"><i class="ph-fill ph-circle"></i> Growth</div>
-                </div>
-            </div>
-
-            <!-- Orbit 1 (Inner) -->
-            <div class="orbit-container orbit-1">
-                <div class="orbit-element" style="transform: rotate(45deg);">
-                    <div class="orbit-tag" style="top: -15px; left: 50%; margin-left: -50px;"><i class="ph-fill ph-circle"></i> Websites</div>
-                </div>
-                <div class="orbit-element" style="transform: rotate(225deg);">
-                    <div class="orbit-tag" style="top: -15px; left: 50%; margin-left: -50px;"><i class="ph-fill ph-circle"></i> Branding</div>
+                <div class="tag-wrapper" style="top: 25%; right: 5%;">
+                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Growth</div>
                 </div>
             </div>
 
-            <!-- Planet -->
+            <!-- Draggable Orbit 1 (Inner) -->
+            <div class="orbit-container" id="orbit-1">
+                <div class="tag-wrapper" style="top: 50%; left: 0;">
+                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Websites</div>
+                </div>
+                <div class="tag-wrapper" style="bottom: 10%; right: 10%;">
+                    <div class="orbit-tag"><i class="ph-fill ph-circle"></i> Branding</div>
+                </div>
+            </div>
+
+            <!-- Center Planet -->
             <div class="planet">TFG</div>
         </div>
     </section>
@@ -369,28 +341,7 @@
                 <span><i class="ph ph-money"></i> Pakistan Currency</span>
                 <span><i class="ph ph-barbell"></i> Trifit</span>
                 <span><i class="ph ph-heart"></i> Jab We Weds</span>
-                <span><i class="ph ph-buildings"></i> Chughtai Group</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats container">
-        <div class="stat-card">
-            <h3>100+</h3>
-            <p>Projects Delivered</p>
-        </div>
-        <div class="stat-card">
-            <h3>93%</h3>
-            <p>Client Satisfaction</p>
-        </div>
-        <div class="stat-card">
-            <h3>80%</h3>
-            <p>Repeat Clients</p>
-        </div>
-        <div class="stat-card">
-            <h3>78%</h3>
-            <p>Avg. Growth</p>
         </div>
     </section>
 
@@ -399,166 +350,58 @@
         <div>
             <span class="badge">ABOUT TFG</span>
             <h2>Nine disciplines.<br>One accountable team.</h2>
-            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 30px;">We're a digital studio, not just a service provider. Our team combines strategy, design, technology and marketing to build brands that perform — not just look good.</p>
-        </div>
-        <div>
-            <div class="about-visual">
-                <div class="planet" style="width: 150px; height: 150px; font-size: 24px; box-shadow: 0 0 40px rgba(255, 64, 64, 0.3);">TFG</div>
-            </div>
+            <p style="color: var(--text-muted); line-height: 1.6;">We're a digital studio, not just a service provider. Our team combines strategy, design, technology and marketing to build brands that perform — not just look good.</p>
         </div>
     </section>
 
-    <!-- Services Bento Grid -->
+    <!-- Services -->
     <section id="services" class="services container">
         <div class="section-header">
-            <div>
-                <span class="badge">OUR SERVICES</span>
-                <h2>Everything you need<br>to move forward.</h2>
-                <p>End-to-end digital solutions to help your brand grow, connect and convert.</p>
-            </div>
+            <span class="badge">OUR SERVICES</span>
+            <h2>Everything you need<br>to move forward.</h2>
         </div>
-
         <div class="services-grid">
-            <div class="service-card">
-                <i class="ph ph-code"></i>
-                <h3>Custom Software</h3>
-                <p>Scalable software solutions built for your business needs.</p>
-            </div>
-            <div class="service-card">
-                <i class="ph ph-globe"></i>
-                <h3>Web Development</h3>
-                <p>Modern, fast and responsive websites and web apps.</p>
-            </div>
-            <div class="service-card">
-                <i class="ph ph-device-mobile"></i>
-                <h3>Mobile Apps</h3>
-                <p>Native & cross-platform apps for iOS and Android.</p>
-            </div>
-            <div class="service-card">
-                <i class="ph ph-paint-brush-broad"></i>
-                <h3>UI/UX Design</h3>
-                <p>User-centered designs that turn visitors into customers.</p>
-            </div>
-            <div class="service-card">
-                <i class="ph ph-cloud"></i>
-                <h3>Cloud & DevOps</h3>
-                <p>Secure, scalable and high performance infrastructure.</p>
-            </div>
-            <div class="service-card">
-                <i class="ph ph-shopping-cart"></i>
-                <h3>E-Commerce</h3>
-                <p>Stores that sell. From design to payment integration.</p>
-            </div>
+            <div class="service-card"><i class="ph ph-code"></i><h3>Custom Software</h3><p>Scalable software solutions built for your business needs.</p></div>
+            <div class="service-card"><i class="ph ph-globe"></i><h3>Web Development</h3><p>Modern, fast and responsive websites and web apps.</p></div>
+            <div class="service-card"><i class="ph ph-device-mobile"></i><h3>Mobile Apps</h3><p>Native & cross-platform apps for iOS and Android.</p></div>
         </div>
     </section>
 
-    <!-- Work Carousel -->
-    <section id="work" class="work container">
-        <div class="section-header">
-            <div>
-                <span class="badge">OUR WORK</span>
-                <h2>Creative solutions<br>for real brands.</h2>
-            </div>
-        </div>
-        <div class="work-grid">
-            <div class="work-card">
-                <div class="work-img" style="background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop') center/cover;"></div>
-                <div class="work-info">
-                    <h3>Trifit</h3>
-                    <p>Branding • UI/UX • Web</p>
-                </div>
-            </div>
-            <div class="work-card">
-                <div class="work-img" style="background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1469&auto=format&fit=crop') center/cover;"></div>
-                <div class="work-info">
-                    <h3>Jab We Weds</h3>
-                    <p>Social Media • Meta Ads</p>
-                </div>
-            </div>
-            <div class="work-card">
-                <div class="work-img" style="background: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1374&auto=format&fit=crop') center/cover;"></div>
-                <div class="work-info">
-                    <h3>Muhammadi Exchange</h3>
-                    <p>Branding • Digital Marketing</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
+    <!-- Process Section (Scroll Animated) -->
     <section id="process" class="process container">
-        <div>
+        <div class="process-header">
             <span class="badge">OUR PROCESS</span>
             <h2>Ideas to impact.<br>In four clear steps.</h2>
-            <p style="color: var(--text-muted); margin-top: 16px;">A focused process to turn your vision into measurable results.</p>
-        </div>
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-num">01</div>
-                <h4>Discover</h4>
-                <p>Understand your goals, market and audience.</p>
-            </div>
-            <div class="step">
-                <div class="step-num" style="background: var(--surface); border: 1px solid var(--accent); color: var(--accent);">02</div>
-                <h4>Design</h4>
-                <p>Create concepts, experiences and a clear direction.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">03</div>
-                <h4>Build</h4>
-                <p>Develop, test and bring it to life.</p>
-            </div>
-            <div class="step">
-                <div class="step-num" style="background: var(--surface); border: 1px solid var(--accent); color: var(--accent);">04</div>
-                <h4>Grow</h4>
-                <p>Optimize, scale and keep improving.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing container">
-        <div>
-            <span class="badge">OUR PRICING</span>
-            <h2 style="font-size: 42px; font-weight: 600; line-height: 1.1;">Three ways<br>to work with us.</h2>
+            <p style="color: var(--text-muted);">A focused process to turn your vision into measurable results. Scroll down to see our progress.</p>
         </div>
         
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h3>Starter</h3>
-                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">Perfect for small projects</p>
-                <div class="price">$8k</div>
-                <ul class="features">
-                    <li><i class="ph-fill ph-check-circle"></i> Design + Development</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Basic SEO</li>
-                    <li><i class="ph-fill ph-check-circle"></i> 1 Month Support</li>
-                </ul>
-                <a href="mailto:hello@tfgsolutions.pk" class="btn-outline" style="display:block; text-align:center; padding:12px; border-radius:30px; text-decoration:none;">Get Started →</a>
-            </div>
-
-            <div class="price-card featured">
-                <span class="popular-tag">Most Popular</span>
-                <h3>Growth</h3>
-                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">For growing businesses</p>
-                <div class="price" style="color: white;">$45k</div>
-                <ul class="features">
-                    <li><i class="ph-fill ph-check-circle"></i> Full-stack Services</li>
-                    <li><i class="ph-fill ph-check-circle"></i> SEO + Analytics</li>
-                    <li><i class="ph-fill ph-check-circle"></i> 3 Months Support</li>
-                </ul>
-                <a href="mailto:hello@tfgsolutions.pk" class="btn" style="display:block; text-align:center; width: 100%;">Get Started →</a>
-            </div>
-
-            <div class="price-card">
-                <h3>Enterprise</h3>
-                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">For large scale projects</p>
-                <div class="price">$18k+</div>
-                <ul class="features">
-                    <li><i class="ph-fill ph-check-circle"></i> Custom Solutions</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Dedicated Team</li>
-                    <li><i class="ph-fill ph-check-circle"></i> Ongoing Support</li>
-                </ul>
-                <a href="mailto:hello@tfgsolutions.pk" class="btn-outline" style="display:block; text-align:center; padding:12px; border-radius:30px; text-decoration:none;">Get Started →</a>
+        <div class="process-layout">
+            <!-- Background Track -->
+            <div class="progress-track"></div>
+            <!-- Foreground Animated Fill -->
+            <div class="progress-fill" id="progress-bar"></div>
+            
+            <div class="process-steps">
+                <div class="step step-1">
+                    <div class="step-num">01</div>
+                    <h4>Discover</h4>
+                    <p>Understand your goals, market and audience through deep research.</p>
+                </div>
+                <div class="step step-2">
+                    <div class="step-num">02</div>
+                    <h4>Design</h4>
+                    <p>Create concepts, user experiences and a clear visual direction.</p>
+                </div>
+                <div class="step step-3">
+                    <div class="step-num">03</div>
+                    <h4>Build</h4>
+                    <p>Develop, test and bring the designs to life using modern tech.</p>
+                </div>
+                <div class="step step-4">
+                    <div class="step-num">04</div>
+                    <h4>Grow</h4>
+                    <p>Optimize, scale and keep improving your product post-launch.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -583,21 +426,79 @@
         <div class="footer-links">
             <a href="#home">Home</a>
             <a href="#services">Services</a>
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
             <a href="#process">Process</a>
-            <a href="#pricing">Pricing</a>
         </div>
     </footer>
 
-    <!-- Parallax Script for Hero Graphic -->
+    <!-- GSAP & Plugins for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+
     <script>
-        document.addEventListener("mousemove", (e) => {
-            const graphic = document.getElementById("interactive-graphic");
-            const x = (window.innerWidth / 2 - e.pageX) / 40;
-            const y = (window.innerHeight / 2 - e.pageY) / 40;
-            graphic.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        gsap.registerPlugin(ScrollTrigger, Draggable);
+
+        /* 1. HERO TAGS ORBIT ANIMATION & INTERACTION */
+        function setupInteractiveOrbit(containerId, duration, direction) {
+            const container = document.querySelector(containerId);
+            const tags = container.querySelectorAll('.orbit-tag');
+
+            // Counter rotate tags to keep text upright
+            function updateTags() {
+                const currentRot = gsap.getProperty(container, "rotation");
+                gsap.set(tags, { rotation: -currentRot });
+            }
+
+            // Continuous rotation tween
+            const spinTween = gsap.to(container, {
+                rotation: direction === 'right' ? 360 : -360,
+                duration: duration,
+                repeat: -1,
+                ease: "none",
+                onUpdate: updateTags
+            });
+
+            // Make the entire circle draggable
+            Draggable.create(container, {
+                type: "rotation",
+                onDragStart: () => spinTween.pause(), // Stop auto-spin when grabbing
+                onDragEnd: () => spinTween.play(),    // Resume auto-spin when released
+                onDrag: updateTags                    // Keep text upright while dragging
+            });
+            
+            // Set initial state
+            updateTags();
+        }
+
+        // Initialize Orbits
+        setupInteractiveOrbit("#orbit-1", 25, 'right');
+        setupInteractiveOrbit("#orbit-2", 40, 'left');
+
+        /* 2. PROCESS SCROLL PROGRESS ANIMATION */
+        
+        // Animate the vertical line height
+        gsap.to('#progress-bar', {
+            height: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.process-layout',
+                start: 'top 60%',   // Start filling when top of section hits 60% of viewport
+                end: 'bottom 80%',  // Finish filling when bottom hits 80%
+                scrub: 0.5          // 0.5s delay for smooth catching up on reverse scroll
+            }
         });
+
+        // Highlight step numbers as the line passes them
+        const steps = gsap.utils.toArray('.step');
+        steps.forEach((step, i) => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: 'top 60%',
+                end: 'bottom top',
+                toggleClass: { targets: step, className: "active" }
+            });
+        });
+
     </script>
 </body>
 </html>
