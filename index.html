@@ -3,213 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG Solutions | Digital & Creative Partner</title>
+    <title>TFG Solutions | Premium Digital Partner</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #050505;
+            background-color: #030303; /* Pitch black for better glow contrast */
             color: #FFFFFF;
+            overflow-x: hidden;
         }
+        
+        h1, h2, h3, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Animated Glowing Orbs in Background */
+        .orb-1 {
+            position: absolute; top: 0%; left: 10%; width: 400px; height: 400px;
+            background: #FF0066; filter: blur(150px); opacity: 0.25;
+            animation: float 8s infinite alternate ease-in-out; z-index: -1;
+        }
+        .orb-2 {
+            position: absolute; bottom: 20%; right: 5%; width: 500px; height: 500px;
+            background: #FF6600; filter: blur(180px); opacity: 0.2;
+            animation: float 10s infinite alternate-reverse ease-in-out; z-index: -1;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-50px) scale(1.1); }
+        }
+
+        /* TFG Gradients */
         .tfg-text-gradient {
             background: linear-gradient(135deg, #FF0066, #FF6600);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 0, 102, 0.3);
         }
         .tfg-bg-gradient {
             background: linear-gradient(135deg, #FF0066, #FF6600);
         }
+
+        /* TRUE Frost Glassmorphism (Premium) */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover {
             border-color: rgba(255, 0, 102, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 0, 102, 0.1);
+            background: rgba(30, 30, 30, 0.6);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 102, 0, 0.05);
         }
+
+        /* Subtle Tech Grid */
         .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
     </style>
 </head>
-<body class="bg-grid overflow-x-hidden">
+<body class="bg-grid">
+
+    <!-- Glowing Background Elements -->
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 glass-card border-b-0 border-white/10">
+    <nav class="fixed w-full z-50 glass-card border-b-0" data-aos="fade-down" data-aos-duration="1000">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-3xl font-extrabold tracking-tighter">
+            <div class="text-3xl font-extrabold tracking-tighter brand-font">
                 <span class="tfg-text-gradient">TFG</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-300">
-                <a href="#services" class="hover:text-white transition">Services</a>
-                <a href="#work" class="hover:text-white transition">Selected Work</a>
-                <a href="#process" class="hover:text-white transition">Process</a>
+            <div class="hidden md:flex space-x-10 text-sm font-semibold text-gray-400">
+                <a href="#services" class="hover:text-white transition duration-300">Services</a>
+                <a href="#work" class="hover:text-white transition duration-300">Selected Work</a>
+                <a href="#process" class="hover:text-white transition duration-300">Process</a>
             </div>
-            <a href="#contact" class="px-5 py-2 border border-gray-600 rounded-full hover:border-white transition font-medium text-sm">
+            <a href="#contact" class="px-6 py-2.5 glass-card rounded-full hover:bg-white hover:text-black transition duration-300 font-medium text-sm border-white/20">
                 Let's Talk
             </a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="container mx-auto px-6 pt-40 pb-32 text-center relative z-10">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF0066] rounded-full blur-[150px] opacity-10 -z-10"></div>
-        
-        <div class="inline-block px-4 py-1.5 mb-8 rounded-full border border-[#FF6600]/30 bg-[#FF6600]/10 text-xs font-bold tracking-widest text-[#FF6600] uppercase">
-            Ideas / Design / Technology / Growth
-        </div>
-        <h1 class="text-5xl md:text-8xl font-extrabold leading-tight mb-8 tracking-tight">
-            From Ideas To <br>
-            <span class="tfg-text-gradient">Real Impact.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-            Strategy, creativity and technology working together to turn your vision into real results. We build digital solutions for ambitious brands.
-        </p>
-        <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
-            <a href="#contact" class="tfg-bg-gradient px-8 py-4 rounded-full font-bold text-white shadow-[0_0_20px_rgba(255,0,102,0.3)] hover:scale-105 transition duration-300 w-full md:w-auto">
-                Start a Project
-            </a>
-            <a href="#work" class="px-8 py-4 rounded-full font-bold text-white border border-gray-600 hover:bg-white hover:text-black transition duration-300 w-full md:w-auto">
-                View Our Work
-            </a>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="py-24 border-t border-white/5">
-        <div class="container mx-auto px-6">
-            <div class="mb-16">
-                <h2 class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-2">01 • Capabilities</h2>
-                <h3 class="text-4xl md:text-5xl font-bold">Nine disciplines.<br>One accountable team.</h3>
+    <section class="min-h-screen flex items-center justify-center pt-20 relative z-10">
+        <div class="container mx-auto px-6 text-center">
+            <div data-aos="zoom-in" data-aos-delay="100" class="inline-block px-5 py-2 mb-8 rounded-full glass-card border border-[#FF6600]/40 text-xs font-bold tracking-widest text-[#FF6600] uppercase shadow-[0_0_15px_rgba(255,102,0,0.2)]">
+                Ideas • Design • Technology • Growth
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">Custom Software</h4>
-                    <p class="text-gray-400 text-sm">Bespoke platforms and SaaS built to scale.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">Web Development</h4>
-                    <p class="text-gray-400 text-sm">Modern, responsive, high-performing websites.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">Mobile Apps</h4>
-                    <p class="text-gray-400 text-sm">iOS and Android native & cross-platform apps.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">UI/UX Design</h4>
-                    <p class="text-gray-400 text-sm">User-focused designs that create better experiences.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">Cloud & DevOps</h4>
-                    <p class="text-gray-400 text-sm">Secure, scalable, and automated infrastructure.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">E-Commerce</h4>
-                    <p class="text-gray-400 text-sm">Powerful online stores to grow your sales.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">Digital Marketing & SEO</h4>
-                    <p class="text-gray-400 text-sm">Social media, paid campaigns & performance marketing.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3 tfg-text-gradient">Branding & Graphics</h4>
-                    <p class="text-gray-400 text-sm">Logos, visual identity, and stunning campaign visuals.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h4 class="text-xl font-bold mb-3">AI & Automation</h4>
-                    <p class="text-gray-400 text-sm">Smart technology to optimize your business processes.</p>
-                </div>
+            <h1 data-aos="fade-up" data-aos-delay="200" class="text-6xl md:text-8xl lg:text-9xl font-extrabold leading-tight mb-8 tracking-tighter">
+                From Ideas To <br>
+                <span class="tfg-text-gradient">Real Impact.</span>
+            </h1>
+            
+            <p data-aos="fade-up" data-aos-delay="400" class="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto mb-14 font-light">
+                Strategy, creativity, and technology working together to turn your vision into sustainable growth.
+            </p>
+            
+            <div data-aos="fade-up" data-aos-delay="600" class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="#contact" class="tfg-bg-gradient px-10 py-4 rounded-full font-bold text-white shadow-[0_0_30px_rgba(255,0,102,0.4)] hover:scale-105 transition duration-300 w-full md:w-auto">
+                    Start a Project
+                </a>
+                <a href="#work" class="px-10 py-4 rounded-full font-bold text-white glass-card hover:bg-white hover:text-black transition duration-300 w-full md:w-auto">
+                    View Our Work
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- FEATURED WORK (MUSTAFA'S PORTFOLIO) -->
-    <section id="work" class="py-24 border-t border-white/5 relative">
+    <!-- SERVICES (FROST BOXES) -->
+    <section id="services" class="py-32 relative">
         <div class="container mx-auto px-6">
-            <div class="mb-16 flex flex-col md:flex-row md:justify-between md:items-end">
-                <div>
-                    <h2 class="text-sm font-bold tracking-widest text-[#FF0066] uppercase mb-2">02 • Selected Work</h2>
-                    <h3 class="text-4xl md:text-5xl font-bold">Projects we crushed.</h3>
-                </div>
+            <div class="mb-20 text-center" data-aos="fade-up">
+                <h2 class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-3">01 • Capabilities</h2>
+                <h3 class="text-4xl md:text-6xl font-bold brand-font">Nine disciplines.<br>One accountable team.</h3>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer">
-                    <div class="h-64 bg-gray-800 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-gray-900 to-gray-700 flex items-center justify-center group-hover:scale-105 transition duration-500">
-                            <span class="text-gray-500 font-medium tracking-widest">[Corporate Identity Mockup]</span>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Frost Card 1 -->
+                <div class="glass-card p-10 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-full bg-[#FF0066]/20 flex items-center justify-center mb-6 text-[#FF0066]">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                     </div>
-                    <div class="p-8">
-                        <div class="text-xs font-bold text-[#FF6600] mb-2 uppercase">Creative Lead / Branding</div>
-                        <h4 class="text-2xl font-bold mb-2">Muhammadi Exchange Co.</h4>
+                    <h4 class="text-2xl font-bold mb-3 brand-font">Custom Software</h4>
+                    <p class="text-gray-400">Bespoke platforms and SaaS built to scale with your operation.</p>
+                </div>
+                
+                <!-- Frost Card 2 -->
+                <div class="glass-card p-10 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-full bg-[#FF6600]/20 flex items-center justify-center mb-6 text-[#FF6600]">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 brand-font">Web Development</h4>
+                    <p class="text-gray-400">Modern, responsive, and high-performing websites.</p>
+                </div>
+                
+                <!-- Frost Card 3 -->
+                <div class="glass-card p-10 rounded-3xl border border-[#FF0066]/30 relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-[#FF0066] blur-[50px] opacity-30"></div>
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 brand-font tfg-text-gradient">Branding & Graphics</h4>
+                    <p class="text-gray-400">Logos, visual identity, and stunning campaign visuals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED WORK (PREMIUM CARDS WITH IMAGES) -->
+    <section id="work" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="mb-20" data-aos="fade-right">
+                <h2 class="text-sm font-bold tracking-widest text-[#FF0066] uppercase mb-3">02 • Selected Work</h2>
+                <h3 class="text-4xl md:text-6xl font-bold brand-font">Projects we crushed.</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Project 1 (Muhammadi Exchange) -->
+                <div class="glass-card rounded-3xl overflow-hidden group cursor-pointer" data-aos="fade-up">
+                    <div class="h-80 relative overflow-hidden">
+                        <!-- Temporary High-Q Tech Image -->
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out opacity-70 group-hover:opacity-100" alt="Brand Identity">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-10 relative -mt-20 z-10">
+                        <div class="inline-block px-4 py-1 mb-4 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-bold text-[#FF6600] uppercase">Creative Lead</div>
+                        <h4 class="text-3xl font-bold mb-3 brand-font">Muhammadi Exchange Co.</h4>
                         <p class="text-gray-400">Complete corporate rebranding, advanced photo retouching, and premium visual identity design.</p>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer">
-                    <div class="h-64 bg-gray-800 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-gray-800 to-gray-900 flex items-center justify-center group-hover:scale-105 transition duration-500">
-                            <span class="text-gray-500 font-medium tracking-widest">[Digital Ad Campaign Mockup]</span>
-                        </div>
+                <!-- Project 2 (Global Ads) -->
+                <div class="glass-card rounded-3xl overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-80 relative overflow-hidden">
+                        <!-- Temporary High-Q Marketing Image -->
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-in-out opacity-70 group-hover:opacity-100" alt="Digital Marketing">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                     </div>
-                    <div class="p-8">
-                        <div class="text-xs font-bold text-[#FF0066] mb-2 uppercase">Digital Marketing</div>
-                        <h4 class="text-2xl font-bold mb-2">Global Ad Campaigns</h4>
+                    <div class="p-10 relative -mt-20 z-10">
+                        <div class="inline-block px-4 py-1 mb-4 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-bold text-[#FF0066] uppercase">Digital Marketing</div>
+                        <h4 class="text-3xl font-bold mb-3 brand-font">Global Ad Campaigns</h4>
                         <p class="text-gray-400">High-converting social media creatives and performance marketing for international clients.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Project 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer md:col-span-2">
-                    <div class="h-80 bg-gray-800 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center group-hover:scale-105 transition duration-500">
-                            <span class="text-gray-500 font-medium tracking-widest">[Event Badge & Commercial Shoot Mockup]</span>
-                        </div>
-                    </div>
-                    <div class="p-8 md:w-1/2">
-                        <div class="text-xs font-bold text-[#FF6600] mb-2 uppercase">Event & Commercial Visuals</div>
-                        <h4 class="text-2xl font-bold mb-2">IDEAS 2024 Mega Exhibition</h4>
-                        <p class="text-gray-400">Premium entry e-badge designs and high-end commercial product shoots using chroma key studio environments.</p>
-                    </div>
+    <!-- PROCESS -->
+    <section id="process" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-16 text-center" data-aos="fade-up">03 • How We Work</h2>
+            
+            <div class="flex flex-col md:flex-row justify-between relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FF0066] to-transparent -translate-y-1/2 opacity-30"></div>
+                
+                <div class="glass-card p-8 rounded-2xl w-full md:w-1/4 m-2 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-4 text-gray-600 font-bold brand-font">01</div>
+                    <h4 class="text-xl font-bold mb-2">Ideas</h4>
+                </div>
+                <div class="glass-card p-8 rounded-2xl w-full md:w-1/4 m-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-4 text-gray-500 font-bold brand-font">02</div>
+                    <h4 class="text-xl font-bold mb-2">Design</h4>
+                </div>
+                <div class="glass-card p-8 rounded-2xl w-full md:w-1/4 m-2 text-center border-[#FF0066]/30 shadow-[0_0_30px_rgba(255,0,102,0.1)]" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-4 text-[#FF0066] font-bold brand-font">03</div>
+                    <h4 class="text-xl font-bold mb-2">Technology</h4>
+                </div>
+                <div class="glass-card p-8 rounded-2xl w-full md:w-1/4 m-2 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl mb-4 text-[#FF6600] font-bold brand-font">04</div>
+                    <h4 class="text-xl font-bold mb-2">Growth</h4>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA & FOOTER -->
-    <section id="contact" class="py-24 border-t border-white/5 bg-gradient-to-b from-transparent to-black">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-5xl md:text-7xl font-extrabold mb-8">Let's build the <br><span class="tfg-text-gradient">next thing you ship.</span></h2>
-            <p class="text-gray-400 mb-12 max-w-xl mx-auto">Tell us what you're working on. We'll come back within a working day with a starting point.</p>
-            <a href="mailto:hello@tfgsolutions.pk" class="tfg-bg-gradient px-10 py-5 rounded-full font-bold text-white text-lg shadow-[0_0_20px_rgba(255,0,102,0.3)] hover:scale-105 transition duration-300">
+    <!-- FOOTER CTA -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-t from-[#FF0066]/10 to-transparent -z-10"></div>
+        <div class="container mx-auto px-6 text-center" data-aos="zoom-in">
+            <h2 class="text-6xl md:text-8xl font-extrabold mb-8 brand-font">Let's build the <br><span class="tfg-text-gradient">next thing you ship.</span></h2>
+            <p class="text-xl text-gray-400 mb-14 max-w-2xl mx-auto font-light">Tell us what you're working on. We'll come back within a working day with a starting point.</p>
+            <a href="mailto:hello@tfgsolutions.pk" class="tfg-bg-gradient px-12 py-5 rounded-full font-bold text-white text-xl shadow-[0_0_40px_rgba(255,0,102,0.4)] hover:scale-110 transition duration-300 inline-block">
                 hello@tfgsolutions.pk
             </a>
-            
-            <div class="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <div class="text-2xl font-extrabold tracking-tighter mb-4 md:mb-0">
-                    <span class="tfg-text-gradient">TFG</span>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-white transition">Privacy</a>
-                    <a href="#" class="hover:text-white transition">Terms</a>
-                    <span>© 2026 TFG Solutions. All rights reserved.</span>
-                </div>
-            </div>
         </div>
     </section>
 
+    <!-- Initialize AOS Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
