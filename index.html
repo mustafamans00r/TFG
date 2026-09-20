@@ -43,10 +43,10 @@
         .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-size: 14px; transition: 0.3s; }
         .btn-outline:hover { background: var(--surface-light); border-color: var(--text-muted); }
 
-        /* HEADER (Logo Size Increased) */
+        /* HEADER */
         header { padding: 24px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); z-index: 1000; }
         header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 48px; width: auto; object-fit: contain; } /* Increased from 32px to 48px */
+        .logo img { height: 48px; width: auto; object-fit: contain; } 
         nav ul { display: flex; gap: 32px; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: 0.3s; }
         nav a:hover { color: white; }
@@ -59,11 +59,10 @@
         .changing-word { display: inline-block; position: relative; text-transform: uppercase; }
         .hero p { color: var(--text-muted); font-size: 18px; max-width: 480px; margin-bottom: 40px; line-height: 1.6; }
         
-        /* HERO GRAPHIC (Dark Core with Glowing Aura for Logo Visibility) */
+        /* HERO GRAPHIC */
         .hero-graphic { flex: 0.8; position: relative; height: 550px; display: flex; align-items: center; justify-content: center; }
         .planet { 
             width: 220px; height: 220px; border-radius: 50%; 
-            /* Changed to deep dark core with red glow aura so logo pops! */
             background: radial-gradient(circle at 30% 30%, #1a0505, #050000); 
             box-shadow: 0 0 80px rgba(255, 64, 64, 0.6), inset -10px -10px 40px rgba(255, 115, 64, 0.2), inset 20px 20px 40px rgba(0,0,0,0.9); 
             border: 1px solid rgba(255, 64, 64, 0.15);
@@ -103,7 +102,7 @@
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* FEATURED PROJECTS (ALBUM with Frosted Backs) */
+        /* FEATURED PROJECTS (ALBUM) */
         .featured-album-section { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .album-glow { position: absolute; width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle, rgba(255, 64, 64, 0.15) 0%, transparent 60%); }
         .album-book { position: relative; width: 40vw; max-width: 450px; aspect-ratio: 1 / 1; perspective: 2500px; z-index: 5; opacity: 0; transform: translateY(50px); }
@@ -111,18 +110,15 @@
         .page-face { position: absolute; width: 100%; height: 100%; top: 0; left: 0; backface-visibility: hidden; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; }
         .page-front { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(20px); }
         
-        /* The magical frosted glass back side */
         .page-back { background: rgba(5, 5, 5, 0.95); transform: rotateY(180deg); overflow: hidden; }
         .page-back-img { width: 100%; height: 100%; object-fit: cover; filter: blur(15px) brightness(0.4); transform: scaleX(-1); opacity: 0.7; }
         .page-back-logo { width: 100%; height: 100%; object-fit: contain; padding: 40px; filter: blur(12px) brightness(0.3); transform: scaleX(-1); background: radial-gradient(circle, rgba(255,255,255,0.02), transparent); opacity: 0.6; }
 
         .cover-design { background: rgba(255,255,255,0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,64,64,0.3); display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .cover-design h2 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
-        
         .content-frame { flex: 1; padding: 0; display: flex; flex-direction: column; } 
         .img-placeholder { flex: 1; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 100%; }
         .img-placeholder img { width: 100%; height: 100%; object-fit: cover; } 
-        
         .logo-placeholder { flex: 1; background: radial-gradient(circle, rgba(255,255,255,0.05), transparent); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 40px; }
         .logo-placeholder img { width: 100%; height: 100%; object-fit: contain; } 
         
@@ -142,7 +138,7 @@
         .process-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
         /* PRICING */
-        .pricing { padding: 120px 0; border-bottom: 1px solid var(--border); }
+        .pricing { padding: 120px 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
         .price-card { background: var(--surface); border: 1px solid var(--border); padding: 50px 40px; border-radius: 24px; transition: all 0.4s; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3); }
         .price-card:hover { transform: translateY(-10px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.6); }
@@ -153,18 +149,30 @@
         .features li { display: flex; align-items: center; gap: 10px; }
         .features li i { font-size: 18px; color: var(--accent); }
 
-        /* NEW: REVIEWS / TESTIMONIALS SECTION (3D) */
+        /* NEW: KEY ACHIEVEMENTS (3D GLASSMORPHISM) */
+        .achievements-section { padding: 100px 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .achievements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
+        .achievement-card {
+            background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 30px; border-radius: 24px; text-align: center; backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3);
+            position: relative; overflow: hidden;
+        }
+        .achievement-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(255,64,64,0.1), transparent 60%);
+            opacity: 0; transition: opacity 0.4s; pointer-events: none;
+        }
+        .achievement-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(255,64,64,0.3); box-shadow: 0 20px 40px rgba(255,64,64,0.1); }
+        .achievement-card:hover::before { opacity: 1; }
+        .achievement-number { font-size: 64px; font-weight: 800; line-height: 1; margin-bottom: 16px; background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+        .achievement-label { font-size: 16px; color: var(--text-muted); font-weight: 500; }
+
+        /* TESTIMONIALS / REVIEWS */
         .reviews-section { padding: 120px 0; }
-        .review-card {
-            background: var(--surface); border: 1px solid var(--border); padding: 60px; border-radius: 24px;
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.4);
-            transform: perspective(1000px) rotateX(2deg); transition: transform 0.4s;
-            max-width: 900px; position: relative; overflow: hidden; margin-top: 40px;
-        }
-        .review-card::after {
-            content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(255,64,64,0.1), transparent 70%); pointer-events: none;
-        }
+        .review-card { background: var(--surface); border: 1px solid var(--border); padding: 60px; border-radius: 24px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.4); transform: perspective(1000px) rotateX(2deg); transition: transform 0.4s; max-width: 900px; position: relative; overflow: hidden; margin-top: 40px; margin-inline: auto; }
+        .review-card::after { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,64,64,0.1), transparent 70%); pointer-events: none; }
         .review-card:hover { transform: perspective(1000px) rotateX(0deg) translateY(-5px); }
         .review-text { font-size: 24px; line-height: 1.6; font-style: italic; margin-bottom: 40px; color: #eee; }
         .reviewer { display: flex; align-items: center; gap: 16px; }
@@ -364,14 +372,39 @@
             </div>
         </section>
 
+        <!-- NEW SECTION: KEY ACHIEVEMENTS / STATS (DARK) -->
+        <section id="achievements" class="achievements-section container">
+            <div class="section-header" style="text-align: center; margin-bottom: 20px;">
+                <span class="badge" style="margin-inline: auto;">KEY ACHIEVEMENTS</span>
+                <h2>Numbers that speak <br>for themselves.</h2>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card stat-item">
+                    <div class="achievement-number">100+</div>
+                    <div class="achievement-label">Projects Delivered</div>
+                </div>
+                <div class="achievement-card stat-item">
+                    <div class="achievement-number">93%</div>
+                    <div class="achievement-label">Client Satisfaction</div>
+                </div>
+                <div class="achievement-card stat-item">
+                    <div class="achievement-number">80%</div>
+                    <div class="achievement-label">Repeat Clients</div>
+                </div>
+                <div class="achievement-card stat-item">
+                    <div class="achievement-number">78%</div>
+                    <div class="achievement-label">Avg. Growth Impact</div>
+                </div>
+            </div>
+        </section>
+
         <!-- NEW SECTION: TESTIMONIALS / REVIEWS (DARK) -->
         <section id="reviews" class="reviews-section container">
-            <div class="section-header"><span class="badge">08 • TESTIMONIALS</span><h2>Words from the<br>people who hired us.</h2></div>
+            <div class="section-header" style="text-align: center;"><span class="badge" style="margin-inline: auto;">08 • TESTIMONIALS</span><h2>Words from the<br>people who hired us.</h2></div>
             <div class="review-card">
                 <i class="ph-fill ph-quotes" style="font-size: 40px; color: var(--accent); margin-bottom: 24px; display: block;"></i>
                 <p class="review-text">"TFG delivered beyond our expectations. Their creativity, communication and technical skills made the entire process smooth and enjoyable. They shipped a robust, bug-free system ahead of deadline."</p>
                 <div class="reviewer">
-                    <!-- Placeholder avatar image via unsplash -->
                     <div class="reviewer-avatar"></div>
                     <div class="reviewer-info">
                         <h4>Muhammad Ali</h4>
@@ -467,6 +500,19 @@
                     else { boxes.forEach((box, i) => { if (i === activeIndex) { box.classList.add('bulb-glow'); } else { box.classList.remove('bulb-glow'); } }); }
                 }
             }
+        });
+
+        /* 6. STATS / ACHIEVEMENTS STAGGER ANIMATION */
+        gsap.from(".stat-item", {
+            scrollTrigger: {
+                trigger: ".achievements-grid",
+                start: "top 80%"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "back.out(1.7)"
         });
     </script>
 </body>
