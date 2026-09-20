@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG - Digital Studio (Ultra Premium & Fully Fixed)</title>
+    <title>TFG - Digital Studio (Ultra Premium & Mobile Fixed)</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -58,6 +58,7 @@
         
         /* HERO GRAPHIC */
         .hero-graphic { flex: 0.8; position: relative; height: 550px; display: flex; align-items: center; justify-content: center; }
+        .hero-graphic-scaler { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
         .planet { width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #1a0505, #050000); box-shadow: 0 0 80px rgba(255, 64, 64, 0.6), inset -10px -10px 40px rgba(255, 115, 64, 0.2), inset 20px 20px 40px rgba(0,0,0,0.9); border: 1px solid rgba(255, 64, 64, 0.15); display: flex; align-items: center; justify-content: center; position: absolute; z-index: 10; overflow: hidden; }
         .planet img { width: 140px; height: 140px; object-fit: contain; }
         .static-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
@@ -92,8 +93,12 @@
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* FEATURED PROJECTS (ALBUM) */
-        .featured-album-section { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        /* FEATURED PROJECTS (DESKTOP ALBUM) */
+        .featured-album-section { position: relative; overflow: hidden; background: var(--bg); }
+        .desktop-only { display: block; }
+        .mobile-only { display: none !important; }
+        
+        .album-wrapper { height: 100vh; display: flex; align-items: center; justify-content: center; }
         .album-glow { position: absolute; width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle, rgba(255, 64, 64, 0.15) 0%, transparent 60%); }
         .album-book { position: relative; width: 40vw; max-width: 450px; aspect-ratio: 1 / 1; perspective: 2500px; z-index: 5; opacity: 0; transform: translateY(50px); }
         .book-page { position: absolute; width: 100%; height: 100%; top: 0; left: 0; transform-origin: left center; transform-style: preserve-3d; }
@@ -113,6 +118,18 @@
         
         .p-1 { z-index: 12; } .p-2 { z-index: 11; } .p-3 { z-index: 10; } .p-4 { z-index: 9; } .p-5 { z-index: 8; } .p-6 { z-index: 7; } .p-7 { z-index: 6; } .p-8 { z-index: 5; } .p-9 { z-index: 4; } .p-10 { z-index: 3; } .p-11 { z-index: 2; } .p-12 { z-index: 1; }
 
+        /* FEATURED PROJECTS (MOBILE SOCIAL FEED) */
+        .social-feed-wrapper { padding: 60px 0; display: flex; flex-direction: column; align-items: center; }
+        .social-post {
+            width: 100%; max-width: 400px; aspect-ratio: 1/1; background: #111;
+            border-radius: 20px; overflow: hidden; margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0; transform: translateY(50px) scale(0.9); /* Initial state for animation */
+        }
+        .social-post img { width: 100%; height: 100%; object-fit: cover; }
+        .social-post.brand-logo-post { background: radial-gradient(circle, rgba(255,255,255,0.05), transparent); padding: 40px; }
+        .social-post.brand-logo-post img { object-fit: contain; }
+
         /* PROCESS PINNED SECTION */
         .process-pin-container { height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; border-top: 1px solid var(--border);}
         .process-pin-header { padding: 0 40px; max-width: 1300px; margin: 0 auto 40px; width: 100%; }
@@ -126,21 +143,11 @@
         .bulb-glow h4 { background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .process-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-        /* KEY ACHIEVEMENTS / COUNTER STATS (STRICTLY ONE ROW DESKTOP) */
+        /* KEY ACHIEVEMENTS */
         .achievements-section { padding: 100px 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .achievements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
-        .achievement-card {
-            background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px 20px; border-radius: 20px; text-align: center; backdrop-filter: blur(10px);
-            transition: all 0.4s; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3);
-            position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center;
-            height: 100%; /* Fixes the uneven boxes */
-        }
-        .achievement-card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle at center, rgba(255,64,64,0.1), transparent 60%);
-            opacity: 0; transition: opacity 0.4s; pointer-events: none; z-index: -1;
-        }
+        .achievement-card { background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px 20px; border-radius: 20px; text-align: center; backdrop-filter: blur(10px); transition: all 0.4s; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        .achievement-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(255,64,64,0.1), transparent 60%); opacity: 0; transition: opacity 0.4s; pointer-events: none; z-index: -1; }
         .achievement-card:hover { transform: translateY(-10px); border-color: rgba(255,64,64,0.3); box-shadow: 0 20px 40px rgba(255,64,64,0.1); }
         .achievement-card:hover::before { opacity: 1; }
         .achievement-number { font-size: 56px; font-weight: 800; line-height: 1; margin-bottom: 16px; background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
@@ -158,7 +165,7 @@
         .features li { display: flex; align-items: center; gap: 10px; }
         .features li i { font-size: 18px; color: var(--accent); }
 
-        /* TESTIMONIALS / REVIEWS */
+        /* TESTIMONIALS */
         .reviews-section { padding: 120px 0; }
         .review-card { background: var(--surface); border: 1px solid var(--border); padding: 60px; border-radius: 24px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.4); transform: perspective(1000px) rotateX(2deg); transition: transform 0.4s; max-width: 900px; position: relative; overflow: hidden; margin-top: 40px; margin-inline: auto; }
         .review-card::after { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,64,64,0.1), transparent 70%); pointer-events: none; }
@@ -177,11 +184,10 @@
         .footer-cta h2 { font-size: 56px; font-weight: 700; margin-bottom: 16px; letter-spacing: -2px; }
         .cta-email { display: block; margin-top: 24px; font-size: 16px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
         .cta-email:hover { color: var(--text-main); text-decoration: underline; }
-
         footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
 
         /* ==============================================================
-           MOBILE RESPONSIVENESS (100% FIXED)
+           MOBILE RESPONSIVENESS (100% FIXED & POLISHED)
            ============================================================== */
         @media (max-width: 992px) {
             .hero { flex-direction: column; text-align: center; padding: 60px 0; min-height: auto; }
@@ -195,45 +201,44 @@
         }
 
         @media (max-width: 768px) {
+            /* Hide Desktop Elements, Show Mobile Elements */
+            .desktop-only { display: none !important; }
+            .mobile-only { display: flex !important; width: 100%; }
+            .featured-album-section { height: auto; }
+
             .container { padding: 0 20px; }
             nav ul { display: none; }
-            .hero h1 { font-size: 48px; }
-            .word-cycler { height: 55px; }
             
-            /* HERO GRAPHIC OVERLAP FIX */
-            .hero-graphic { height: 350px; margin-top: 20px; margin-bottom: 40px; }
-            .planet { width: 140px; height: 140px; }
-            .planet img { width: 90px; height: 90px; }
-            .ring-1 { width: 260px; height: 260px; }
-            .ring-2 { width: 360px; height: 360px; }
-            #orbit-1 { width: 260px; height: 260px; }
-            #orbit-2 { width: 360px; height: 360px; }
-            .tag-wrapper { margin-top: -14px; margin-left: -40px; }
-            .orbit-tag { padding: 6px 12px; font-size: 10px; }
-
+            /* Hero Banner Mobile Spacing Fixes */
+            .hero { padding-top: 60px; padding-bottom: 40px; }
+            .hero h1 { font-size: 42px; margin-bottom: 16px; }
+            .word-cycler { height: 48px; }
+            .hero p { margin-bottom: 30px; font-size: 16px; }
+            
+            /* HERO GRAPHIC OVERLAP FIX (Huge Gap & Scale Down) */
+            .hero-graphic { height: 320px; margin-top: 60px; margin-bottom: 20px; }
+            .hero-graphic-scaler { transform: scale(0.55); transform-origin: center; }
+            
+            /* General Resets for Mobile */
             .services-grid { grid-template-columns: 1fr; }
             .pricing-grid { grid-template-columns: 1fr; }
             .price-card.featured { transform: scale(1); } 
             .price-card.featured:hover { transform: translateY(-5px); }
             
-            /* FLIPBOOK AUTO CENTER MOBILE FIX */
-            .album-book { width: 45vw; max-width: 200px; }
-            .cover-design h2 { font-size: 20px; }
-            .logo-placeholder img { padding: 10px; }
-            
+            /* Process Timeline & Sections */
             .process-pin-header h2 { font-size: 32px; }
-            .process-box { width: 80vw; min-height: 280px; padding: 30px; }
+            .process-box { width: 85vw; min-height: 260px; padding: 30px; }
             .process-horizontal-track { padding: 40px 10vw 40px 20px; }
-            
-            .section-header h2 { font-size: 36px; }
-            .footer-cta h2 { font-size: 36px; }
+            .section-header h2 { font-size: 32px; line-height: 1.2; }
+            .footer-cta { padding: 50px 30px; }
+            .footer-cta h2 { font-size: 36px; line-height: 1.1; }
             .review-text { font-size: 18px; }
             .review-card { padding: 30px; }
 
-            /* ACHIEVEMENTS MOBILE FIX */
+            /* Achievements Mobile Grid */
             .achievements-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .achievement-number { font-size: 36px; }
-            .achievement-card { padding: 30px 15px; }
+            .achievement-card { padding: 30px 15px; height: 100%; }
         }
     </style>
 </head>
@@ -261,17 +266,19 @@
                 <div class="hero-actions"><a href="mailto:hello@tfgsolutions.pk" class="btn">Start a Project →</a></div>
             </div>
             <div class="hero-graphic">
-                <div class="static-ring ring-1"></div><div class="static-ring ring-2"></div>
-                <div class="orbit-container" id="orbit-2">
-                    <div class="tag-wrapper" style="top: 0; left: 50%;"><div class="orbit-tag"><i class="ph-fill ph-device-mobile"></i> Apps</div></div>
-                    <div class="tag-wrapper" style="top: 75%; left: 6.6%;"><div class="orbit-tag"><i class="ph-fill ph-shopping-cart"></i> Commerce</div></div>
-                    <div class="tag-wrapper" style="top: 75%; left: 93.3%;"><div class="orbit-tag"><i class="ph-fill ph-trend-up"></i> Growth</div></div>
+                <div class="hero-graphic-scaler">
+                    <div class="static-ring ring-1"></div><div class="static-ring ring-2"></div>
+                    <div class="orbit-container" id="orbit-2">
+                        <div class="tag-wrapper" style="top: 0; left: 50%;"><div class="orbit-tag"><i class="ph-fill ph-device-mobile"></i> Apps</div></div>
+                        <div class="tag-wrapper" style="top: 75%; left: 6.6%;"><div class="orbit-tag"><i class="ph-fill ph-shopping-cart"></i> Commerce</div></div>
+                        <div class="tag-wrapper" style="top: 75%; left: 93.3%;"><div class="orbit-tag"><i class="ph-fill ph-trend-up"></i> Growth</div></div>
+                    </div>
+                    <div class="orbit-container" id="orbit-1">
+                        <div class="tag-wrapper" style="top: 50%; left: 0;"><div class="orbit-tag"><i class="ph-fill ph-globe"></i> Websites</div></div>
+                        <div class="tag-wrapper" style="top: 50%; left: 100%;"><div class="orbit-tag"><i class="ph-fill ph-paint-brush"></i> Branding</div></div>
+                    </div>
+                    <div class="planet"><img src="hero-center-logo.png" alt="Center Logo"></div>
                 </div>
-                <div class="orbit-container" id="orbit-1">
-                    <div class="tag-wrapper" style="top: 50%; left: 0;"><div class="orbit-tag"><i class="ph-fill ph-globe"></i> Websites</div></div>
-                    <div class="tag-wrapper" style="top: 50%; left: 100%;"><div class="orbit-tag"><i class="ph-fill ph-paint-brush"></i> Branding</div></div>
-                </div>
-                <div class="planet"><img src="hero-center-logo.png" alt="Center Logo"></div>
             </div>
         </section>
     </div>
@@ -309,66 +316,47 @@
         </section>
     </div>
 
-    <!-- SECTION 4: FEATURED PROJECTS ALBUM (TINTED) -->
+    <!-- SECTION 4: FEATURED PROJECTS (TINTED) -->
     <div class="theme-tint">
         <section id="featured" class="featured-album-section">
-            <div class="album-glow"></div>
-            <div class="album-book">
-                <div class="book-page p-1">
-                    <div class="page-face page-front cover-design">
-                        <i class="ph-fill ph-image" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
-                        <h2>Featured Work</h2>
-                        <p style="color: var(--text-muted); font-size: 14px;">Scroll to view album</p>
-                    </div>
-                    <div class="page-face page-back"></div>
-                </div>
-
-                <div class="book-page p-2 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-1.png" alt="Post 1"></div></div>
-                    <div class="page-face page-back"><img src="post-1.png" class="page-back-img"></div>
-                </div>
-                <div class="book-page p-3 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-2.png" alt="Post 2"></div></div>
-                    <div class="page-face page-back"><img src="post-2.png" class="page-back-img"></div>
-                </div>
-                <div class="book-page p-4 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-3.png" alt="Post 3"></div></div>
-                    <div class="page-face page-back"><img src="post-3.png" class="page-back-img"></div>
-                </div>
-                <div class="book-page p-5 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-4.png" alt="Post 4"></div></div>
-                    <div class="page-face page-back"><img src="post-4.png" class="page-back-img"></div>
-                </div>
-                <div class="book-page p-6 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-5.png" alt="Post 5"></div></div>
-                    <div class="page-face page-back"><img src="post-5.png" class="page-back-img"></div>
-                </div>
-                <div class="book-page p-7 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-6.png" alt="Post 6"></div></div>
-                    <div class="page-face page-back"><img src="post-6.png" class="page-back-img"></div>
-                </div>
-                <div class="book-page p-8 flip-item">
-                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-7.png" alt="Post 7"></div></div>
-                    <div class="page-face page-back"><img src="post-7.png" class="page-back-img"></div>
-                </div>
-
-                <div class="book-page p-9 flip-item">
-                    <div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-1.png" alt="Logo 1"></div></div>
-                    <div class="page-face page-back"><img src="album-logo-1.png" class="page-back-logo"></div>
-                </div>
-                <div class="book-page p-10 flip-item">
-                    <div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-2.png" alt="Logo 2"></div></div>
-                    <div class="page-face page-back"><img src="album-logo-2.png" class="page-back-logo"></div>
-                </div>
-                <div class="book-page p-11 flip-item">
-                    <div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-3.png" alt="Logo 3"></div></div>
-                    <div class="page-face page-back"><img src="album-logo-3.png" class="page-back-logo"></div>
-                </div>
-
-                <div class="book-page p-12">
-                    <div class="page-face page-front cover-design"><i class="ph-fill ph-check-circle" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i><h2>That's It!</h2></div>
+            
+            <!-- DESKTOP 3D FLIPBOOK ALBUM -->
+            <div class="album-wrapper desktop-only">
+                <div class="album-glow"></div>
+                <div class="album-book">
+                    <div class="book-page p-1"><div class="page-face page-front cover-design"><i class="ph-fill ph-image" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i><h2>Featured Work</h2><p style="color: var(--text-muted); font-size: 14px;">Scroll to view album</p></div><div class="page-face page-back"></div></div>
+                    <div class="book-page p-2 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-1.png" alt="Post 1"></div></div><div class="page-face page-back"><img src="post-1.png" class="page-back-img"></div></div>
+                    <div class="book-page p-3 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-2.png" alt="Post 2"></div></div><div class="page-face page-back"><img src="post-2.png" class="page-back-img"></div></div>
+                    <div class="book-page p-4 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-3.png" alt="Post 3"></div></div><div class="page-face page-back"><img src="post-3.png" class="page-back-img"></div></div>
+                    <div class="book-page p-5 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-4.png" alt="Post 4"></div></div><div class="page-face page-back"><img src="post-4.png" class="page-back-img"></div></div>
+                    <div class="book-page p-6 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-5.png" alt="Post 5"></div></div><div class="page-face page-back"><img src="post-5.png" class="page-back-img"></div></div>
+                    <div class="book-page p-7 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-6.png" alt="Post 6"></div></div><div class="page-face page-back"><img src="post-6.png" class="page-back-img"></div></div>
+                    <div class="book-page p-8 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-7.png" alt="Post 7"></div></div><div class="page-face page-back"><img src="post-7.png" class="page-back-img"></div></div>
+                    <div class="book-page p-9 flip-item"><div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-1.png" alt="Logo 1"></div></div><div class="page-face page-back"><img src="album-logo-1.png" class="page-back-logo"></div></div>
+                    <div class="book-page p-10 flip-item"><div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-2.png" alt="Logo 2"></div></div><div class="page-face page-back"><img src="album-logo-2.png" class="page-back-logo"></div></div>
+                    <div class="book-page p-11 flip-item"><div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-3.png" alt="Logo 3"></div></div><div class="page-face page-back"><img src="album-logo-3.png" class="page-back-logo"></div></div>
+                    <div class="book-page p-12"><div class="page-face page-front cover-design"><i class="ph-fill ph-check-circle" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i><h2>That's It!</h2></div></div>
                 </div>
             </div>
+
+            <!-- MOBILE CUSTOM SOCIAL FEED (Vertical Infinite Scroll Feel) -->
+            <div class="container mobile-only social-feed-wrapper">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="badge" style="margin-inline: auto;">FEATURED WORK</span>
+                    <h2>Scroll our latest.</h2>
+                </div>
+                <div class="social-post"><img src="post-1.png" alt="Post"></div>
+                <div class="social-post"><img src="post-2.png" alt="Post"></div>
+                <div class="social-post"><img src="post-3.png" alt="Post"></div>
+                <div class="social-post"><img src="post-4.png" alt="Post"></div>
+                <div class="social-post"><img src="post-5.png" alt="Post"></div>
+                <div class="social-post"><img src="post-6.png" alt="Post"></div>
+                <div class="social-post"><img src="post-7.png" alt="Post"></div>
+                <div class="social-post brand-logo-post"><img src="album-logo-1.png" alt="Logo"></div>
+                <div class="social-post brand-logo-post"><img src="album-logo-2.png" alt="Logo"></div>
+                <div class="social-post brand-logo-post"><img src="album-logo-3.png" alt="Logo"></div>
+            </div>
+
         </section>
     </div>
 
@@ -391,7 +379,7 @@
             </div>
         </section>
 
-        <!-- SECTION 6: KEY ACHIEVEMENTS (STRICTLY ONE ROW, AUTO-COUNT ONLY) -->
+        <!-- SECTION 6: KEY ACHIEVEMENTS (Auto-Counter Grid) -->
         <section id="achievements" class="achievements-section container">
             <div class="section-header" style="text-align: center; margin-bottom: 20px;">
                 <span class="badge" style="margin-inline: auto;">KEY ACHIEVEMENTS</span>
@@ -510,23 +498,39 @@
         marqueeContainer.addEventListener('mouseenter', () => marqueeTween.pause());
         marqueeContainer.addEventListener('mouseleave', () => marqueeTween.play());
 
-        /* 4. ALBUM SCROLL ANIMATION */
-        const albumTl = gsap.timeline({
-            scrollTrigger: { trigger: "#featured", start: "top top", end: "+=6000", pin: true, scrub: 1 }
-        });
-        albumTl.to(".album-glow", { scale: 1, opacity: 1, duration: 1 })
-               .to(".album-book", { opacity: 1, y: 0, duration: 1 }, "<")
-               .to(".p-1", { rotationY: -180, duration: 2 }, "openCover")
-               .to(".album-book", { xPercent: 50, duration: 2 }, "openCover");
+        /* 4. MATCHMEDIA FOR RESPONSIVE ANIMATIONS */
+        let mm = gsap.matchMedia();
 
-        const flipItems = gsap.utils.toArray('.flip-item');
-        flipItems.forEach(item => {
-            albumTl.to(item, { rotationY: -10, duration: 0.5 }).to(item, { rotationY: -180, duration: 2 });
-        });
-        albumTl.to(".album-book", { opacity: 0, scale: 0.8, filter: "blur(20px)", duration: 2 })
-               .to(".album-glow", { opacity: 0, scale: 0, duration: 2 }, "<");
+        mm.add("(min-width: 769px)", () => {
+            // DESKTOP: ALBUM SCROLL ANIMATION (3D FLIPBOOK)
+            const albumTl = gsap.timeline({
+                scrollTrigger: { trigger: "#featured", start: "top top", end: "+=6000", pin: true, scrub: 1 }
+            });
+            albumTl.to(".album-glow", { scale: 1, opacity: 1, duration: 1 })
+                   .to(".album-book", { opacity: 1, y: 0, duration: 1 }, "<")
+                   .to(".p-1", { rotationY: -180, duration: 2 }, "openCover")
+                   .to(".album-book", { xPercent: 50, duration: 2 }, "openCover");
 
-        /* 5. PROCESS SECTION */
+            const flipItems = gsap.utils.toArray('.flip-item');
+            flipItems.forEach(item => {
+                albumTl.to(item, { rotationY: -10, duration: 0.5 }).to(item, { rotationY: -180, duration: 2 });
+            });
+            albumTl.to(".album-book", { opacity: 0, scale: 0.8, filter: "blur(20px)", duration: 2 })
+                   .to(".album-glow", { opacity: 0, scale: 0, duration: 2 }, "<");
+        });
+
+        mm.add("(max-width: 768px)", () => {
+            // MOBILE: VERTICAL SOCIAL FEED ANIMATION
+            const posts = gsap.utils.toArray('.social-post');
+            posts.forEach(post => {
+                gsap.to(post, {
+                    opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power2.out",
+                    scrollTrigger: { trigger: post, start: "top 85%" }
+                });
+            });
+        });
+
+        /* 5. PROCESS SECTION (Runs on both Desktop and Mobile) */
         const processTrack = document.querySelector('.process-horizontal-track');
         const boxes = gsap.utils.toArray('.process-box'); const totalBoxes = boxes.length;
         function getScrollAmount() { return -(processTrack.scrollWidth - window.innerWidth + 80); }
@@ -548,10 +552,7 @@
         counters.forEach(counter => {
             const target = +counter.getAttribute('data-target');
             gsap.to(counter, {
-                innerHTML: target,
-                duration: 2.5,
-                snap: { innerHTML: 1 },
-                ease: "power2.out",
+                innerHTML: target, duration: 2.5, snap: { innerHTML: 1 }, ease: "power2.out",
                 scrollTrigger: { trigger: ".achievements-grid", start: "top 85%" }
             });
         });
