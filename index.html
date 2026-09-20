@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFG - Digital Studio (Ultra Premium & Alternating Theme)</title>
+    <title>TFG - Digital Studio (Ultra Premium & Polished)</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -43,10 +43,10 @@
         .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-size: 14px; transition: 0.3s; }
         .btn-outline:hover { background: var(--surface-light); border-color: var(--text-muted); }
 
-        /* HEADER */
+        /* HEADER (Logo Size Increased) */
         header { padding: 24px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); z-index: 1000; }
         header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 32px; width: auto; object-fit: contain; } /* Logo Auto Size */
+        .logo img { height: 48px; width: auto; object-fit: contain; } /* Increased from 32px to 48px */
         nav ul { display: flex; gap: 32px; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: 0.3s; }
         nav a:hover { color: white; }
@@ -59,10 +59,18 @@
         .changing-word { display: inline-block; position: relative; text-transform: uppercase; }
         .hero p { color: var(--text-muted); font-size: 18px; max-width: 480px; margin-bottom: 40px; line-height: 1.6; }
         
-        /* HERO GRAPHIC */
+        /* HERO GRAPHIC (Dark Core with Glowing Aura for Logo Visibility) */
         .hero-graphic { flex: 0.8; position: relative; height: 550px; display: flex; align-items: center; justify-content: center; }
-        .planet { width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ff7340, #ff4040, #1a0000); box-shadow: 0 0 80px rgba(255, 64, 64, 0.5), inset -20px -20px 40px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; position: absolute; z-index: 10; overflow: hidden; }
-        .planet img { width: 140px; height: 140px; object-fit: contain; } /* Planet Logo Setup */
+        .planet { 
+            width: 220px; height: 220px; border-radius: 50%; 
+            /* Changed to deep dark core with red glow aura so logo pops! */
+            background: radial-gradient(circle at 30% 30%, #1a0505, #050000); 
+            box-shadow: 0 0 80px rgba(255, 64, 64, 0.6), inset -10px -10px 40px rgba(255, 115, 64, 0.2), inset 20px 20px 40px rgba(0,0,0,0.9); 
+            border: 1px solid rgba(255, 64, 64, 0.15);
+            display: flex; align-items: center; justify-content: center; position: absolute; z-index: 10; overflow: hidden; 
+        }
+        .planet img { width: 140px; height: 140px; object-fit: contain; }
+        
         .static-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
         .ring-1 { width: 380px; height: 380px; }
         .ring-2 { width: 520px; height: 520px; }
@@ -95,14 +103,19 @@
         .service-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
         .service-card p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
-        /* FEATURED PROJECTS (ALBUM) */
+        /* FEATURED PROJECTS (ALBUM with Frosted Backs) */
         .featured-album-section { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .album-glow { position: absolute; width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle, rgba(255, 64, 64, 0.15) 0%, transparent 60%); }
         .album-book { position: relative; width: 40vw; max-width: 450px; aspect-ratio: 1 / 1; perspective: 2500px; z-index: 5; opacity: 0; transform: translateY(50px); }
         .book-page { position: absolute; width: 100%; height: 100%; top: 0; left: 0; transform-origin: left center; transform-style: preserve-3d; }
         .page-face { position: absolute; width: 100%; height: 100%; top: 0; left: 0; backface-visibility: hidden; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; }
         .page-front { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(20px); }
-        .page-back { background: rgba(10, 10, 10, 0.95); transform: rotateY(180deg); }
+        
+        /* The magical frosted glass back side */
+        .page-back { background: rgba(5, 5, 5, 0.95); transform: rotateY(180deg); overflow: hidden; }
+        .page-back-img { width: 100%; height: 100%; object-fit: cover; filter: blur(15px) brightness(0.4); transform: scaleX(-1); opacity: 0.7; }
+        .page-back-logo { width: 100%; height: 100%; object-fit: contain; padding: 40px; filter: blur(12px) brightness(0.3); transform: scaleX(-1); background: radial-gradient(circle, rgba(255,255,255,0.02), transparent); opacity: 0.6; }
+
         .cover-design { background: rgba(255,255,255,0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,64,64,0.3); display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .cover-design h2 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
         
@@ -129,7 +142,7 @@
         .process-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
         /* PRICING */
-        .pricing { padding: 120px 0; }
+        .pricing { padding: 120px 0; border-bottom: 1px solid var(--border); }
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
         .price-card { background: var(--surface); border: 1px solid var(--border); padding: 50px 40px; border-radius: 24px; transition: all 0.4s; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3); }
         .price-card:hover { transform: translateY(-10px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.6); }
@@ -139,6 +152,25 @@
         .features { list-style: none; margin-bottom: 40px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; color: var(--text-muted); }
         .features li { display: flex; align-items: center; gap: 10px; }
         .features li i { font-size: 18px; color: var(--accent); }
+
+        /* NEW: REVIEWS / TESTIMONIALS SECTION (3D) */
+        .reviews-section { padding: 120px 0; }
+        .review-card {
+            background: var(--surface); border: 1px solid var(--border); padding: 60px; border-radius: 24px;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.4);
+            transform: perspective(1000px) rotateX(2deg); transition: transform 0.4s;
+            max-width: 900px; position: relative; overflow: hidden; margin-top: 40px;
+        }
+        .review-card::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255,64,64,0.1), transparent 70%); pointer-events: none;
+        }
+        .review-card:hover { transform: perspective(1000px) rotateX(0deg) translateY(-5px); }
+        .review-text { font-size: 24px; line-height: 1.6; font-style: italic; margin-bottom: 40px; color: #eee; }
+        .reviewer { display: flex; align-items: center; gap: 16px; }
+        .reviewer-avatar { width: 56px; height: 56px; border-radius: 50%; background: #222; border: 2px solid var(--accent); background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&auto=format&fit=crop'); background-size: cover; }
+        .reviewer-info h4 { font-size: 18px; margin-bottom: 4px; }
+        .reviewer-info span { font-size: 14px; color: var(--text-muted); }
 
         /* CTA */
         .cta-section { padding: 80px 0; }
@@ -157,9 +189,7 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="header-logo.png" alt="TFG Logo">
-            </div>
+            <div class="logo"><img src="header-logo.png" alt="TFG Logo"></div>
             <nav><ul><li><a href="#services">Services</a></li><li><a href="#featured">Work</a></li><li><a href="#process">Process</a></li><li><a href="#pricing">Pricing</a></li></ul></nav>
             <a href="mailto:hello@tfgsolutions.pk" class="btn btn-outline">Let's Talk →</a>
         </div>
@@ -188,9 +218,7 @@
                     <div class="tag-wrapper" style="top: 50%; left: 0;"><div class="orbit-tag"><i class="ph-fill ph-globe"></i> Websites</div></div>
                     <div class="tag-wrapper" style="top: 50%; left: 100%;"><div class="orbit-tag"><i class="ph-fill ph-paint-brush"></i> Branding</div></div>
                 </div>
-                <div class="planet">
-                    <img src="hero-center-logo.png" alt="Center Logo">
-                </div>
+                <div class="planet"><img src="hero-center-logo.png" alt="Center Logo"></div>
             </div>
         </section>
     </div>
@@ -243,19 +271,49 @@
                     <div class="page-face page-back"></div>
                 </div>
 
-                <!-- 7 Social Media Posts (Images Direct Paths) -->
-                <div class="book-page p-2 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-1.png" alt="Post 1"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-3 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-2.png" alt="Post 2"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-4 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-3.png" alt="Post 3"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-5 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-4.png" alt="Post 4"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-6 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-5.png" alt="Post 5"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-7 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-6.png" alt="Post 6"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-8 flip-item"><div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-7.png" alt="Post 7"></div></div><div class="page-face page-back"></div></div>
+                <!-- 7 Social Media Posts (WITH FROSTED BACK FACES) -->
+                <div class="book-page p-2 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-1.png" alt="Post 1"></div></div>
+                    <div class="page-face page-back"><img src="post-1.png" class="page-back-img"></div>
+                </div>
+                <div class="book-page p-3 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-2.png" alt="Post 2"></div></div>
+                    <div class="page-face page-back"><img src="post-2.png" class="page-back-img"></div>
+                </div>
+                <div class="book-page p-4 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-3.png" alt="Post 3"></div></div>
+                    <div class="page-face page-back"><img src="post-3.png" class="page-back-img"></div>
+                </div>
+                <div class="book-page p-5 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-4.png" alt="Post 4"></div></div>
+                    <div class="page-face page-back"><img src="post-4.png" class="page-back-img"></div>
+                </div>
+                <div class="book-page p-6 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-5.png" alt="Post 5"></div></div>
+                    <div class="page-face page-back"><img src="post-5.png" class="page-back-img"></div>
+                </div>
+                <div class="book-page p-7 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-6.png" alt="Post 6"></div></div>
+                    <div class="page-face page-back"><img src="post-6.png" class="page-back-img"></div>
+                </div>
+                <div class="book-page p-8 flip-item">
+                    <div class="page-face page-front content-frame"><div class="img-placeholder"><img src="post-7.png" alt="Post 7"></div></div>
+                    <div class="page-face page-back"><img src="post-7.png" class="page-back-img"></div>
+                </div>
 
-                <!-- 3 Logos (Images Direct Paths) -->
-                <div class="book-page p-9 flip-item"><div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-1.png" alt="Logo 1"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-10 flip-item"><div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-2.png" alt="Logo 2"></div></div><div class="page-face page-back"></div></div>
-                <div class="book-page p-11 flip-item"><div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-3.png" alt="Logo 3"></div></div><div class="page-face page-back"></div></div>
+                <!-- 3 Logos (WITH FROSTED BACK FACES) -->
+                <div class="book-page p-9 flip-item">
+                    <div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-1.png" alt="Logo 1"></div></div>
+                    <div class="page-face page-back"><img src="album-logo-1.png" class="page-back-logo"></div>
+                </div>
+                <div class="book-page p-10 flip-item">
+                    <div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-2.png" alt="Logo 2"></div></div>
+                    <div class="page-face page-back"><img src="album-logo-2.png" class="page-back-logo"></div>
+                </div>
+                <div class="book-page p-11 flip-item">
+                    <div class="page-face page-front content-frame"><span class="badge" style="color:var(--accent); margin-left: 10px; margin-top: 10px;">Brand Identity</span><div class="logo-placeholder"><img src="album-logo-3.png" alt="Logo 3"></div></div>
+                    <div class="page-face page-back"><img src="album-logo-3.png" class="page-back-logo"></div>
+                </div>
 
                 <!-- Back Cover -->
                 <div class="book-page p-12">
@@ -305,9 +363,26 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW SECTION: TESTIMONIALS / REVIEWS (DARK) -->
+        <section id="reviews" class="reviews-section container">
+            <div class="section-header"><span class="badge">08 • TESTIMONIALS</span><h2>Words from the<br>people who hired us.</h2></div>
+            <div class="review-card">
+                <i class="ph-fill ph-quotes" style="font-size: 40px; color: var(--accent); margin-bottom: 24px; display: block;"></i>
+                <p class="review-text">"TFG delivered beyond our expectations. Their creativity, communication and technical skills made the entire process smooth and enjoyable. They shipped a robust, bug-free system ahead of deadline."</p>
+                <div class="reviewer">
+                    <!-- Placeholder avatar image via unsplash -->
+                    <div class="reviewer-avatar"></div>
+                    <div class="reviewer-info">
+                        <h4>Muhammad Ali</h4>
+                        <span>CEO, Trifit Pakistan</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- SECTION 7: CTA (TINTED) -->
+    <!-- SECTION 8: CTA (TINTED) -->
     <div class="theme-tint">
         <section class="cta-section container">
             <div class="footer-cta">
